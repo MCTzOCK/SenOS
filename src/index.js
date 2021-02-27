@@ -4,7 +4,7 @@ const http = require('http');
 const fs = require('fs');
 let debug = true;
 let forceInstall = false;
-let forceLogin = false;
+let forceLogin = true;
 if(app.commandLine.hasSwitch('debug')){
   debug = true;
 }
@@ -15,6 +15,8 @@ if(app.commandLine.hasSwitch('forceInstall')){
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
+
+console.log(app.getPath("userData"))
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -56,7 +58,7 @@ const createWindow = () => {
   // mainWindow.loadURL('https://www.youtube.com/');
   // mainWindow.loadFile(path.join(__dirname, 'apps/browser/index.html'));
   if(forceLogin){
-    mainWindow.loadFile(path.join(__dirname, 'login.old/login.old.html'));
+    mainWindow.loadFile(path.join(__dirname, 'login/login.html'));
   }
   if(!debug){
     mainWindow.setClosable(false);
