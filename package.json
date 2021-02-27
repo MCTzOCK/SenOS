@@ -12,9 +12,13 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MCTzOCK/SenOS"
+  },
   "keywords": [],
   "author": {
-    "name": "SenOS.xyz",
+    "name": "SenOS Development Team",
     "email": "dev@mctzock.de"
   },
   "license": "GPLv3",
