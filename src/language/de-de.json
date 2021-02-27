@@ -1,0 +1,14 @@
+{
+    "dialog": {
+        "shutdown": 
+            {
+                "title": "PC Herrunterfahren",
+                "content": "Soll der PC wirklich herruntergefahren werden?",
+                "buttons":
+                {
+                    "yes": "Ja",
+                    "no": "Nein"
+                }
+            }
+    }
+}

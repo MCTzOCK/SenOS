@@ -1,0 +1,14 @@
+{
+    "lists": {
+        "my_day": {
+            "display": "Mein Tag",
+            "tasks": [
+                {
+                    "name": "Name",
+                    "finished": false
+                }
+            ],
+            "manageable": false
+        }
+    }
+}
