@@ -11,7 +11,7 @@ Do to the Release-Page and download the latest stable release´.
 - npm 7.5.3
 
 ## Building:
-```sh
+```batch
 # clone repo
 git clone https://github.com/MCTzOCK/SenOS.git && cd SenOS
 # install dependencies
