@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="login.js"></script>
+</head>
+<body>
+    <center>
+        <h2 id="err">
+            Fehler: Das eingegebene Passwort ist leider falsch!
+        </h2>
+    </center>
+    <div id="form">
+        <h1 id="replace">
+            Willkommen zurück, <span id="u_name">{user.name}</span>!
+        </h1>
+        <h2>
+            Bitte gebe dein Password ein!
+        </h2>
+        <input type="password" placeholder="Dein Passwort" id="pwd">
+        <a href="javascript:show();"><button id="show_pwd_btn">Passwort anzeigen</button></a>
+        <br>
+        <br>
+        <a href="javascript:login();"><button>Anmelden</button></a>
+        <br>
+        <a href="javascript:resetPassword();" id="f_p">Passwort vergessen?</a>
+    </div>
+    <p id="lis">
+        Copyright (c) 2020 Luki ist sweet. All rights reserved.
+    </p>
+</body>
+<footer>
+    <script>init();</script>
+</footer>
+</html>
+<style>
+    * {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 40px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        text-align: center;
+    }
+    body {
+         background-image: url("https://cdn.pixabay.com/photo/2018/12/01/00/10/blue-hour-3848856_960_720.jpg");    
+         background-repeat: no-repeat;
+         background-size: cover;
+    }
+    #form {
+        top: 35%;
+        left: 35%;
+        position: fixed;
+        color: white;
+    }
+    #err {
+        visibility: hidden;
+        color: white;
+        border-style: solid;
+        border-color: red;
+        background-color: red;
+    }
+    #u_name {
+        color: orange;
+    }
+    #f_p {
+        color: orange;
+    }
+    #lis {
+        bottom: 0px;
+        right: 0px;
+        position: absolute;
+        font-size: 15px;
+        color: white;
+    }
+</style>

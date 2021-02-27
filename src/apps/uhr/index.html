@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uhr</title>
+</head>
+<body>
+    <a class="uhr_art" href="javascript:wecker_btn()" style="left: 0%;">Wecker</a>
+    <a class="uhr_art" href="javascript:stoppuhr_btn()" style="left: 33.3%;">Stoppuhr</a>
+    <a class="uhr_art" href="javascript:timer_btn()" style="left: 66.6%">Timer</a>
+    
+    <!-- Wecker -->
+    <div id="wecker">
+        <div class="wecker_input" style="width: 80%; top: 10%; height: 20%; left: 10%; position: absolute;">
+            <p style="width: 5%; left: 1%; top: 1%; position: absolute; font-size: 25px;">Sekunden:</p>
+            <p style="width: 5%; left: 18%; top: 1%; position: absolute; font-size: 25px;">Minuten:</p>
+            <p style="width: 5%; left: 35%; top: 1%; position: absolute; font-size: 25px;">Stunden:</p>
+            <p style="width: 5%; left: 52%; top: 1%; position: absolute; font-size: 25px;">Tage:</p>
+            <p style="width: 5%; left: 69%; top: 1%; position: absolute; font-size: 25px;">Monate:</p>
+            <p style="width: 5%; left: 85%; top: 1%; position: absolute; font-size: 25px;">Jahr:</p>
+            <input id="wecker_sekunden" type='number' value='' min="0" max="60" placeholder="Sekunden" style="width: 13%; left: 1%; top: 35%; position: absolute; font-size: 30px;">
+            <input id="wecker_minuten" type='number' value='' min="0" max="60" placeholder="Minuten"  style="width: 13%; left: 18%; top: 35%; position: absolute; font-size: 30px;">
+            <input id="wecker_stunden" type='number' value='' min="0" max="60" placeholder="Stunden" style="width: 13%; left: 35%; top: 35%; position: absolute; font-size: 30px;">
+            <input id="wecker_tage" type='number' value='' min="0" placeholder="Tage" style="width: 13%; left: 52%; top: 35%; position: absolute; font-size: 30px;">
+            <select onchange="javascript:wecker_Monate_max()" id="wecker_Monate" style="width: 13%; left: 69%; top: 35%; position: absolute; font-size: 30px;">
+                <option disabled>Monate:</option>
+                <optgroup>
+                    <option id="wecker_Monate_Januar">Januar</option>
+                    <option id="wecker_Monate_Februar">Februar</option>
+                    <option id="wecker_Monate_März">März</option>
+                    <option id="wecker_Monate_April">April</option>
+                    <option id="wecker_Monate_Juni">Juni</option>
+                    <option id="wecker_Monate_Juli">Juli</option>
+                    <option id="wecker_Monate_August">August</option>
+                    <option id="wecker_Monate_September">September</option>
+                    <option id="wecker_Monate_Oktober">Oktober</option>
+                    <option id="wecker_Monate_November">November</option>
+                    <option id="wecker_Monate_Dezember">Dezember</option>
+                </optgroup>
+            </select>
+            <input id="wecker_jahr" type='number' value="" placeholder="Jahr" style="width: 13%; left: 85%; top: 35%; position: absolute; font-size: 30px;">
+            <a class="wecker_starten" href="javascript:wecker_start()">Starten</a>
+            <a class="wecker_abbrechen" href='javascript:wecker_input_value()'>Abbrechen</a>
+        </div>
+
+        <p id="demo" style="text-align: center; font-size: 200px; top: 30%; left: 15%; position: absolute;">0d 0h 0m 0s</p>
+    </div>
+
+    <!-- Stoppuhr -->
+    <div id="stoppuhr" >
+        <p id="stoppuhr_display" style="width: 100%; font-size: 150px; top: 10%; position: absolute; text-align: center;">0h 0m 0s</p>
+        <a class="stoppuhr_neustart_btn" href="javascript:stoppuhr_neustart()">Neustart</a>
+        <a class="stoppuhr_weiter_btn" href="javascript:stoppuhr_weiter()">Weiter</a>
+        <a class="stoppuhr_stopp_btn" href="javascript:stoppuhr_stopp()">Stopp</a>
+    </div>
+
+    <!-- Timer -->
+    <div id="timer">
+        <div class="timer_input" style="width: 80%; top: 10%; height: 20%; left: 10%; position: absolute;">
+            <p style="width: 5%; left: 1%; top: 1%; position: absolute; font-size: 25px;">Sekunden:</p>
+            <p style="width: 5%; left: 18%; top: 1%; position: absolute; font-size: 25px;">Minuten:</p>
+            <p style="width: 5%; left: 35%; top: 1%; position: absolute; font-size: 25px;">Stunden:</p>
+            <p style="width: 5%; left: 52%; top: 1%; position: absolute; font-size: 25px;">Tage:</p>
+            <input id="timer_input_sekunden" type='number' value='' min="0" max="60" placeholder="Sekunden" style="width: 13%; left: 1%; top: 35%; position: absolute; font-size: 30px;">
+            <input id="timer_input_minuten" type='number' value='' min="0" max="60" placeholder="Minuten"  style="width: 13%; left: 18%; top: 35%; position: absolute; font-size: 30px;">
+            <input id="timer_input_stunden" type='number' value='' min="0" max="60" placeholder="Stunden" style="width: 13%; left: 35%; top: 35%; position: absolute; font-size: 30px;">
+            <input id="timer_input_tage" type='number' value='' min="0" placeholder="Tage" style="width: 13%; left: 52%; top: 35%; position: absolute; font-size: 30px;">
+
+            <a class="timer_starten" href="javascript:timer_start()">Starten</a>
+            <a class="timer_abbrechen" href='javascript:timer_input_abbrechen()'>Abbrechen</a>
+        </div>
+
+        <p id="timer_display" style="text-align: center; font-size: 200px; top: 30%; position: absolute; width: 100%;">0d 0h 0m 0s</p>
+    </div>
+
+    <style>
+        * {
+            user-select: none;
+        }
+
+        .uhr_art {
+            box-shadow:inset 0px 0px 0px 0px #ffffff;
+	        background-color:#dbd7db;
+            border:2px solid #8f898f;
+            display:inline-block;
+            cursor:pointer;
+            color:#9e9e9e;
+            font-family:Arial;
+            font-size:40px;
+            font-weight:bold;
+            padding:9px 9px;
+            text-decoration:none;
+            text-shadow:1px 1px 0px #ffffff;
+            text-align: center;
+            width: 33.3%;
+            position: absolute;
+        }
+        .uhr_art:hover {
+            background-color:#949494;
+        }
+
+        .wecker_input {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            color: black;
+            padding: 12px 16px; 
+            text-decoration: none; 
+            display: block;
+        }
+
+        .wecker_starten {
+            background-color:#00d60b;
+            border-radius:42px;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:28px;
+            text-decoration:none;
+            text-shadow:1px 1px 0px #00ff3c;
+            text-align: center;
+            width: 8%;
+            height: 20%;
+            left: 90%;
+            top: 70%;
+            position: absolute;
+        }
+        .wecker_starten:hover {
+            background-color:#00df0b;
+        }
+
+        .wecker_abbrechen {
+            background-color:#e00000;
+            border-radius:42px;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:28px;
+            text-decoration:none;
+            text-shadow:1px 1px 0px #e00000;
+            text-align: center;
+            width: 10%;
+            height: 20%;
+            left: 1%;
+            top: 70%;
+            position: absolute;
+        }
+        .wecker_abbrechen:hover {
+            background-color:#ff0800;
+        }
+
+
+        .stoppuhr_neustart_btn {
+            background-color:#00ff44;
+            border-radius:42px;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:50px;
+            text-decoration:none;
+            text-shadow:1px 1px 0px #098509;
+            text-align: center;
+            width: 12%;
+            height: 7%;
+            top: 50%;
+            left: 75%;
+            position: absolute;
+        }
+        .stoppuhr_neustart_btn:hover {
+            background-color:#59ff00;
+        }
+
+        .stoppuhr_weiter_btn {
+            background-color:#00ff44;
+            border-radius:42px;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:50px;
+            text-decoration:none;
+            text-shadow:1px 1px 0px #098509;
+            text-align: center;
+            width: 9%;
+            height: 7%;
+            top: 50%;
+            left: 65%;
+            position: absolute;
+        }
+        .stoppuhr_weiter_btn:hover {
+            background-color:#59ff00;
+        }
+
+        .stoppuhr_stopp_btn {
+            background-color:#e00000;
+            border-radius:42px;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:50px;
+            text-decoration:none;
+            text-shadow:1px 1px 0px #e00000;
+            text-align: center;
+            width: 7%;
+            height: 7%;
+            top: 50%;
+            left: 23%;
+            position: absolute;
+        }
+        .stoppuhr_stopp_btn:hover {
+            background-color:#ff0800;
+        }
+
+        .timer_input {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            color: black;
+            padding: 12px 16px; 
+            text-decoration: none; 
+            display: block;
+        }
+
+        .timer_starten {
+            background-color:#00d60b;
+            border-radius:42px;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:28px;
+            text-decoration:none;
+            text-shadow:1px 1px 0px #00ff3c;
+            text-align: center;
+            width: 8%;
+            height: 20%;
+            left: 90%;
+            top: 70%;
+            position: absolute;
+        }
+        .timer_starten:hover {
+            background-color:#00df0b;
+        }
+
+        .timer_abbrechen {
+            background-color:#e00000;
+            border-radius:42px;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:28px;
+            text-decoration:none;
+            text-shadow:1px 1px 0px #e00000;
+            text-align: center;
+            width: 10%;
+            height: 20%;
+            left: 1%;
+            top: 70%;
+            position: absolute;
+        }
+        .timer_abbrechen:hover {
+            background-color:#ff0800;
+        }
+    </style>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+.c-grid {
+    margin: 1%;
+}
+.cards {
+    display: flex;
+}
+* {
+    font-size: large;
+}

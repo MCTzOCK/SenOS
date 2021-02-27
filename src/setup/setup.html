@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup SenOS Core v1.0</title>
+    <link rel="stylesheet" href="setup.css" type="text/css">
+</head>
+<body>
+    <div class="mBox">
+        <div id="bar">
+            <div id="barBG">
+                <a href="#" class="barItem active" draggable="false" tabindex="-1" id="sec1_mBarSec">Start</a>
+                <a href="#"class="barItem noActive" draggable="false" tabindex="-2" id="sec2_mBarSec">Dienste</a>
+                <a href="#"class="barItem noActive" draggable="false" tabindex="-3" id="sec3_mBarSec">Apps</a>
+                <a href="#"class="barItem noActive" draggable="false" tabindex="-4" id="sec4_mBarSec">Account</a>
+                <a href="#"class="barItem noActive" draggable="false" tabindex="-5" id="sec5_mBarSec">Datenschutz</a>
+                <a href="#"class="barItem noActive" draggable="false" tabindex="-6" id="sec6_mBarSec">Ende</a>
+            </div>
+        </div>
+        <div id="content">
+            <div id="sec1">
+                <h1 class="center text">
+                    <span class="name">SenOS</span> Installation
+                </h1>
+                <p class="center text underheadline">
+                    Willkommen bei der Installation deines eigenen Computers!
+                </p>
+            </div>
+            <div id="sec2" class="notVisible">
+                <h1 class="center text">
+                    Dienste
+                </h1>
+                <p class="center text">Aktiviere/Deaktiviere die unten angezeigten Funktionen genauso wie du sie brauchst!</p>
+                <div id="sec2_sel">
+                    <div class="sec2_listItem selectedListItem center" id="time">
+                        <input type="checkbox" name="install" id="sec2_listItem_time_active" accept="text" checked>
+                        <span class="listItemName">Datum und Zeit</span>
+                    </div>
+                </div>
+            </div>
+            <div id="sec3" class="notVisible">
+                <h1 class="center text">
+                    Apps
+                </h1>
+                <div id="sec3_sel">
+                    <div id="sec3_sel_sec_system">
+                        <h2 class="center text">
+                            System Anwendungen
+                        </h2>
+                        <p class="center text">
+                            Einstellungen
+                            <input type="checkbox" name="apps_sel_settings" id="apps_sel_settings" readonly="true" checked disabled>
+                        </p>
+                        <p class="center text">
+                            Taschenrechner
+                            <input type="checkbox" name="apps_sel_calc" id="apps_sel_calc" readonly="true" checked disabled>
+                        </p>
+                        <p class="center text">
+                            Notizen
+                            <input type="checkbox" name="apps_sel_notes" id="apps_sel_notes" readonly="true" checked disabled>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="sec4" class="notVisible">
+                <h1 class="center text error notVisible" id="error">
+                    Bitte fülle alle Felder aus!
+                </h1>
+                <h1 class="center text">
+                    Account
+                </h1>
+                <p class="center text underheadline">
+                    Wer benutzt diesen PC?
+                </p>
+                <center>
+                    <input type="text" name="user_name" id="accountName" placeholder="Dein Name" style="font-size: larger;">
+                </center>
+                <p class="text center">
+                    Willst du deinen PC mit einem Passwort schützen? <input type="checkbox" name="wantPassword" id="wantPasswordEnabled" onchange="javascript:checkboxChange_password()">
+                </p>
+                <div id="pwdHidden" class="text center notVisible">
+                    <p>
+                        Password: <input type="text" name="password" id="password" placeholder="Passwort">
+                        <br>
+                        Password Wiederholen: <input type="text" name="passwordVerify" id="passwordVerify" placeholder="Passwort">
+                    </p>
+                    <p class="text center">
+                        <span style="color: red;">ACHTUNG!</span> Schreibe dir dein Passwort gut auf!
+                    </p>
+                </div>
+            </div>
+            <div id="sec5" class="notVisible">
+                <h1 class="center text">
+                    Datenschutz
+                </h1>
+                <p class="center text underheadline">
+                    Bist du damit einverstanden anonyme Absturtzberichte zu senden?
+                </p>
+                <p class="center text">
+                    Hiermit erkläre ich mich einverstanden, dass mein PC automatisch bei einem Absturtz einen anonymen Bericht an SenOS sendet.
+                    <input type="checkbox" name="privacy_accept" id="privacy_accept">
+                </p>
+            </div>
+            <div id="sec6" class="notVisible">
+                <h1 class="center text">
+                    Ende
+                </h1>
+                <p class="center text underheadline">
+                    Dein PC ist nun konfiguriert! Um die Installation abzuschließen, klicke auf "Abschließen"
+                </p>
+                <div class="notVisible" id="please_wait_to_complete">
+                    <h1 class="text center">
+                        BITTE WARTEN...
+                    </h1>
+                </div>
+            </div>
+            <div id="continueButton">
+                <a href="javascript:next_step();" tabindex="-3" id="continueButtonA">Nächster Schritt -></a>
+            </div>
+            <div id="backButton" class="notVisible">
+                <a href="javascript:last_step();" tabindex="-4" id="backButtonA"><- Vorheriger Schritt</a>
+            </div>
+            <div id="copyright">
+                <p class="text">
+                    Copyright © 2020 SenOS.tk. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="setup.js"></script>
+</html>

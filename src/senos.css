@@ -1,0 +1,35 @@
+.notVisible {
+    display: none;
+    visibility: hidden;
+}
+
+.text {
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+.center {
+    text-align: center;
+}
+
+.osName {
+    color: orange;
+}
+
+.modernButtonActive {
+    border-bottom-style: solid;
+    border-bottom-color: white;
+}
+
+.underheadline {
+    font-size: larger;
+}
+
+.error {
+    background-color: red;
+    color: white;
+}
+
+input[type="checkbox"][readonly] {
+    pointer-events: none;
+}

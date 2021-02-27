@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser v1.0</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="app-main">
+        <div id="control">
+            <input type="button" value="←" id="back" onclick="goBack()" class="txt">
+            <input type="button" value="→" id="forward" onclick="goForward()" class="txt">
+            <input type="text" name="url" id="url-input" placeholder="URL oder SUCHBEGRIFF eingeben" class="txt" onclick="this.select()">
+            <input type="button" value="Öffnen" onclick="search()" id="search-btn" class="txt">
+        </div>
+        <br>
+        <iframe src="https://bing.com/" frameborder="0" id="content" style="display:inline-flex;" onload="checkSource(this.src)" sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-pointer-lock"></iframe>
+    </div>
+</body>
+<script src="app.js"></script>
+</html>

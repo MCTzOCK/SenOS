@@ -1,0 +1,131 @@
+* {
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    /* font-family: sans-serif; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    user-select: none;
+    
+}
+.center {
+    text-align: center;
+}
+.name {
+    color: orange;
+}
+.mBox {
+    /* background-color: #004174;  WINDOWS-COLOR */
+    background: #005b17;
+    /* top: 3%;
+    left: 3%;
+    right: 3%;
+    bottom: 3%;
+    position: absolute; */
+}
+body {
+    background: #005b17;
+    /* background-color: #004174; */
+}
+#bar {
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    bottom: 1%;
+    width: 100%;
+    height: 10%;
+    position: absolute;
+}
+#barBG {
+    background-color: #1E1E1E;
+}
+.barItem {
+    display: inline-block;
+    padding: 1%;
+    font-size: larger;
+    /* background-color: #002a4b; */
+}
+
+.barItem {
+    color: white;
+}
+
+.noActive {
+    color: gray;
+    pointer-events: none;
+}
+
+.active {
+    border-bottom-style: solid;
+    border-bottom-color: white;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+#content {
+    padding: 4%;
+}
+.text {
+    color: white;
+}
+
+.underheadline {
+    font-size: larger;
+}
+#continueButton {
+    border-style: solid;
+    border-color: rgb(27, 27, 27);
+    border-radius: 2px;
+    padding: 1%;
+    bottom: 4%;
+    right: 4%;
+    font-size: larger;
+    position: absolute;
+    background-color: #333;
+}
+
+#continueButton a {
+    color: white;
+}
+
+#backButton {
+    border-style: solid;
+    border-color: rgb(27, 27, 27);
+    border-radius: 2px;
+    padding: 1%;
+    bottom: 4%;
+    right: 20%;
+    font-size: larger;
+    position: absolute;
+    background-color: #333;
+}
+
+#backButton a {
+    color: white;
+}
+
+.notVisible {
+    visibility: hidden;
+    display: none;
+}
+#sec2_sel {
+    display: inline;
+}
+
+.listItemName {
+    color: white;
+}
+
+#copyright {
+    left: 10px;
+    bottom: 10px;
+    position: absolute;
+}
+
+.error {
+    background-color: red;
+    color: white;
+}
+
+input[type="checkbox"][readonly] {
+    pointer-events: none;
+}

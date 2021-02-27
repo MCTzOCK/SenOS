@@ -1,0 +1,33 @@
+#url-input {
+    width: 60%;
+    height: 20%;
+}
+.txt {
+    font-size: 40px;
+}
+
+#control {
+    top: 0px;
+    right: 0px;
+    position: sticky;
+}
+
+/* #content {
+    display: block;
+    border: none;
+    height: 100vh;
+    height: 100vh;
+    width: 100%;
+    /*margin: 0;
+    padding: 0;
+} */
+
+#content {
+    display: inline-flex;
+    height: 100vh;
+    width: 100%;
+}
+body {
+    margin: 0;
+    overflow: hidden;
+}

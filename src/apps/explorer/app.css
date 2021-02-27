@@ -1,0 +1,211 @@
+* {
+    font-family: sans-serif;
+    user-select: none;
+}
+
+.text {
+    font-size: 2vw;
+}
+.headLine {
+    font-size: 2.2vw;
+}
+
+#path {
+    top: 2%;
+    left: 3%;
+    width: 94%;    
+    height: 5%;
+    position: fixed;
+    z-index: 3;
+}
+/*
+
+## !BACKUP!
+#folder-root {
+    top: 7%;
+    left: 3%;
+    width: 40%;
+    height: 93%;
+    position: absolute;
+}
+
+#file-root {
+    top: 7%;
+    left: 43%;
+    width: 53%;
+    height: 93%;
+    position: absolute;
+}
+*/
+
+#file-root {
+    top: 7%;
+    left: 3%;
+    width: 97%;
+    height: 93%;
+    position: absolute;
+    z-index: 1;
+}
+
+/* #file-root {
+    top: 7%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+} */
+
+.file {
+    display: inline;
+}
+a {
+    text-decoration: none;
+}
+
+/*## !BACKUP!*/
+.file {
+    display: inline-block;
+    width: 10%;
+    height: 15%;
+    margin: 4%;
+    color: white;
+    text-align: center;
+}
+.file a img {
+    width: 100%;
+    height: 100%;
+}
+/*
+.file {
+    display: inline-block;
+    width: 10.5%;
+    height: 10%;
+    margin: 8%;
+    color: white;
+    text-align: center;
+}
+
+.file a img {
+    width: 100%;
+    height: 100%;
+}
+
+ */
+
+#context {
+    width: 7%;
+    height: 12%;
+    position: fixed;
+    background: #fff;
+    border-radius: 10%;
+    z-index: 2;
+}
+
+.contextClick {
+    text-align: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    border-radius: 10%;
+}
+
+.contextClick a {
+    color: #000;
+}
+
+.contextClick:hover {
+    background: rgb(177, 177, 177);
+}
+
+#dialog {
+    display: none;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    /* opacity: 98%; */
+    position: absolute;
+    z-index: 100;
+}
+
+#dialog-content {
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+#createDialog {
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+#errorDialog {
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+#imageViewer {
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+#renameDialog {
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+#videoViewer{
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+#audioViewer {
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+#textEditor {
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+#pdfViewer {
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+#popup_close {
+    display: none;
+}
+
+#popup_close_img {
+    top: 7%;
+    right: 7%;
+    position: absolute;
+}

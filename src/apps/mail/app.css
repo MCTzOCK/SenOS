@@ -1,0 +1,59 @@
+* {
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+.headline {
+    font-size: 1vw;
+}
+
+.text {
+    font-size: 0.75vw;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+#main {
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    position: absolute;
+}
+
+#controls {
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 1%;
+    position: absolute;
+}
+
+#mails {
+    top: 1%;
+    left: 0%;
+    width: 20%;
+    height: 99%;
+    position: absolute;
+}
+
+#content {
+    top: 1%;
+    left: 21%;
+    width: 79%;
+    height: 99%;
+    position: absolute;
+    background: #fff;
+}
+
+.mail {
+    width: 100%;
+    height: 5%;
+    background: rgb(197, 197, 197);
+    user-select: none;
+    cursor: pointer;
+}
+
+.mailPreview {
+    /* color: rgb(168, 168, 168); */
+}

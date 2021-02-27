@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet"> 
+    <title>Radio</title>
+</head>
+<body>
+    <p id="Titel">Radio</p>
+    <p class="Sender_Titel" style="top: 14%; left: 15%;">1 Live:</p>
+    <audio controls class="Sender" style="top: 20%; left: 10%;">
+        <source src="http://wdr-1live-live.icecast.wdr.de/wdr/1live/live/mp3/128/stream.mp3" type="audio/mpeg">
+    </audio>
+    <p class="Sender_Titel" style="top: 14%; left: 45%;">WDR 2:</p>
+    <audio controls class="Sender" style="top: 20%; left: 40%;">
+        <source src="http://wdr-wdr2-ruhrgebiet.icecast.wdr.de/wdr/wdr2/ruhrgebiet/mp3/128/stream.mp3" type="audio/mpeg">
+    </audio>
+    <p class="Sender_Titel" style="top: 14%; left: 75%;">WDR 3:</p>
+    <audio controls class="Sender" style="top: 20%; left: 70%;">
+        <source src=" http://wdr-wdr3-live.icecast.wdr.de/wdr/wdr3/live/mp3/128/stream.mp3" type="audio/mpeg">
+    </audio>
+    <p class="Sender_Titel" style="top: 45%; left: 15%;">WDR 4:</p>
+    <audio controls class="Sender" style="top: 51%; left: 10%;">
+        <source src="http://wdr-wdr4-live.icecast.wdr.de/wdr/wdr4/live/mp3/128/stream.mp3" type="audio/mpeg">
+    </audio>
+    <p class="Sender_Titel" style="top: 45%; left: 45%;">WDR 5:</p>
+    <audio controls class="Sender" style="top: 51%; left: 40%;">
+        <source src="http://wdr-wdr5-live.icecast.wdr.de/wdr/wdr5/live/mp3/128/stream.mp3" type="audio/mpeg">
+    </audio>
+    <p class="Sender_Titel" style="top: 45%; left: 75%;">WDR Cosmo:</p>
+    <audio controls class="Sender" style="top: 51%; left: 70%;">
+        <source src="http://wdr-cosmo-live.icecast.wdr.de/wdr/cosmo/live/mp3/128/stream.mp3" type="audio/mpeg">
+    </audio>
+    <style>
+        * {
+            font-family: 'Audiowide', cursive;
+            user-select: none;
+        }
+        body {
+            background-color: rgb(146, 145, 145);
+        }
+        #Titel {
+            font-size: 300%;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: underline;
+            width: 10%;
+            top: 1%;
+            left: 45%;
+            position: absolute;
+        }
+        .Sender_Titel {
+            position: absolute;
+            text-align: center;
+            font-size: 150%;
+            width: 10%;
+        }
+        .Sender {
+            position: absolute;
+            width: 20%;
+        }
+    </style>
+</body>
+</html>

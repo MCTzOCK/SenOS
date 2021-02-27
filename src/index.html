@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Desktop</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="core.js"></script>
+    <script src="click.js"></script>
+    <script src="init.js"></script>
+  </head>
+  <body>
+    <div id="cloud-img">
+      <img src="img/initial/clouds.jpg" width="100%" height="100%" id="cloudIMG">
+    </div>
+    <div id="background-img">
+      <!-- <img src="img/initial/background.jpg" width="100%" height="82%"> -->
+      <img src="img/initial/background.jpg" width="100%" height="100%" id="deskIMG">
+    </div>
+    <div id="windows">
+      <!-- {initial.window.current.file.content} -->
+      <script>initApps();</script>
+    </div>
+      <div id="start-menu-button">
+        <a href="javascript:click_start();"><img src="img/initial/start.png" width="8%" height="15%"></a>
+      </div>
+      <div id="shutdown-menu-button">
+        <a href="javascript:shutdown();"><img src="img/initial/shutdown.png" width="8%" height="15%"></a>
+      </div>
+    </div>
+    <!-- Dialogs -->
+    <div id="dialogs">
+      <div id="shutdown-dialog">
+        <center>
+          <p class="dialog-title">
+            <!-- {dialog.shutdown.title} -->
+          </p>
+          <p class="dialog-title">
+            <!-- {dialog.shutdown.content} -->
+          </p>
+          <a href="javascript:shutdown(true);"><button class="dialog-button"><!-- {dialog.shutdown.buttons.yes} --></button></a>
+          <a href="javascript:hideDialogs();"><button class="dialog-button"><!-- {dialog.shutdown.buttons.no} --></button></a>
+        </center>
+      </div>
+    </div>
+    <div id="dialog_nonsys">
+
+    </div>
+    <div id="appicons">
+      <!-- {internal.config.desktop.app.icons.list} -->
+      <!-- Load Apps -->
+      <script>initDesktop();</script>
+    </div>
+    <div id="notification">
+      <center>
+        <p id="noti-title">
+          Title
+        </p>
+        <p id="noti-text">
+          Null
+        </p>
+      </center>
+    </div>
+    <!-- REMOVE - TIME -->
+    <!-- <div id="time">
+      <p>
+        Starting service...
+      </p>
+    </div>
+    <script>
+      startService('time');
+    </script> -->
+    <script>initStyle();</script>
+  </body>
+</html>

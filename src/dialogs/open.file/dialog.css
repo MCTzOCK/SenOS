@@ -1,0 +1,21 @@
+* {
+    font-family: sans-serif;
+}
+#title {
+    text-align: center;
+    font-family: monospace;
+    font-size: 250%;
+}
+#path {
+    font-size: 80%;
+    text-align: center;
+}
+.file-extension{
+    display: none;
+    visibility: hidden;
+}
+#cpr-notice {
+    bottom: 10px;
+    right: 10px;
+    position: absolute;
+}
