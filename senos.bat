@@ -5,6 +5,7 @@ set author=Ben Siebert and Lukas Birke
 set version=1.0
 set startCmd=npm start
 set buildCmd=npm run make
+set installCmd=npm install
 title SenOS Developer Utils v1.0 by %author%
 cls
 goto main
@@ -16,7 +17,8 @@ echo -----------------------------------
 echo.
 echo [1] Start SenOS
 echo [2] Build SenOS
-echo [3] Exit
+echo [3] Install NPM Packages
+echo [4] Exit
 echo.
 set /p choosen=Type a Number and press RETURN: 
 
@@ -24,7 +26,9 @@ if "%choosen%" == "1" (
 	goto start
 ) else if "%choosen%" == "2" (
 	goto build
-) else if "%choosen%" == "3" (
+) else if "%choosen%" == "3 (
+	goto install
+) else if "%choosen%" == "4" (
 	goto end
 ) else (
 	cls
@@ -49,6 +53,15 @@ echo.
 cls
 title SenOS Developer Utils v1.0 by %author%
 echo Build complete with %errorlevel% errors!
+goto main
+
+:install
+cls
+cmd.exe /c %installCmd%
+echo.
+cls
+title SenOS Developer Utils v1.0 by %author%
+echo Installation complete with %errorlevel% errors!
 goto main
 
 :end
