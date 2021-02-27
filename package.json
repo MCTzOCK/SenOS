@@ -1,0 +1,72 @@
+{
+  "name": "senos",
+  "productName": "SenOS",
+  "version": "1.0.0",
+  "description": "An Operating System for beginners with the PC.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "makeLX": "electron-forge package --platform=linux --arch=x64",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "keywords": [],
+  "author": {
+    "name": "SenOS.xyz",
+    "email": "dev@mctzock.de"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "SenOS",
+            "icon": "icon.icns"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ],
+          "config": {
+            "icon": "icon.icns"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "icon": "icon.icns"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {
+            "icon": "icon.icns"
+          }
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "jquery": "^3.5.1",
+    "nodemailer": "^6.4.16",
+    "rimraf": "^3.0.2",
+    "xoauth2": "^1.2.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.52",
+    "@electron-forge/maker-deb": "^6.0.0-beta.52",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.52",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.52",
+    "@electron-forge/maker-zip": "^6.0.0-beta.52",
+    "electron": "^9.4.3"
+  }
+}
