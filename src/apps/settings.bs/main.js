@@ -63,3 +63,7 @@ function updatePassword(){
         }
     }
 }
+
+function resetPwd(){
+    window.parent.location.assign(path.join(__dirname, "../../reset/pwd-reset/pwd-reset.html"))
+}
