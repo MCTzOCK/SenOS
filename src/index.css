@@ -82,6 +82,16 @@ body {
   opacity: 50%;
 }
 
+#shutdown-menu-button:hover {
+  transition: 2s;
+  opacity: 100%;
+}
+
+#shutdown-menu-button:not(:hover) {
+  transition: 2s;
+  opacity: 50%;
+}
+
 #shutdown-menu-button img {
   left: 48%;
   bottom: 0px;

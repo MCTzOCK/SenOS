@@ -29,16 +29,9 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-function shutdown(force)
+function shutdown()
 {
-    if(force)
-    {  
-        app.quit();
-    }else
-    {
-        document.getElementById('shutdown-dialog').style.visibility = 'visible';
-        document.getElementById('shutdown-dialog').style.display = 'inline-block';
-    }
+
 }
 
 function hideDialogs()
