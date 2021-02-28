@@ -29,7 +29,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "SenOS",
+            "name": "SenOS"
           }
         },
         {
