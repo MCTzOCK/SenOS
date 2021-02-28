@@ -30,7 +30,6 @@
           "name": "@electron-forge/maker-squirrel",
           "config": {
             "name": "SenOS",
-            "icon": "icon.icns"
           }
         },
         {
@@ -39,19 +38,16 @@
             "darwin"
           ],
           "config": {
-            "icon": "icon.icns"
           }
         },
         {
           "name": "@electron-forge/maker-deb",
           "config": {
-            "icon": "icon.icns"
           }
         },
         {
           "name": "@electron-forge/maker-rpm",
           "config": {
-            "icon": "icon.icns"
           }
         }
       ]
