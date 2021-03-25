@@ -39,23 +39,21 @@ const createWindow = () => {
     {
       const uConfig = JSON.parse(fs.readFileSync(path.join(__dirname, 'user.json')));
       if(uConfig.enabled){
-        mainWindow.loadFile(path.join(__dirname, 'login.old/login.old.html'));
+        mainWindow.loadFile(path.join(__dirname, 'login/login.html'));
       }else {
-        mainWindow.loadFile(path.join(__dirname, 'startscreen.html'));
+        mainWindow.loadFile(path.join(__dirname, 'index.html'));
       }
     }else
     {
       mainWindow.loadFile(path.join(__dirname, 'setup/setup.html'));
     }
   }else {
-    mainWindow.loadFile(path.join(__dirname, 'startscreen.html'));
+    mainWindow.loadFile(path.join(__dirname, 'index.html'));
     mainWindow.webContents.toggleDevTools();
   }
   if(forceInstall){
     mainWindow.loadFile(path.join(__dirname, 'setup/setup.html'));
   }
-  // mainWindow.loadURL('https://www.youtube.com/');
-  // mainWindow.loadFile(path.join(__dirname, 'apps/browser/index.html'));
   if(forceLogin){
     mainWindow.loadFile(path.join(__dirname, 'login/login.html'));
   }
