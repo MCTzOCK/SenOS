@@ -55,7 +55,7 @@ function initDesktop()
         }
         let f = false;
         let ci = 100;
-        setTimeout(() => {
+        /*setTimeout(() => {
             let id = setInterval(() => {
                 if(!f){
                     ci--;
@@ -64,7 +64,7 @@ function initDesktop()
                     clearInterval(id)
                 }
             }, 10);
-        }, 2000)
+        }, 2000)*/
         if(forceOpen){
             openApp(fOApp);
         }

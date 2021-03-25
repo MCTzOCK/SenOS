@@ -4,7 +4,7 @@ const http = require('http');
 const fs = require('fs');
 let debug = true;
 let forceInstall = false;
-let forceLogin = true;
+let forceLogin = false;
 if(app.commandLine.hasSwitch('debug')){
   debug = true;
 }
@@ -28,12 +28,11 @@ const createWindow = () => {
       nodeIntegration: true,
       nodeIntegrationInSubFrames: true,
       webSecurity: false,
-      // nodeIntegrationInWorker: true,
-      webviewTag: true
-      // plugins: true
-    },
-    // kiosk: true
+      webviewTag: true,
+      allowRunningInsecureContent: true
+    }
   });
+
   mainWindow.webContents.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246");
   if(!debug){
     if(fs.existsSync('./INSTALLED'))
@@ -84,11 +83,18 @@ const createWindow = () => {
       {
         delete d.responseHeaders['x-frame-options'];
       }
-
+      // set headers
+      delete d.responseHeaders['content-security-policy'];
+      delete d.responseHeaders['p3p'];
+      d.responseHeaders['access-control-allow-origin']  = "[ '*' ]";
+      d.responseHeaders['Content-Security-Policy']      = "default-src *; script-src 'self' data: 'unsafe-inline' 'unsafe-eval' *; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data: *; media-src *; frame-src *; font-src *; connect-src *; cookie-scope host";
+      d.responseHeaders['X-Content-Security-Policy']    = "default-src *; script-src 'self' data: 'unsafe-inline' 'unsafe-eval' *; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data: *; media-src *; frame-src *; font-src *; connect-src *; cookie-scope host";
+      d.responseHeaders['X-WebKit-CSP']                 = "default-src *; script-src 'self' data: 'unsafe-inline' 'unsafe-eval' *; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data: *; media-src *; frame-src *; font-src *; connect-src *; cookie-scope host";
+      console.log(d.responseHeaders);
       c({cancel: false, responseHeaders: d.responseHeaders});
     }
   );
-  
+
   mainWindow.on('close', (e) => {
     if(!debug){
       e.preventDefault();
@@ -108,6 +114,9 @@ const createWindow = () => {
 
   mainWindow.webContents.on('new-window', function(e, url){
     e.preventDefault();
+  })
+  mainWindow.webContents.session.on('will-download', (event, item, webContents) => {
+    item.setSavePath(path.join(__dirname, "/files/Downloads/" + item.getFilename()))
   })
 };
 

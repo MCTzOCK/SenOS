@@ -6,6 +6,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 <body class="bg-dark">
+    <div id="background-img">
+        <!-- <img src="img/initial/background.jpg" width="100%" height="82%"> -->
+        <img src="../img/initial/wave.svg" id="deskIMG">
+    </div>
     <div class="card w-50 mx-auto m-5 d-flex p-2" style="width: 18rem;">
         <div class="card-body">
             <h2 class="card-title">Anmelden</h2>
@@ -42,6 +46,15 @@
 <style>
     * {
         font-size: large;
+    }
+
+    #deskIMG {
+        left: 0%;
+        top: 0px;
+        position: fixed;
+        size: auto;
+        width: 100%;
+        z-index: -1;
     }
 </style>
 <script src="main.js"></script>

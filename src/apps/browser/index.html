@@ -15,7 +15,7 @@
             <input type="button" value="Öffnen" onclick="search()" id="search-btn" class="txt">
         </div>
         <br>
-        <iframe src="https://bing.com/" frameborder="0" id="content" style="display:inline-flex;" onload="checkSource(this.src)" sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-pointer-lock"></iframe>
+        <iframe src="https://bing.com" frameborder="0" id="content" onload="initFrame(this)" style="display: inline-flex" sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
     </div>
 </body>
 <script src="app.js"></script>

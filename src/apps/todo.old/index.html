@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo Liste</title>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+</head>
+<body>
+    <div id="main">
+        <div id="lists">
+            <h1>
+                Listen
+            </h1>
+            <script>
+                initLists();
+            </script>
+        </div>
+        <div id="list-content">
+            <center>
+                <h1 id="listTitle" class="notVisible">
+                    
+                </h1>
+            </center>
+            <div id="tasks" class="notVisible">
+                <div class="task">
+                    <!-- <div class="onoffswitch">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
+                        <label class="onoffswitch-label" for="myonoffswitch">123</label>
+                    </div> -->
+                    <p class="task_name">
+                    </p>
+                </div>
+            </div>
+            <div id="information_no_selected">
+                <h1>
+                    Keine Liste ausgewählt, wähle eine Liste von links aus!
+                </h1>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

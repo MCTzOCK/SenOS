@@ -1,0 +1,19 @@
+.c-grid {
+    margin: 1%;
+    display: inline-block;
+}
+.cards {
+
+}
+* {
+    font-size: large;
+}
+
+#deskIMG {
+    left: 0%;
+    top: 0px;
+    position: fixed;
+    size: auto;
+    width: 100%;
+    z-index: -1;
+}
