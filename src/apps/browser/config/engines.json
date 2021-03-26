@@ -1,0 +1,21 @@
+{
+  "searchEngine": "bing",
+  "searchEngines": {
+    "bing": {
+      "startPage": "https://bing.com",
+      "searchUrl": "https://bing.com/search?q=%s"
+    },
+    "yandex": {
+      "startPage": "https://yandex.com",
+      "searchUrl": "https://yandex.com/search/?text=%s"
+    },
+    "askCom": {
+      "startPage": "https://ask.com",
+      "searchUrl": "https://de.ask.com/web?q=%s"
+    },
+    "dogpile": {
+      "startPage": "https://dogpile.com",
+      "searchUrl": "https://dogpile.com/serp?q=%s"
+    }
+  }
+}

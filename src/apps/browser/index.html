@@ -8,11 +8,33 @@
 </head>
 <body>
     <div id="app-main">
+        <div id="popup_settings" style="display: none; z-index: 10; margin: 10%; top: 5%; width: 80%; height: 60%;position: absolute; background-color: #000; overflow-y: visible; border-radius: 1%; border-color: #fff">
+            <p style="color: white; user-select: none; right: 5%; top: 0%; position: absolute; cursor: pointer" class="txt" onclick="toggleSettings()">Schließen</p>
+            <h1 style="text-align: center; color: white; user-select: none" class="txt">Einstellungen</h1>
+            <h2 style="color: white; user-select: none; padding: 2%;" class="txt">Suchmaschine</h2>
+            <select onchange="updateSearchEngine()" style="user-select: all" class="txt" id="search_engine_sel">
+                <option class="txt" value="bing">Bing</option>
+                <option class="txt" value="yandex">Yandex</option>
+                <option class="txt" value="askCom">Ask.com</option>
+                <option class="txt" value="dogpile">Dogpile</option>
+                <option class="txt" value="yippy">Yippy</option>
+            </select>
+        </div>
+        <div id="popup_bookmarks" style="display: none; z-index: 9; margin: 10%; top: 5%; width: 80%; height: 60%;position: absolute; background-color: #000; overflow-y: auto; border-radius: 1%; border-color: #fff">
+            <p style="color: white; user-select: none; right: 5%; top: 0%; position: absolute; cursor: pointer" class="txt" onclick="toggleBookmarks()">Schließen</p>
+            <h1 style="text-align: center; color: white; user-select: none" class="txt">Lesezeichen</h1>
+            <center>
+                <div id="bookmarks"></div>
+            </center>
+        </div>
         <div id="control">
             <input type="button" value="←" id="back" onclick="goBack()" class="txt">
+            <input type="button" value="&#9733;" id="addToBookmarks" onclick="addCurrentPageToBookmarks()" class="txt">
             <input type="button" value="→" id="forward" onclick="goForward()" class="txt">
             <input type="text" name="url" id="url-input" placeholder="URL oder SUCHBEGRIFF eingeben" class="txt" onclick="this.select()">
             <input type="button" value="Öffnen" onclick="search()" id="search-btn" class="txt">
+            <input type="button" value="Einstellungen" onclick="toggleSettings()" id="settings-btn" class="txt" style="float: right">
+            <input type="button" value="Lesezeichen" onclick="toggleBookmarks()" id="bookmarks-btn" class="txt" style="float: right">
         </div>
         <br>
         <iframe src="https://bing.com" frameborder="0" id="content" onload="initFrame(this)" style="display: inline-flex" sandbox="allow-scripts allow-forms allow-same-origin"></iframe>

@@ -1,4 +1,7 @@
 window.parent = null;
+window.history = null;
+parent = null;
+history = null;
 if(window.location.href.startsWith("chrome-error://")){
     let e = document.createElement("div");
     let c = document.createElement("center");
@@ -13,6 +16,5 @@ if(window.location.href.startsWith("chrome-error://")){
     c.appendChild(document.createElement("br"));
     c.appendChild(descr);
     e.appendChild(c);
-
-    document.write(e.innerHTML)
+    document.write(e.innerHTML);
 }
