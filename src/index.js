@@ -4,7 +4,7 @@ const http = require('http');
 const fs = require('fs');
 let debug = true;
 let forceInstall = false;
-let forceLogin = false;
+let forceLogin = true;
 if(app.commandLine.hasSwitch('debug')){
   debug = true;
 }
@@ -115,6 +115,7 @@ const createWindow = () => {
   })
   mainWindow.webContents.session.on('will-download', (event, item, webContents) => {
     item.setSavePath(path.join(__dirname, "/files/Downloads/" + item.getFilename()))
+    alert("Die Datei wurde herruntergeladen!")
   })
 };
 
