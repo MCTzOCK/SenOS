@@ -1,57 +1,68 @@
 const fs = require('fs');
 const path = require('path');
 const http = require('https');
+const fetch = require('node-fetch')
 const rimraf = require('rimraf');
 const AdmZip = require('adm-zip');
 
-let data = {
-    apps: [
-        {
-            name: "Decryptor",
-            logo: "https://mctzock.de/assets/images/decryptor-900x900.jpg",
-            short_description: "Short Description",
-            long_description: "Long Description",
-            pckDownload: "https://craftions.net/senos/pkg/decryptor/latest.zip"
-        },
-        {
-            name: "SenOS",
-            logo: "https://avatars.githubusercontent.com/u/69637254?s=200&v=4",
-            short_description: "The easy way to go",
-            long_description: "",
-            pckDownload: ""
-        }
-    ]
-};
+let data = {};
 
-for(let i = 0; i < data.apps.length; i++) {
-    let card = document.createElement("div");
-    let img = document.createElement("img");
-    let cardbody = document.createElement("div");
-    let title = document.createElement("h2");
-    let text = document.createElement("p");
-    let view = document.createElement("button");
+// read app data
+http.get("https://cdn.senos.xyz/apps/apps.json",(res) => {
+    let body = "";
 
-    card.classList.add("c-grid")
-    card.classList.add("card")
-    card.style.width = "18rem"
-    img.src = data.apps[i].logo
-    img.classList.add("card-img-top")
-    cardbody.classList.add("card-body")
-    title.classList.add("card-title")
-    title.innerText = data.apps[i].name
-    text.classList.add("card-text")
-    text.innerText = data.apps[i].short_description
-    view.classList.add("btn")
-    view.classList.add("btn-primary")
-    view.innerText = "App ansehen."
-    view.setAttribute("onclick", "showAppDetails(" + i + ")")
-    cardbody.appendChild(title)
-    cardbody.appendChild(text)
-    cardbody.appendChild(view)
-    card.appendChild(img)
-    card.appendChild(cardbody)
+    res.on("data", (chunk) => {
+        body += chunk;
+    });
 
-    document.getElementById("apps").appendChild(card);
+    res.on("end", () => {
+        try {
+            console.log(body);
+            data = JSON.parse(body);
+        } catch (error) {
+            console.error(error.message);
+        };
+        renderUpdate()
+    });
+
+}).on("error", (error) => {
+    console.error(error.message);
+});
+
+
+function renderUpdate(){
+    for(let i = 0; i < data.apps.length; i++) {
+        let card = document.createElement("div");
+        let img = document.createElement("img");
+        let cardbody = document.createElement("div");
+        let title = document.createElement("h2");
+        let text = document.createElement("p");
+        let view = document.createElement("button");
+
+        card.classList.add("c-grid")
+        card.classList.add("card")
+        card.style.width = "18rem"
+        img.src = data.apps[i].logo
+        img.classList.add("card-img-top")
+        img.style.background = "#292b2c"
+        cardbody.classList.add("card-body")
+        title.classList.add("card-title")
+        title.innerText = data.apps[i].name
+        text.classList.add("card-text")
+        text.innerText = data.apps[i].short_description
+        view.classList.add("btn")
+        view.classList.add("btn-primary")
+        view.innerText = "App ansehen."
+        view.setAttribute("onclick", "showAppDetails(" + i + ")")
+        cardbody.appendChild(title)
+        cardbody.appendChild(text)
+        cardbody.appendChild(view)
+        card.appendChild(img)
+        card.appendChild(cardbody)
+
+        document.getElementById("apps").appendChild(card);
+    }
+
 }
 
 function showAppDetails(index){

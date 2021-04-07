@@ -1,0 +1,10 @@
+body, html {
+    height: 100%;
+    margin: 0%;
+}
+#bg {
+    display: block;
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+}

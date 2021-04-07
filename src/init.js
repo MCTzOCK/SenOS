@@ -8,8 +8,8 @@
 // const lan_cfg           = JSON.parse(raw_lan_cfg);
 
 // const apps              = require('./modules/apps');
-let forceOpen = true;
-let fOApp = 'browser';
+let forceOpen = false;
+let fOApp = 'explorer.new';
 
 let service_started_time = false;
 

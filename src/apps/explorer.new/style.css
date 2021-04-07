@@ -1,0 +1,19 @@
+.c-grid {
+    margin: 1%;
+    display: inline-flex;
+    height: 15vh;
+    min-height: 15vh;
+}
+* {
+    user-select: none;
+    tab-index: -1;
+    font-size: 2vh;
+}
+#navigation {
+    top: 0%;
+    left: 0%;
+    position: absolute;
+    z-index: 100;
+    margin: 0.5vh 0.5vh 0.5vh 1%;
+    font-size: 2vh;
+}

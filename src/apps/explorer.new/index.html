@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Explorer</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <!-- jQuery -->
+    <script type="application/javascript" src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- SenOS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark">
+    <nav aria-label="breadcrumb" class="nav justify-content-center bg-dark sticky-top" style="min-height: 5vh; height: 5vh">
+        <div id="navigation">
+            <span class="text-light bi bi-arrow-up-circle-fill" style="cursor:pointer;" onclick="goToTopPath();"></span>
+            <span class="text-light bi bi-house-fill" style="cursor: pointer" onclick="openPath(root)"></span>
+            <span class="text-light bi bi-gear-fill" style="cursor:pointer;" onclick="openSettings()"></span>
+        </div>
+        <ol class="breadcrumb" style="font-size: 2vh" id="pathDisplay">
+            <li class="breadcrumb-item text-secondary">Computer</li>
+            <li class="breadcrumb-item text-secondary">Speicher</li>
+        </ol>
+    </nav>
+    <div class="text-center text-danger d-none" id="folderNoContent">
+        <h3>Dieser Ordner hat keinen Inhalt.</h3>
+    </div>
+    <center>
+        <div class="spinner-border text-light" role="status" id="loadingAnimation">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </center>
+    <div id="folder_content" class="cards">
+        <div class="card c-grid" style="width: 18rem;" id="file_Lukas.txt_main">
+            <div class="card-body" id="file_Lukas.txt_body">
+                <h5 class="card-title">
+                    <a class="card-title" id="file_Lukas.txt_title" data-bs-toggle="offcanvas" href="#filePrefs" onclick="showFilePrefs('Lukas.txt')">Lukas</a>
+                </h5>
+                <p class="card-text" id="file_Lukas.txt_desc">Luki 💙</p>
+            </div>
+        </div>
+    </div>
+    <div id="prefs">
+        <div class="offcanvas offcanvas-start w-25" tabindex="-1" id="filePrefs">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Eigenschaften</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Name</th>
+                                <td id="prefs_file_name">Lukas</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Typ</th>
+                                <td id="prefs_file_type">Datei</td>
+                            </tr>
+                            <tr>
+                            <tr>
+                            <th scope="row">Erstellt</th>
+                            <td id="prefs_file_create">Iwan</td>
+                            </tr>
+                                <th scope="row">Endung</th>
+                                <td id="prefs_file_ending">.txt</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Größe</th>
+                                <td id="prefs_file_size">0k</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="btn btn-success" id="prefs_open" data-bs-dismiss="offcanvas">Öffnen</button>
+                <button class="btn btn-primary" id="prefs_rename">Umbenennen</button>
+                <button class="btn btn-danger" id="prefs_delete">Löschen</button>
+                <button class="btn btn-secondary" id="prefs_hide" data-bs-dismiss="offcanvas">Verstecken/Zeigen</button>
+            </div>
+        </div>
+    </div>
+    <div id="dialogs">
+        <div class="modal fade" id="renameDialog">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title">Umbennen</h1>
+                        <button type="button" class="close btn btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <span class="input-group-text col-sm-3">Aktueller Name</span>
+                            <input class="form-control" type="text" id="renameOldName" value="Lukas[.txt]" disabled>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text col-sm-3">Neuer Name</span>
+                            <input class="form-control" type="text" id="renameNewName" placeholder="Neuer Name">
+                        </div>
+                        <div class="accordion" id="renameAdvancedOptions">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="renameAdvOptionsHeader">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#renameAdvOptionsContent">Erweiterte Optionen</button>
+                                </h2>
+                                <div id="renameAdvOptionsContent" class="accordion-collapse collapse hide" data-bs-parent="#renameAdvancedOptions">
+                                    <div class="accordion-body">
+                                        <div class="input-group">
+                                            <span class="input-group-text col-sm-2">Endung</span>
+                                            <input class="form-control" placeholder="Neue Dateiendung" id="renameFileEnding" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span class="text-danger d-none" id="renameFileExists">Diese Datei existiert bereits! Wähle einen anderen Namen!</span>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                        <button class="btn btn-primary" onclick="renameFileFinal('')" id="renameFileFinal">Umbenennen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="deleteDialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Löschen</h5>
+                        <button type="button" class="close btn btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Willst du diese Datei wirklich löschen?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="toggle" data-bs-target="#deleteDialog">Abbrechen</button>
+                        <button class="btn btn-danger" id="deleteFileFinal" data-bs-dismiss="modal" data-bs-target="#deleteDialog">Löschen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="settingsDialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Einstellungen</h5>
+                        <button type="button" class="close btn btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <input class="form-check-input" type="checkbox" value="" id="settingsHiddenFilesVisible">
+                            </div>
+                            <input class="form-control" type="text" value="Versteckte Dateien anzeigen" disabled>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <input class="form-check-input" type="checkbox" value="" id="settingsDeletedFilesVisible">
+                            </div>
+                            <input class="form-control" type="text" value="Gelöschte Dateien anzeigen" disabled>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#settingsDialog">Abbrechen</button>
+                        <button class="btn btn-primary" id="applySettings" data-bs-dismiss="modal" data-bs-target="#settingsDialog" onclick="applySettings()">Speichern</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="externalDialogControls" class="d-none" style="right: 0%; bottom: 0%; margin: 1vh; position: absolute">
+        <div class="input-group">
+            <input class="form-control" id="externalDialogFile" placeholder="Datei durch Klick wählen" disabled>
+            <button class="btn btn-danger input-group-text" id="externalDialogCancel">Abbrechen</button>
+            <button class="btn btn-primary input-group-text" id="externalDialogSubmit">Speichern/Öffnen</button>
+        </div>
+    </div>
+</body>
+<!-- SenOS -->
+<script src="app.js"></script>
+</html>

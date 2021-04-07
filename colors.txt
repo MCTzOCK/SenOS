@@ -1,0 +1,7 @@
+SenOS Colors
+All colors are written down in RGBA Code
+===
+ocean-blue: 14,148,199,1
+poisen-green: 20,199,14,1
+sun-yellow: 239,224,0,1
+blood-red: 244,67,54,1

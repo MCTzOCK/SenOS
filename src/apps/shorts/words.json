@@ -1,0 +1,76 @@
+{
+  "words": [
+    {
+      "short": "kd",
+      "long": "Kein Ding"
+    },
+    {
+      "short": "k",
+      "long": "Ok"
+    },
+    {
+      "short": "gd",
+      "long": "Gut, dir? (Mir geht es gut, wie geht es dir?)"
+    },
+    {
+      "short": "np",
+      "long": "No Problem (Kein Problem)"
+    },
+    {
+      "short": "kp",
+      "long": "Kein Plan"
+    },
+    {
+      "short": "idk",
+      "long": "I don't know (Ich weiß nicht.)"
+    },
+    {
+      "short": "nd",
+      "long": "Nicht"
+    },
+    {
+      "short": "ka",
+      "long": "Keine Ahnung"
+    },
+    {
+      "short": "wmd(s)",
+      "long": "Was machst du (so)?"
+    },
+    {
+      "short": "thx",
+      "long": "Thanks (Danke)"
+    },
+    {
+      "short": "eig",
+      "long": "Eigentlich"
+    },
+    {
+      "short": "wgd(s)",
+      "long": "Wie geht es dir (so)?"
+    },
+    {
+      "short": "sry",
+      "long": "Sorry (Entschuldigung)"
+    },
+    {
+      "short": "bs",
+      "long": "Bis später"
+    },
+    {
+      "short": "bm",
+      "long": "Bis Morgen"
+    },
+    {
+      "short": "gm",
+      "long": "Guten Morgen"
+    },
+    {
+      "short": "gn",
+      "long": "Gute Nacht"
+    },
+    {
+      "short": "bb",
+      "long": "Bis bald"
+    }
+  ]
+}

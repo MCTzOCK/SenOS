@@ -42,6 +42,7 @@ function hideDialogs()
 
 function openApp(name)
 {
+    console.log('Showing App ' + name + '...')
     // let cnt = fs.readFileSync('src/apps/' + name + '/index.html', 'utf-8'); // removed : performance
     
     /* !old! */
@@ -49,10 +50,20 @@ function openApp(name)
     // document.getElementById('current-window').style.visibility      = 'visible';
     // document.getElementById('current-window').style.display         = 'block';
 
+    // hide old window
+    console.log('Trying to hide old app ' + currentWindowName + '...')
+    try {
+        document.getElementById('window_' + currentWindowName).classList.remove('wind_an_open');
+        document.getElementById('window_' + currentWindowName).style.display = 'none';
+        console.log('Succcess')
+    }catch {
+        console.log('Could not hide old app.')
+    }
+
     //document.getElementById("window_" + name).style.opacity = '100%'
     currentWindowName = name;
     document.getElementById('window_' + name).classList.add("wind_an_open")
-    document.getElementById('window_' + name).style.display            = 'block';
+    document.getElementById('window_' + name).style.display   = 'block';
     // document.getElementById('icon').className                       = 'hidden';
     // document.getElementById('icon').className                       = 'shown';
 }
@@ -80,4 +91,4 @@ function stringToHash(string) {
     } 
       
     return hash; 
-} 
+}

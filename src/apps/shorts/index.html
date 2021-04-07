@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Abkürzungen</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+</head>
+<body class="bg-dark overflow-hidden h-100" style="user-select: none">
+    <div class="container">
+        <div class="row vh-100">
+            <div class="col-sm-12">
+                <div id="search">
+                    <h1 class="text-light text-center">Suchen</h1>
+                    <div class="input-group" style="margin-top: 2%; margin-bottom: 4%">
+                        <input class="form-control" id="keywords" placeholder="Abkürzung" style="font-size: 2vh">
+                        <button class="btn btn-primary" style="font-size: 2vh" onclick="search()">Suchen</button>
+                    </div>
+                </div>
+                <table class="table text-light" style="font-size: 2vh;">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Abkürzung</th>
+                            <th scope="col">Bedeutung</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordList" class="overflow-auto">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="searchResults" style="font-size: 2vh">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Suchergebnisse</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table text-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Abkürzung</th>
+                                <th scope="col">Bedeutung</th>
+                            </tr>
+                        </thead>
+                        <tbody id="searchResultList">
+                            <tr>
+                                <th>1</th>
+                                <td>gd</td>
+                                <td>Gut, dir?</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Schließen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="app.js"></script>

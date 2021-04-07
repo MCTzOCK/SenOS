@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Viewer</title>
+    <!-- PDF.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.7.570/build/pdf.min.js"></script>
+    <!-- jQuery -->
+    <script type="application/javascript" src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div>
+        <iframe src="../../../pdf/web/viewer.html?file=" id="pdfView"></iframe>
+    </div>
+</body>
+</html>
+<style>
+    body,html{
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+    }
+    #pdfView {
+        display: block;
+        height: 100vh;
+        width: 100vw;
+        object-fit: cover;
+    }
+</style>

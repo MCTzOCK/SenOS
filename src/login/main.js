@@ -24,3 +24,9 @@ function stringToHash(string) {
     }
     return hash;
 }
+
+document.getElementById('form').addEventListener('keydown', (ev) => {
+    if(ev.keyCode == 13){
+        checkPwd();
+    }
+})

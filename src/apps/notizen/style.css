@@ -1,0 +1,345 @@
+* {
+    cursor: default;
+    /*margin: 0;*/
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 2vh;
+}
+#backendDialog {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    font-size: 1.5vw;
+    display: none;
+}
+#backendOpenDialog {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    font-size: 1.5vw;
+    display: none;
+}
+.backendOpenDialogEntry {
+    padding: 1%;
+}
+.dialogContent {
+    font-size: 1.5vw;
+}
+.header {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 34px;
+    margin-top: 12vh;
+}
+.footer {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    margin-top: 15vh;
+}
+.button-container-1 {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    left: 0.5%;
+    top: 3%;
+    overflow: hidden;
+    border: 1px solid;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    transition: 0.5s;
+    letter-spacing: 1px;
+    border-radius: 8px;
+}
+.button-container-1 button {
+    width: 101%;
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    background: #000;
+    -webkit-mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
+    mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
+    -webkit-mask-size: 2300% 100%;
+    mask-size: 2300% 100%;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    -webkit-animation: ani2 0.7s steps(22) forwards;
+    animation: ani2 0.7s steps(22) forwards;
+}
+.button-container-1 button:hover {
+    -webkit-animation: ani 0.7s steps(22) forwards;
+    animation: ani 0.7s steps(22) forwards;
+}
+
+.button-container-2 {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    left: 7.5%;
+    top: 3%;
+    overflow: hidden;
+    border: 1px solid #000;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    transition: 0.5s;
+    letter-spacing: 1px;
+    border-radius: 8px;
+}
+.button-container-2 button {
+    width: 101%;
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    background: #000;
+    -webkit-mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png");
+    mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png");
+    -webkit-mask-size: 3000% 100%;
+    mask-size: 3000% 100%;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    -webkit-animation: ani2 0.7s steps(29) forwards;
+    animation: ani2 0.7s steps(29) forwards;
+}
+.button-container-2 button:hover {
+    -webkit-animation: ani 0.7s steps(29) forwards;
+    animation: ani 0.7s steps(29) forwards;
+}
+
+.mas {
+    position: absolute;
+    color: #000;
+    text-align: center;
+    width: 101%;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    position: absolute;
+    font-size: 11px;
+    margin-top: 17px;
+    overflow: hidden;
+    font-weight: bold;
+}
+@-webkit-keyframes ani {
+    from {
+        -webkit-mask-position: 0 0;
+        mask-position: 0 0;
+    }
+    to {
+        -webkit-mask-position: 100% 0;
+        mask-position: 100% 0;
+    }
+}
+@keyframes ani {
+    from {
+        -webkit-mask-position: 0 0;
+        mask-position: 0 0;
+    }
+    to {
+        -webkit-mask-position: 100% 0;
+        mask-position: 100% 0;
+    }
+}
+@-webkit-keyframes ani2 {
+    from {
+        -webkit-mask-position: 100% 0;
+        mask-position: 100% 0;
+    }
+    to {
+        -webkit-mask-position: 0 0;
+        mask-position: 0 0;
+    }
+}
+@keyframes ani2 {
+    from {
+        -webkit-mask-position: 100% 0;
+        mask-position: 100% 0;
+    }
+    to {
+        -webkit-mask-position: 0 0;
+        mask-position: 0 0;
+    }
+}
+a {
+    color: #00ff95;
+}
+.button-container-3 {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    left: 14.5%;
+    top: 3%;
+    overflow: hidden;
+    border: 1px solid #000;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    transition: 0.5s;
+    letter-spacing: 1px;
+    border-radius: 8px;
+}
+.button-container-3 button {
+    width: 101%;
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    background: #000;
+    -webkit-mask: url("https://raw.githubusercontent.com/pizza3/asset/master/natureSmaller.png");
+    mask: url("https://raw.githubusercontent.com/pizza3/asset/master/natureSmaller.png");
+    -webkit-mask-size: 7100% 100%;
+    mask-size: 7100% 100%;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    -webkit-animation: ani2 0.7s steps(70) forwards;
+    animation: ani2 0.7s steps(70) forwards;
+}
+.button-container-3 button:hover {
+    -webkit-animation: ani 0.7s steps(70) forwards;
+    animation: ani 0.7s steps(70) forwards;
+}
+
+* {
+    user-select: none;
+}
+
+.datei_dropdown {
+    position: absolute;
+    display: inline-block;
+}
+.datei_dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 8.5%;
+    left: 0.5%;
+    position: absolute;
+}
+.datei_dropdown_content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.datei_dropdown_content a:hover {background-color: #ddd;}
+
+
+.bearbeiten_dropdown {
+    position: absolute;
+    display: inline-block;
+}
+.bearbeiten_dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 8.5%;
+    left: 0.5%;
+    position: absolute;
+}
+.bearbeiten_dropdown_content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dummy {
+
+}
+.bearbeiten_dropdown_content a:hover {background-color: #ddd;}
+
+.ausrichten_dropdown {
+    position: absolute;
+    display: inline-block;
+}
+.ausrichten_dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 8.5%;
+    left: 0.5%;
+    position: absolute;
+}
+.ausrichten_dropdown_content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.ausrichten_dropdown_content a:hover {background-color: #ddd;}
+
+.datei_show {display: block;}
+.bearbeiten_show {display: block;}
+.bearbeiten_schriftgröße_show {display: block;}
+.ausrichten_show {display: block;}
+
+#textarea {
+    border: 1px solid black;
+    border-radius: 8px;
+    top: 10%;
+    left: 0.5%;
+    height: 89%;
+    width: 99%;
+    position: absolute;
+    user-select: initial;
+}
+
+.editable {
+    width: 360px;
+    height: 120px;
+    border: 1px solid #ccc
+}
+
+.editable .span-0{
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+}
+
+.editable .span-b{
+    font-weight: bold;
+}
+
+.editable .span-u{
+    text-decoration: underline;
+}
+
+.editable .span-i{
+    font-style: italic;
+}
+
+.sen-btn {
+    margin: 2vh;
+    display: initial;
+}
+
+#navbar {
+    margin-top: 2vh;
+}

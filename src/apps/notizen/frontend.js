@@ -23,11 +23,11 @@ function bearbeiten_schriftgröße_open_dropdown_btn() {
     markiert = window.getSelection();
     markierter_text = (window.getSelection()).toString();
     markiert_range = markiert.getRangeAt(0);
-    if(!bearbeiten_schriftgröße_show) {
+    /*if(!bearbeiten_schriftgröße_show) {
         setTimeout(function() {
             document.getElementById("bearbeiten_schriftgröße_dropdown").classList.add("bearbeiten_show");
         }, 500);
-    }
+    }*/
 }
 
 function bearbeiten_schriftgröße_close_dropdown() {

@@ -1,0 +1,11 @@
+* {
+    font-size: 3vh;
+}
+
+body {
+    overflow: hidden;
+}
+
+#timer_set_time *{
+    font-size: 2vh;
+}
