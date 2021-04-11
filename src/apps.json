@@ -15,7 +15,7 @@
       "display": "Programme",
       "version": 1,
       "author": "MCTzOCK",
-      "icon": "path/to/icon.png",
+      "icon": "apps/store/icon.png",
       "description": "Verwalte Programme",
       "uninstall": false,
       "desktop": true
@@ -28,16 +28,6 @@
       "icon": "apps/explorer/icon.png",
       "description": "Verwalte deine Daten!",
       "uninstall": false,
-      "desktop": true
-    },
-    {
-      "name": "calc",
-      "display": "Rechner",
-      "version": 3,
-      "author": "MCTzOCK",
-      "icon": "apps/calc/icon.png",
-      "description": "Rechnen",
-      "uninstall": true,
       "desktop": true
     },
     {
@@ -169,13 +159,32 @@
       "description": "",
       "uninstall": false,
       "desktop": false
+    },
+    {
+      "name": "Taschenrechner",
+      "display": "Taschenrechner",
+      "version": 1,
+      "author": "SenOS Development Team",
+      "icon": "apps/Taschenrechner/icon.png",
+      "description": "Rechne!",
+      "uninstall": true,
+      "desktop": true
+    },
+    {
+      "name": "flappysnake",
+      "display": "Flappy Snake",
+      "version": 1,
+      "author": "SenOS Development Team",
+      "icon": "apps/lol/icon.png",
+      "description": "Rechne!",
+      "uninstall": true,
+      "desktop": true
     }
   ],
   "name": [
     "settings.bs",
     "store",
     "explorer.new",
-    "calc",
     "kalender",
     "kontakte",
     "todo",
@@ -188,6 +197,8 @@
     "passwort-manager",
     "shorts",
     "pictures",
-    "pdfviewer"
+    "pdfviewer",
+    "Taschenrechner",
+    "flappysnake"
   ]
 }

@@ -1,3 +1,13 @@
+sheepyInit({
+    open: [],
+    steps: [
+        {
+            title: "Test",
+            content: "Lol"
+        }
+    ]
+})
+
 var bearbeiten_schriftgröße_show = false;
 var markierter_text = "";
 var markiert;

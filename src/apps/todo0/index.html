@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="app.css" rel="stylesheet">
+    <title>Aufgaben</title>
+</head>
+<body>
+    <div id="lists">
+        <p id="title">Listen</p>
+        <p id="no_lists">Sie haben noch keine Listen erstellt!</p>
+        <div id="list_content"></div>
+        <button id="add_list" onclick="open_add_list_popup()" style="cursor: pointer;">Liste hinzufügen</button>
+    </div>
+    <div id="list">
+        <p id="no_list_selected" class="nothing_selected">Sie haben keine Liste ausgewählt!</p>
+        <p id="no_events" class="hidden nothing_selected">Sie haben noch keine Aufgaben erstellt!</p>
+        <div id="list_content_list"></div>
+        <div id="list_events"></div>
+        <div id="popup_name_list" class="hidden popup">
+            <p id="popup_name_list_title" class="popup_title">Neue Liste</p>
+            <p id="popup_name_list_label" class="popup_label">Name:</p>
+            <input type="text" id="popup_name_list_input" placeholder="Name der Liste" class="popup_input">
+            <p id="already_existing" class="hidden">Der Name ist schon vorhanden!</p>
+            <button id="popup_name_list_btn_add" class="popup_btn_add" onclick="add_list()">Erstellen</button>
+            <button id="popup_name_list_btn_add_cancel" class="popup_btn_add_cancel" onclick="cancel_add_list()">Abbrechen</button>
+        </div>
+        <div id="popup_add_event" class="hidden popup">
+            <p id="popup_add_event_title" class="popup_title">Neue Aufgabe</p>
+            <p id="popup_add_event_label" class="popup_label">Name:</p>
+            <input type="text" id="popup_add_event_input" placeholder="Name der Aufgabe" class="popup_input">
+            <p id="already_existing" class="hidden">Der Name ist schon vorhanden!</p>
+            <button id="popup_add_event_btn_add" class="popup_btn_add" onclick="add_event()">Hinzufügen</button>
+            <button id="popup_add_event_btn_add_cancel" class="popup_btn_add_cancel" onclick="cancel_add_event()">Abbrechen</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

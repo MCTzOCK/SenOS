@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakte</title>
+    <script src="frontend.js"></script>
+    <script src="backend.js"></script>
+</head>
+<body>
+    <a href="javascript:saveContacts();">Speichern</a>
+    <div id="Dialog">
+        <p id="DialogTitel" style="text-align: center; font-size: 200%; background-color: #f2f2f2;">Neuer Kontakt</p>
+        <p class="DialogSubtitles" style="top: 10%;">Name:</p>
+        <input id="InputName" class="DialogInputs" type="text" style="top: 20%;" placeholder="Name">
+        <p id="kein_Name">Bitte trage einen Namen ein!</p>
+        <p id="gleicher_Name">Der Name ist schon vorhanden!</p>
+        <p class="DialogSubtitles" style="top: 30%;">Telefonnummer:</p>
+        <input id="InputTelefonnummer" class="DialogInputs" type="text" style="top: 40%;" placeholder="Telefonnummer">
+        <p class="DialogSubtitles" style="top: 50%;">E-Mail:</p>
+        <input id="InputE_Mail" class="DialogInputs" type="text" style="top: 60%;" placeholder="E-Mail">
+        <p class="DialogSubtitles" style="top: 70%;">Adresse:</p>
+        <input id="InputAdresse" class="DialogInputs" type="text" style="top: 80%;" placeholder="Adresse">
+
+        <a id="Hinzufügen_btn" class="btn_hinzufügen_abbrechen" href='javascript:kontakt_hinzufügen()' style="top: 90%; left: 60%;">Hinzufügen</a>
+        <a id="Abbrechen_btn" class="btn_hinzufügen_abbrechen" href='javascript:kontakt_abbrechen()' style="top: 90%; left: 1%;">Abbrechen</a>
+    </div>
+
+    <center>
+        <table id="Tabelle" class="tabelle">
+        <caption style="font-size: 250%; font-weight: bold; text-decoration: underline;">Kontakte</caption>
+            <thead>
+                <tr>
+                    <th class="tabelleZelle" style="width: 5%;"></th>
+                    <th class="tabelleZelle" style="width: 19%;">Name</th>
+                    <th class="tabelleZelle" style="width: 19%;">Telefonnummer</th>
+                    <th class="tabelleZelle" style="width: 19%;">E-Mail</th>
+                    <th class="tabelleZelle" style="width: 19%;">Adresse</th>
+                    <th class="tabelleZelle" style="width: 19%;">Bearbeiten</th>
+                </tr>
+            </thead>
+        
+            <tbody id="Tabelle_Body">
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p id="keine_Kontakte" style="width: 100%; font-size: 125%;">0 Kontakt(e)</p>
+    </center>
+
+    <a href='javascript:toggle_visibility_Dialog()' class="btn_neuerKontakt">+</a>
+
+    <style>
+        *{
+            user-select: none;
+            color: black;
+            background-color: #f2f2f2;
+        }
+        .tabelle{
+            width: 100%;
+        }
+        .tabelleZelle {
+            font-size: 150%;
+            border-left: 1px dotted black;
+            border-right: 1px dotted black;
+            border-bottom: 1px solid black;
+        }
+        .btn_neuerKontakt {
+	        background-color:#5beb34;
+	        border-radius:28px;
+	        border:1px solid #5beb34;
+	        display:inline-block;
+	        cursor:pointer;
+            color: white;
+	        font-family:Arial;
+	        font-size: 125%;
+	        padding:1% 2%;
+	        text-decoration:none;
+	        text-shadow:0px 1px 4px #000000;
+            top: 90%;
+            left: 85%;
+            position: absolute;
+        }
+        .btn_neuerKontakt:hover {
+	        background-color:#71f24e;
+        }
+        /* Copyright (c) 2020 Ben Siebert. All rights reserved. */
+        .btn_neuerKontakt:hover::after {
+            content: " Neuer Kontakt";
+            
+        }
+        /* Copyright End */
+        #Dialog {
+            text-align: center;
+            width: 20%;
+            height: 50%;
+            top: 30%;
+            left: 40%;
+            position: absolute;
+            border: 3px solid black;
+            background-color: #f2f2f2;
+            text-align: left;
+            border-radius: 4%;
+            visibility: hidden;
+        }
+        .btn_hinzufügen_abbrechen {
+	    background-color:#ffbf00;
+	    border-radius:28px;
+	    border:1px solid #ffcc00;
+	    display:inline-block;
+	    cursor:pointer;
+            color: white;
+            font-family: Arial;
+	    font-size: 150%;
+	    padding:1% 0%;
+            text-decoration:none;
+	    text-shadow:0px 1px 4px #000000;
+            position: absolute;
+        }
+        .btn_hinzufügen_abbrechen {
+	        background-color: #fad000;
+        }
+        .DialogSubtitles {
+            font-weight: bold;
+            font-size: 125%;
+            position: absolute;
+            background-color: #f2f2f2;
+        }
+        .DialogInputs {
+            position: absolute;
+            background-color: #f2f2f2;
+        }
+        #kein_Name {
+            font-size: 125%;
+            color: red;
+            top: 20%;
+            position: absolute;
+            visibility: hidden;
+            display: none;
+        }
+        #gleicher_Name {
+            font-size: 125%;
+            color: red;
+            top: 20%;
+            position: absolute;
+            visibility: hidden;
+            display: none;
+        }
+        .btn_Kontakt_bearbeiten {
+	        background-color:#0077ff;
+	        border-radius:22px;
+	        border:1px solid #0077ff;
+	        display:inline-block;
+	        cursor:pointer;
+            color: white;
+            font-family: Arial;
+	        font-size: 75%;
+	        width: 40%;
+            height: 100%;
+	        text-decoration:none;
+	        text-shadow:0px 1px 4px #0077ff;
+            position: relative;
+        }
+        .btn_Kontakt_bearbeiten:hover {
+            background-color:#0099ff;
+        }
+        
+    </style>
+    <script>
+        initContacts();
+    </script>
+</body>
+</html>

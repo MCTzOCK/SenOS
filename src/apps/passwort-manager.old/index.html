@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="apps_list" style="width: 25%; border-right: solid #000 0.2vw; user-select: none; font-size: 3vw;">
+        <tr>
+            <td style="border-bottom: solid black 0.2vw;">App/URL/Website</td>
+        </tr>
+        <tr>
+            <td id="keinePasswörter" class="apps" style="font-size: 1.5vw; text-align: center;">--Noch keine Passwörter vorhanden.--</td>
+        </tr>
+    </table>
+
+    <div id="Passwort">
+        <p style="top: 15%; left: 40%; position: absolute; font-size: 2vw; user-select: none;">Passwort:</p>
+        <input type="password" id="password_input" style="left: 40%; top: 25%; position: absolute; width: 20%; font-size: 2vw;" onchange="javscript:save_password('password_input')">
+        <input type="text" id="password_input_text" style="left: 40%; top: 25%; position: absolute; width: 20%; font-size: 2vw; visibility: hidden; display: none;" onchange="javscript:save_password('password_input_text')">
+        <p onclick="javascript:show_password()" id="show_hidden_password" style="left: 61%; top: 21%; position: absolute; width: 10%; font-size: 2vw; user-select: none; border: solid black 0.1vw; text-align: center; background-color: rgb(236, 234, 234); cursor: pointer;">Anzeigen</p>
+        <p id="keinPasswort" style="left: 40%; top: 30%; position: absolute; color: red; user-select: none;">Fügen Sie zuerst ein Passwort hinzu.</p>
+    </div>
+
+    <div class="btn from-right" onclick="javascript:delete_password()">Passwort löschen</div>
+    <div class="btn from-left" onclick="javascript:new_password_show()">Neues Passwort</div>
+
+    <div id="new_password" style="width: 20%; left: 40%; position: absolute; height: 50%; background-color: white; top: 25%; border-radius: 1vw; user-select: none; visibility: hidden; display: none;">
+        <p style="width: 100%; position: absolute; height: 2%; text-align: center; font-size: 1.8vw; text-decoration: underline;">Neues Passwort</p>
+        <p style="width: 100%; position: absolute; height: 2%; font-size: 1.3vw; top: 20%;">App/URL/Website:</p>
+        <input id="new_password_input_app" type="text" style="width: 75%; position: absolute; height: 7%; font-size: 1.2vw; top: 33%;">
+        <p style="width: 100%; position: absolute; height: 2%; font-size: 1.3vw; top: 47%;">Passwort:</p>
+        <input id="new_password_input_password" type="text" style="width: 75%; position: absolute; height: 7%; font-size: 1.2vw; top: 60%;"><br>
+        <input type="button" value="Generieren" onclick="javascript:gen()" style="width: 75%; position: absolute; height: 7%; font-size: 1.2vw; top: 70%;">
+        <div class="position">
+            <div class="svg-wrapper" style="left: 2%;">
+                <svg height="40" width="150">
+                    <rect id="shape" height="40" width="150" />
+                    <div id="text">
+                        <a href="javascript:new_password_hidden()">Abbrechen</a>
+                    </div>
+                </svg>
+            </div>
+            
+            <div class="svg-wrapper" style="left: 56%">
+                <svg height="40" width="150">
+                    <rect id="shape" height="40" width="150" />
+                    <div id="text">
+                        <a href="javascript:new_password(document.getElementById('new_password_input_password').value, document.getElementById('new_password_input_app').value)">Hinzufügen</a>
+                    </div>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .apps {
+            background-color: lightgray;
+            border-bottom: dotted rgb(0, 0, 0) 0.15vw;
+        }
+        .apps:hover {
+            cursor: pointer;
+        }
+
+        .btn {		
+            position: absolute;	
+            padding: 1.4rem 4.2rem;
+            padding-right: 3.1rem;
+            font-size: 1.4rem;
+            color: var(--inv);
+            letter-spacing: 1.1rem;
+            text-transform: uppercase;
+            transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);	
+            cursor: pointer;
+            user-select: none;
+            font-size: 1vw;
+            top: 90%;
+            width: 17%;
+        }
+
+        .btn:before, .btn:after {
+            content: '';
+            position: absolute;	
+            transition: inherit;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            color: var(--def);
+            transition-delay: .5s;
+        }
+
+        .btn:hover:before {
+            transition-delay: 0s;
+        }
+
+        .btn:hover:after {
+            background: var(--inv);
+            transition-delay: .35s;
+        }
+
+        .from-left {
+            left: 80%;
+        }
+
+        .from-left:before, 
+        .from-left:after {
+            top: 0;
+            width: 0;
+            height: 100%;
+        }
+
+        .from-left:before {
+            right: 0;
+            border: 1px solid var(--inv);
+            border-left: 0;
+            border-right: 0;	
+        }
+
+        .from-left:after {
+            left: 0;
+        }
+
+        .from-left:hover:before,
+        .from-left:hover:after {
+            width: 100%;
+        }
+
+        .from-right {
+            left: 2%;
+        }
+        .from-right:before, 
+        .from-right:after {
+            top: 0;
+            width: 0;
+            height: 100%;
+        }
+
+        .from-right:before {
+            left: 0;
+            border: 1px solid var(--inv);
+            border-left: 0;
+            border-right: 0;	
+        }
+
+        .from-right:after {
+            right: 0;
+        }
+
+        .from-right:hover:before,
+        .from-right:hover:after {
+            width: 100%;
+        }
+
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        body {
+            --def: #96B7C4; 	
+            --inv: #fff;
+            display: flex;
+            height: 100vh;
+            width: 100%;
+            background-image: linear-gradient(-25deg, #616161 0%, #96B7C4 100%);
+        }
+
+        html {
+            font-family: 'Playfair Display', serif;
+        }
+
+        div {margin-bottom: 3rem;}
+        div:last-child {margin-bottom: 0;}
+
+        #personal {
+            color:white;
+            text-decoration:none;
+            position:absolute;
+            bottom:15px;
+            right:2%;
+        }
+
+        .svg-wrapper {
+            position: absolute;
+            top: 85%;
+            width: 40%;
+            height: 20%;
+            display: inline-block;
+            border-radius: 3px;
+            margin-left: 5px;
+            margin-right: 5px
+        }
+
+        #shape {
+            stroke-width: 6px;
+            fill: transparent;
+            stroke: #009FFD;
+            stroke-dasharray: 85 400;
+            stroke-dashoffset: -220;
+            transition: 1s all ease;
+        }
+
+        #text {
+            margin-top: -35px;
+            text-align: center;
+        }
+
+        #text a {
+            color: black;
+            text-decoration: none;
+            font-weight: 100;
+            font-size: 1.1em;
+        }
+
+        .svg-wrapper:hover #shape {
+            stroke-dasharray: 50 0;
+            stroke-width: 3px;
+            stroke-dashoffset: 0;
+            stroke: #06D6A0;
+        }
+    </style>
+    <script src="backend.js"></script>
+    <script src="frontend.js"></script>
+</body>
+</html>

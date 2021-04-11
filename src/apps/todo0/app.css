@@ -1,0 +1,208 @@
+* {
+    user-select: none;
+    font-family: sans-serif;
+}
+
+#lists {
+    left: 0%;
+    width: 25%;
+    top: 0%;
+    height: 100%;
+    position: absolute;
+}
+
+#title {
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 5%;
+    font-size: 2vw;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+}
+
+#no_lists {
+    position: absolute;
+    top: 40%;
+    left: 0%;
+    width: 100%;
+    height: 20%;
+    font-size: 1.7vw;
+    text-align: center;
+}
+
+#list {
+    width: 75%;
+    left: 25%;
+    height: 100%;
+    top: 0%;
+    background-color: blueviolet;
+    position: absolute;
+}
+
+.nothing_selected {
+    top: 45%;
+    left: 0%;
+    height: 10%;
+    width: 100%;
+    font-size: 2.5vw;
+    text-align: center;
+    position: absolute;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+#add_list {
+    position: absolute;
+    left: 1%;
+    width: 98%;
+    top: 93%;
+    height: 6%;
+    font-size: 1vw;
+    background-color: lightgrey;
+    border: hidden;
+}
+
+.popup {
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    height: 50%;
+    width: 50%;
+    border-color: lightgrey;
+    background-color: lightgrey;
+    border-radius: 5px;
+    border-style: solid;
+}
+
+.popup_title {
+    position: absolute;
+    left: 25%;
+    top: 0.2%;
+    height: 5%;
+    width: 50%;
+    font-size: 2vw;
+    text-align: center;
+}
+
+.popup_label {
+    position: absolute;
+    left: 7.5%;
+    width: 12.5%;
+    top: 45%;
+    height: 7%;
+    font-size: 1.7vw;
+}
+
+.popup_input {
+    position: absolute;
+    left: 25%;
+    width: 65%;
+    top: 53%;
+    height: 6%;
+    font-size: 1.5vw;
+    user-select: auto;
+}
+
+.popup_btn_add {
+    position: absolute;
+    left: 77%;
+    width: 20%;
+    top: 87%;
+    height: 10%;
+    font-size: 1vw;
+    background-color: gray;
+    border: hidden;
+    cursor: pointer;
+}
+
+.popup_btn_add_cancel {
+    position: absolute;
+    left: 3%;
+    width: 20%;
+    top: 87%;
+    height: 10%;
+    font-size: 1vw;
+    background-color: gray;
+    border: hidden;
+    cursor: pointer;
+}
+
+.lists_list {
+    position: absolute;
+    left: 0%;
+    width: 100%;
+    height: 7.5%;
+    font-size: 2vw;
+    background-color: lightgrey;
+    border-color: rgb(163, 162, 162);
+    border-style: solid;
+    display: flex;
+    align-items: center;
+}
+
+#already_existing {
+    position: absolute;
+    left: 25%;
+    width: 65%;
+    top: 60%;
+    height: 5%;
+    font-size: 1vw;
+    color: gray;
+    text-align: center;
+}
+
+.list_content {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+}
+
+.list_content_title {
+    position: absolute;
+    left: 25%;
+    top: 1%;
+    width: 50%;
+    height: 5%;
+    font-size: 2vw;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.list_content_add_event_btn {
+    position: absolute;
+    left: 84%;
+    top: 92%;
+    width: 15%;
+    height: 7%;
+    font-size: 1.2vw;
+    background-color: lightgray;
+    border: hidden;
+}
+
+.list_event_div {
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    height: 7.5%;
+    background-color: rgba(255, 255, 255, 0.425);
+    border-radius: 5px;
+    font-size: 1.5vw;
+    display: flex;
+    align-items: center;
+}
+
+.done_events {
+    position: absolute;
+    width: 100%;
+    height: 3%;
+    text-align: center;
+    font-size: 1.5vw;
+}

@@ -1,0 +1,44 @@
+* {
+    user-select: none;
+    font-size: large;
+}
+
+#body {
+    background-color: #765fbf;
+}
+
+.error {
+    text-align: center;
+    color: rgb(226, 0, 0);
+}
+
+.error_card {
+    text-align: center;
+    font-size: 1vw;
+    color: rgb(226, 0, 0);
+}
+
+#no_cards {
+    position: absolute;
+    left: 25%;
+    width: 50%;
+    top: 25%;
+    height: 50%;
+    font-size: 2.5vw;
+    display: flex;
+    align-items: center;
+    color: whitesmoke;
+}
+
+.c-grid {
+    margin: 1%;
+    display: inline-block;
+}
+.cards {
+    
+}
+
+.hidden {
+    visibility: hidden;
+    display: none;
+}
