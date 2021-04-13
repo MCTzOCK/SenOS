@@ -6,8 +6,11 @@ const mimetype = require('./mimetype.js');
 const pathRoot = document.getElementById('path');
 const folderRoot = document.getElementById('folder-root');
 const fileRoot = document.getElementById('file-root');
-const root = './../../files/'; 
+const root = './../../../../../files/';
 let currentFolder = path.join(__dirname, root);
+if(!fs.existsSync(currentFolder)){
+    fs.mkdirSync(currentFolder);
+}
 let displayFolder = '/';
 
 

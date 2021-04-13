@@ -8,8 +8,8 @@
 // const lan_cfg           = JSON.parse(raw_lan_cfg);
 
 // const apps              = require('./modules/apps');
-let forceOpen = false;
-let fOApp = 'explorer.new';
+let forceOpen = true;
+let fOApp = 'browser';
 
 let service_started_time = false;
 
@@ -107,7 +107,8 @@ function startTime() {
     var s = today.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
-    document.getElementById('time').innerHTML = today.getDate() + '/' + (today.getUTCMonth() + 1) + '/' + today.getFullYear() + '<br>' + h + ":" + m + ":" + s;
+    // document.getElementById('time').innerHTML = today.getDate() + '/' + (today.getUTCMonth() + 1) + '/' + today.getFullYear() + '<br>' + h + ":" + m + ":" + s;
+    document.getElementById('time').innerHTML = h + ":" + m;
     var t = setTimeout(startTime, 500);
 }
 function checkTime(i) {

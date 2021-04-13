@@ -1,0 +1,7 @@
+* {
+    font-size: 2vh;
+}
+
+.card {
+    display: inline-flex;
+}

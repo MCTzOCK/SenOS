@@ -8,6 +8,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  overflow: hidden;
 }
 
 #background-img {
@@ -180,11 +181,17 @@ body {
   display: none;
 }
 #time {
-  font-size: 90px;
-  right: 0px;
-  bottom: 30px;
+  font-size: 4vh;
+  top: 45%;
+  right: -2.5%;
+  width: 6.3%;
+  max-width: 6.3%;
+  word-wrap: anywhere;
   position: absolute;
-  color: forestgreen;
+  color: #ffffff;
+  background: #333;
+  padding-right: 2%;
+  border-radius: 5%;
   /* float: right; */
 }
 

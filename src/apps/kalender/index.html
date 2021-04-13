@@ -2,269 +2,182 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalender</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <!-- jQuery -->
+    <script type="application/javascript" src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- SenOS -->
+    <script src="calendar.js"></script>
+    <link rel="stylesheet" href="calendar.css">
 </head>
-<body>
-    <center>
-        <p style="color: #fff; font-size: 80px;">Kalender</p>
-   </center>
-    <p style="top: -7%; position: absolute;" class="abc">2</p>
-
+<body class="bg-dark">
     <div id="content">
-        <!--<a href="#ButtonMonate" class="ButtonMonate" style="top: 19%; left: 10%;">1</a>
-        <a href="#ButtonHeute" class="ButtonHeute" style="top: 10%; left: 10%;">1</a>
-        <a style="top: 19%; left:13%; position: absolute; font-weight: bold; font-size: 18px;">Januar</a>
-        <a href="#ButtonTage" class="ButtonTage" style="top: 25%; left: 15%;">1</a>!-->
-
-        <script src="main.js"></script>
-
-    </div>
-
-    <p style="top: 10%; position: absolute;" class="abc">0</p>
-    <p style="top: 27%; position: absolute;" class="abc">2</p>
-    <p style="top: 44%; position: absolute;" class="abc">0</p>
-
-    <div id="popup">
-        <div id="popup_close">
-            <a href="javascript:esc()" draggable="false">
-                <img src="Bilder/X.png" width="2%" id="popup_close_img" draggable="false">
-            </a>
-        </div>
-        <div id="popup_content">
-            <center>
-                <h1 id="popup_title">
-                    %TAG%
-                </h1>
-                <div id="popup_meta">
-                    <h3 id="popup_meta_week_day" style="color:rgb(0, 183, 255)">
-                        %WEEK_DAY%
-                    </h3>
+        <center>
+            <div class="dropdown">
+                <span class="heading text-light dropdown-toggle" type="button" id="year" data-bs-toggle="dropdown" aria-expanded="false">
+                    2021
+                </span>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><input class="dd-text dropdown-item" onchange="currentYear=this.value;drawMonth(currentMonth, currentYear)" id="yearInput"></li>
+                    <div class="dropdown-divider"></div>
+                    <li><a class="dd-text dropdown-item" href="#">Speichern</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <span class="text text-light dropdown-toggle" data-bs-toggle="dropdown" style="cursor: pointer" id="month"></span>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dd-text dropdown-item" onclick="currentMonth=0;drawMonth()">Januar</a></li>
+                    <li><a class="dd-text dropdown-item" onclick="currentMonth=1;drawMonth()">Februar</a></li>
+                    <li><a class="dd-text dropdown-item" onclick="currentMonth=2;drawMonth()">März</a></li>
+                    <li><a class="dd-text dropdown-item" onclick="currentMonth=3;drawMonth()">April</a></li>
+                    <li><a class="dd-text dropdown-item" onclick="currentMonth=4;drawMonth()">Mai</a></li>
+                    <li><a class="dd-text dropdown-item" onclick="currentMonth=5;drawMonth()">Juni</a></li>
+                    <li><a class="dd-text dropdown-item" onclick="currentMonth=6;drawMonth()">Juli</a></li>
+                    <li><a class="dd-text dropdown-item" onclick="currentMonth=7;drawMonth()">August</a></li>
+                    <li><a class="dd-text dropdown-item" onclick="currentMonth=8;drawMonth()">September</a></li>
+                    <li><a class="dd-text dropdown-item" onclick="currentMonth=9;drawMonth()">Oktober</a></li>
+                    <li><a class="dd-text dropdown-item" onclick="currentMonth=10;drawMonth()">November</a></li>
+                    <li><a class="dd-text dropdown-item" onclick="currentMonth=11;drawMonth()">Dezember</a></li>
+                </ul>
+            </div>
+        </center>
+        <div id="days" class="container">
+            <div class="row seven-cols">
+                <div class="col col-md-1">
+                    <div class="weekday text text-light fw-bold">
+                        M
+                    </div>
                 </div>
-                <div id="popup_events">
-                    <h1 id="popup_events_title">
-                        Ereignisse
-                    </h1>
+                <div class="col col-md-1">
+                    <div class="weekday text text-light fw-bold">
+                        D
+                    </div>
+                </div>
+                <div class="col col-md-1">
+                    <div class="weekday text text-light fw-bold">
+                        M
+                    </div>
+                </div>
+                <div class="col col-md-1">
+                    <div class="weekday text text-light fw-bold">
+                        D
+                    </div>
+                </div>
+                <div class="col col-md-1">
+                    <div class="weekday text text-light fw-bold">
+                        F
+                    </div>
+                </div>
+                <div class="col col-md-1">
+                    <div class="weekday text text-success fw-bold">
+                        S
+                    </div>
+                </div>
+                <div class="col col-md-1">
+                    <div class="weekday text text-success fw-bold">
+                        S
+                    </div>
+                </div>
+            </div>
+            <div id="days_f">
 
-                    <table id="popup_events_table" style="visibility: hidden; display: none;">
-                        <tr>
-                            <td style="width: 40%; font-size: 200%; border-bottom-color: white; border-bottom-style: inset; border-right-color: white; border-right-style: inset;">Zeit</td>
-                            <td style="width: 160%; font-size: 200%; border-bottom-color: white; border-bottom-style: inset;">Ereignis</td>
-                        </tr>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="dayDetails">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="subheading modal-title" id="dayDetailsTitle">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                </div>
+                <div class="modal-body" id="dayDetailsContent">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text">#</th>
+                                <th class="text">Zeit</th>
+                                <th class="text">Ereignis</th>
+                                <th class="text" id="tableColActions">Aktionen</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableContent">
+                            <tr>
+                                <th scope="row" class="text">0</th>
+                                <td class="text">K/A</td>
+                                <td class="text">Du hast noch kein Ereignis erstellt!</td>
+                            </tr>
+                        </tbody>
                     </table>
-
-                    <h3 id="keine_ereignisse" style="color:rgb(255, 0, 0)" id="popup_events_not_av">
-                        - Keine Ereignisse -
-                    </h3>
-
-                    <h3>
-                        <a id="popup_events_delete" href="javascript:changeDivToDelete()" style="color:rgb(255, 0, 0); text-decoration: none; visibility: hidden; display: none;">
-                            Ereignisse löschen
-                        </a>
-                    </h3>
-
-                    <h3 id="popup_events_create">
-                        <a href="javascript:changeDivToCreate()" style="color:rgb(0, 226, 49); text-decoration: none;">
-                            Ereignis erstellen
-                        </a>
-                    </h3>
+                    <button class="btn btn-primary text" type="button" data-bs-toggle="collapse" data-bs-target="#addEvent">Hinzufügen</button>
+                    <div class="collapse" id="addEvent">
+                        <div class="card card-body">
+                            <h1 class="text">
+                                Ereignis hinzufügen
+                            </h1>
+                            <div class="input-group">
+                                <span class="input-group-text text col-md-2">Zeit</span>
+                                <input type="time" class="text form-control" id="addEventTime">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text text col-md-2">Ereignis</span>
+                                <input type="text" class="text form-control" id="addEventEvent">
+                            </div>
+                            <button class="btn btn-primary text" data-bs-toggle="collapse" data-bs-target="#addEvent" onclick="addEvent()" id="addEventFinal">Hinzufügen</button>
+                        </div>
+                    </div>
                 </div>
-            </center>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary text" data-bs-dismiss="modal">Schließen</button>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div id="div_create">
-        <div id="div_create_time">
-            <p class="div_create_headline">Zeit</p>
-            <input id="div_create_time_stunde_input" type="number" min="1" max="24" placeholder="Stunde" style="top: 20%; left: 2.5%; width: 40%; position: absolute; font-size: 20px;">
-            <span style="top: 20%; left: 46.5%; width: 1%; position: absolute; font-size: 25px;">:</span>
-            <input id="div_create_time_minute_input" type="number" min="0" max="59" placeholder="Minute" style="top: 20%; left: 50%; width: 40%; position: absolute; font-size: 20px;">
-        </div>
-        <div id="div_create_event">
-            <p class="div_create_headline">Ereignis</p>
-            <textarea placeholder="Ereignis (max. 50 Buchstaben)" maxlength="50" id="div_create_event_input" style="left: 2.5%; width: 90%; height: 70%; position: absolute; font-size: 20px; resize: none;"></textarea>
-            <a href="javascript:div_create_abbrechen()" class="div_create_abbrechen">&#10008;</a>
-            <a href="javascript:div_create_ok()" class="div_create_ok">&#10004;</a>
+    <div class="modal fade" tabindex="-1" id="deleteConfirm">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="subheading modal-title">Bist du dir sicher?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text">Willst du Ereignis wirklich löschen?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="text btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                    <button type="button" class="text btn btn-danger" data-bs-dismiss="modal" id="deleteConfirmConfirm">Löschen</button>
+                </div>
+            </div>
         </div>
     </div>
-
-    <style>
-        * {
-            font-family: sans-serif;
-            user-select: none;
-        }
-        .abc {
-            color: rgb(0, 183, 255);
-            font-size: 225px;
-        }
-        body {
-            /* background-image: url('./Bilder/1.jpg'); */
-            background-color: #333;
-            background-size: cover;
-        }
-    
-        .ButtonMonate {
-            background-color:#5b5c5b;
-            border-radius:42px;
-            display:inline-block;
-            cursor:pointer;
-            color:#ffffff;
-            font-family:Courier New;
-            font-size:22px;
-            font-weight:bold;
-            padding:0px 5px;
-            text-decoration:none;
-            text-shadow:0px 1px 0px #2f6627;
-            position: absolute;
-        }
-        #content {
-            z-index: 1; height: 100%; width:100%;
-            /* position: relative; */
-        }
-        .ButtonMonate:hover {
-            background-color:#8d8d8d;
-        }
-        
-        .ButtonHeute {
-            background-color:#f50a0a;
-            border-radius:42px;
-            display:inline-block;
-            cursor:pointer;
-            color:#ffffff;
-            font-family:Courier New;
-            font-size:22px;
-            font-weight:bold;
-            position: absolute;
-            padding:0px 5px;
-            text-decoration:none;
-            text-shadow:0px 1px 0px #2f6627;
-        }
-        .ButtonHeute:hover {
-            background-color:#f71111;
-        }
-         
-        .ButtonTage {
-            box-shadow:inset -50px -50px 0px -50px #ffffff;
-            display:inline-block;
-            cursor:pointer;
-            color:#fff;
-            font-family:Courier New;
-            font-size:20px;
-            font-weight:bold;
-            padding:0px 0px;
-            position: absolute;
-            text-decoration:none;
-            text-shadow:0px 0px 0px #ffffff;
-        }
-
-        .Monate {
-            cursor: pointer;
-            font-family: Courier New;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            color: rgb(206, 0, 0);
-        }
-        #popup {
-            visibility: hidden;
-            display: none;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            /* z-index: 0; */
-            cursor: default;
-            background-color: rgba(0, 0, 0, 0.9);
-            position: fixed;
-        }
-        #popup_content {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            /* background-color: rgba(0, 0, 0, 1); */
-            color: rgb(255, 255, 255);
-            z-index: -1;
-            /* margin-top: -120px; */
-        }
-        #popup_close_img {
-            top: 7%;
-            right: 7%;
-            position: absolute;
-        }
-
-        #div_create {
-            visibility: hidden;
-            display: none;
-        }
-        #div_create_time {
-            background-color: lightgrey;
-            height: 45%;
-            width: 15%;
-            top: 35%;
-            left: 30%;
-            position: absolute;
-        }
-        .div_create_headline {
-            text-align: center;
-            text-decoration: underline;
-            width: 100%;
-            font-size: 30px;
-        }
-        #div_create_event {
-            background-color: lightgrey;
-            height: 45%;
-            width: 27.5%;
-            top: 35%;
-            left: 47.5%;
-            position: absolute;
-        }
-        .div_create_abbrechen {
-	        background-color:#fa0000;
-	        border-radius:28px;
-	        border:1px solid #fa0000;
-	        display:inline-block;
-	        cursor:pointer;
-            color: white;
-	        font-family:Arial;
-	        font-size: 110%;
-	        padding:1% 2%;
-	        text-decoration:none;
-	        text-shadow:0px 1px 4px #000000;
-            top: 92%;
-            left: 2%;
-            position: absolute;
-        }
-        .div_create_abbrechen:hover {
-	        background-color:#c00000;
-        }
-        .div_create_abbrechen:hover::after {
-            content: " abbrechen";
-        } 
-        .div_create_ok {
-	        background-color:#5beb34;
-	        border-radius:28px;
-	        border:1px solid #5beb34;
-	        display:inline-block;
-	        cursor:pointer;
-            color: white;
-	        font-family:Arial;
-	        font-size: 110%;
-	        padding:1% 2%;
-	        text-decoration:none;
-	        text-shadow:0px 1px 4px #000000;
-            top: 92%;
-            left: 80%;
-            position: absolute;
-        }
-        .div_create_ok:hover {
-	        background-color:#71f24e;
-        }
-        .div_create_ok:hover::after {
-            content: " ok";
-        }     
-    </style>
+    <div class="modal fade" tabindex="-1" id="edit">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="subheading modal-title">Bearbeiten</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <span class="input-group-text text col-md-2">Zeit</span>
+                        <input class="form-control text" type="time" id="editEventTime">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text text col-md-2">Ereignis</span>
+                        <input class="form-control text" type="text" id="editEventEvent">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="text btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                    <button type="button" class="text btn btn-primary" data-bs-dismiss="modal" id="editConfirm">Speichern</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

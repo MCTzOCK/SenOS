@@ -8,7 +8,7 @@ function checkPwd(){
     let pw_ = stringToHash(document.getElementById("pw_").value);
     let errorDi = new bootstrap.Modal(document.getElementById("errorDialog"), {})
     if(pw_ == config['password']){
-        window.location.assign("../index.html")
+        window.location.assign("../index.html#senos-force")
     }else {
         errorDi.show();
     }

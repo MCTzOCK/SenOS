@@ -1,11 +1,7 @@
 const { app, BrowserWindow, globalShortcut, ipcMain, crashReporter } = require('electron');
-const { autoUpdater } = require('electron-updater')
 const path = require('path');
 const http = require('http');
 const fs = require('fs');
-/*
-const server = "http://senos.xyz:5000";
-const url = `${server}/update/${process.platform}/${app.getVersion()}`*/
 
 let debug = true;
 let forceInstall = false;
@@ -37,10 +33,6 @@ const createWindow = () => {
       allowRunningInsecureContent: true
     }
   });
-
-  mainWindow.once('ready-to-show', () => {
-    autoUpdater.checkForUpdatesAndNotify();
-  })
 
   mainWindow.webContents.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246");
   if(!debug){

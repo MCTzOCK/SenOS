@@ -1,66 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet"> 
-    <title>Radio</title>
+  <meta charset="UTF-8">
+  <title>Radio</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+  <!-- jQuery -->
+  <script type="application/javascript" src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"></script>
+  <!-- SenOS -->
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <script src="app.js"></script>
 </head>
-<body>
-    <p id="Titel">Radio</p>
-    <p class="Sender_Titel" style="top: 14%; left: 15%;">1 Live:</p>
-    <audio controls class="Sender" style="top: 20%; left: 10%;">
-        <source src="http://wdr-1live-live.icecast.wdr.de/wdr/1live/live/mp3/128/stream.mp3" type="audio/mpeg">
-    </audio>
-    <p class="Sender_Titel" style="top: 14%; left: 45%;">WDR 2:</p>
-    <audio controls class="Sender" style="top: 20%; left: 40%;">
-        <source src="http://wdr-wdr2-ruhrgebiet.icecast.wdr.de/wdr/wdr2/ruhrgebiet/mp3/128/stream.mp3" type="audio/mpeg">
-    </audio>
-    <p class="Sender_Titel" style="top: 14%; left: 75%;">WDR 3:</p>
-    <audio controls class="Sender" style="top: 20%; left: 70%;">
-        <source src=" http://wdr-wdr3-live.icecast.wdr.de/wdr/wdr3/live/mp3/128/stream.mp3" type="audio/mpeg">
-    </audio>
-    <p class="Sender_Titel" style="top: 45%; left: 15%;">WDR 4:</p>
-    <audio controls class="Sender" style="top: 51%; left: 10%;">
-        <source src="http://wdr-wdr4-live.icecast.wdr.de/wdr/wdr4/live/mp3/128/stream.mp3" type="audio/mpeg">
-    </audio>
-    <p class="Sender_Titel" style="top: 45%; left: 45%;">WDR 5:</p>
-    <audio controls class="Sender" style="top: 51%; left: 40%;">
-        <source src="http://wdr-wdr5-live.icecast.wdr.de/wdr/wdr5/live/mp3/128/stream.mp3" type="audio/mpeg">
-    </audio>
-    <p class="Sender_Titel" style="top: 45%; left: 75%;">WDR Cosmo:</p>
-    <audio controls class="Sender" style="top: 51%; left: 70%;">
-        <source src="http://wdr-cosmo-live.icecast.wdr.de/wdr/cosmo/live/mp3/128/stream.mp3" type="audio/mpeg">
-    </audio>
-    <style>
-        * {
-            font-family: 'Audiowide', cursive;
-            user-select: none;
-        }
-        body {
-            background-color: rgb(146, 145, 145);
-        }
-        #Titel {
-            font-size: 300%;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: underline;
-            width: 10%;
-            top: 1%;
-            left: 45%;
-            position: absolute;
-        }
-        .Sender_Titel {
-            position: absolute;
-            text-align: center;
-            font-size: 150%;
-            width: 10%;
-        }
-        .Sender {
-            position: absolute;
-            width: 20%;
-        }
-    </style>
+<body class="bg-dark" style="margin: 0; padding: 0;">
+  <center>
+    <h1 class="text-light text-center" id="currentSender">Aktueller Sender: Kein Sender</h1>
+    <button class="btn btn-primary text-center" onclick="window.location.reload()">Radio stoppen</button>
+  </center>
+  <div class="card" style="width: 18rem; margin: 2vh">
+    <div class="card-header">
+      <h5 class="card-title">1 Live</h5>
+    </div>
+    <div class="card-body">
+      <button class="btn btn-primary" onclick="start('1live')">Abspielen</button>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem; margin: 2vh">
+    <div class="card-header">
+      <h5 class="card-title">WDR 2 (Ruhrgebiet)</h5>
+    </div>
+    <div class="card-body">
+      <button class="btn btn-primary" onclick="start('wdr2_rg')">Abspielen</button>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem; margin: 2vh">
+    <div class="card-header">
+      <h5 class="card-title">WDR 3</h5>
+    </div>
+    <div class="card-body">
+      <button class="btn btn-primary" onclick="start('wdr3')">Abspielen</button>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem; margin: 2vh">
+    <div class="card-header">
+      <h5 class="card-title">WDR 4</h5>
+    </div>
+    <div class="card-body">
+      <button class="btn btn-primary" onclick="start('wdr4')">Abspielen</button>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem; margin: 2vh">
+    <div class="card-header">
+      <h5 class="card-title">WDR 5</h5>
+    </div>
+    <div class="card-body">
+      <button class="btn btn-primary" onclick="start('wdr5')">Abspielen</button>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem; margin: 2vh">
+    <div class="card-header">
+      <h5 class="card-title">WDR Cosmo</h5>
+    </div>
+    <div class="card-body">
+      <button class="btn btn-primary" onclick="start('wdrC')">Abspielen</button>
+    </div>
+  </div>
+  <audio id="1live">
+    <source src="http://wdr-1live-live.icecast.wdr.de/wdr/1live/live/mp3/128/stream.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="wdr2_rg">
+    <source src="http://wdr-wdr2-ruhrgebiet.icecast.wdr.de/wdr/wdr2/ruhrgebiet/mp3/128/stream.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="wdr3">
+    <source src=" http://wdr-wdr3-live.icecast.wdr.de/wdr/wdr3/live/mp3/128/stream.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="wdr4">
+    <source src="http://wdr-wdr4-live.icecast.wdr.de/wdr/wdr4/live/mp3/128/stream.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="wdr5">
+    <source src="http://wdr-wdr5-live.icecast.wdr.de/wdr/wdr5/live/mp3/128/stream.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="wdrC">
+    <source src="http://wdr-cosmo-live.icecast.wdr.de/wdr/cosmo/live/mp3/128/stream.mp3" type="audio/mpeg">
+  </audio>
 </body>
 </html>

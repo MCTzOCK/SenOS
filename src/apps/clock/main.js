@@ -1,6 +1,6 @@
 // clock time
 
-setInterval(updateClock, 1000)
+setInterval(updateClock, 100)
 
 function updateClock(){
     let d = new Date();
@@ -32,30 +32,33 @@ let timerMinutes = 0;
 let timerHours = 0;
 
 setInterval(() => {
-    timerSeconds++;
-    timerSeconds--;
-    timerMinutes++;
-    timerMinutes--;
-    timerHours++;
-    timerHours--;
-    if(timerActive){
+    for(let i = 0; i < 1; i++){
+        timerSeconds++;
         timerSeconds--;
-        if(timerSeconds === 0 && timerMinutes === 0 && timerHours === 0){
-            finishTimer()
-        }
-        if(timerSeconds === 0){
-            timerSeconds = 60;
-            if(timerMinutes > 0){
-                timerMinutes--;
+        timerMinutes++;
+        timerMinutes--;
+        timerHours++;
+        timerHours--;
+        if(timerActive){
+            timerSeconds--;
+            if(timerSeconds === 0 && timerMinutes === 0 && timerHours === 0){
+                finishTimer()
+                break;
             }
-            if(timerMinutes === 0){
-                if(timerHours > 0){
-                    timerHours--;
+            if(timerSeconds === 0){
+                timerSeconds = 59;
+                if(timerMinutes > 0){
+                    timerMinutes--;
                 }
-                timerMinutes = 0;
+                if(timerMinutes === 0){
+                    if(timerHours > 0){
+                        timerHours--;
+                    }
+                    timerMinutes = 0;
+                }
             }
+            updateTimer();
         }
-        updateTimer();
     }
 }, 1000)
 
@@ -64,19 +67,20 @@ function stopTimer() {
     timerSeconds = 0;
     timerMinutes = 0;
     timerHours = 0;
+    updateTimer();
 }
 
 
 function finishTimer(){
-    timerActive = false;
-    timerSeconds = 0;
-    timerMinutes = 0;
-    timerHours = 0;
-    updateTimer()
+    stopTimer();
+    window.parent.openApp('clock')
     finishedTimer.show();
 }
 
 function startTimer(){
+    if(timerSeconds == 0){
+        timerSeconds = 1;
+    }
     timerActive = true;
 }
 
