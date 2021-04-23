@@ -1,5 +1,5 @@
 {
-  "reg_apps_cfg": [
+  "apps": [
     {
       "name": "settings.bs",
       "display": "Einstellungen",
@@ -159,6 +159,16 @@
       "description": "Rechne!",
       "uninstall": true,
       "desktop": true
+    },
+    {
+      "name": "https://mctzock.de",
+      "display": "Taschenrechner",
+      "version": 1,
+      "author": "SenOS Development Team",
+      "icon": "https://mctzock.de/favicon.ico",
+      "description": "Rechne!",
+      "uninstall": true,
+      "desktop": true
     }
   ],
   "name": [
@@ -177,6 +187,7 @@
     "shorts",
     "pictures",
     "pdfviewer",
-    "calc"
+    "calc",
+    "https://mctzock.de"
   ]
 }

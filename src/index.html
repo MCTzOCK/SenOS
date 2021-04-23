@@ -1,85 +1,37 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>Desktop</title>
+    <title>SenOS v2 -> Desktop</title>
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-    <!-- jQuery -->
-    <script type="application/javascript" src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"></script>
-    <!-- SenOS -->
-    <script src="core.js"></script>
-    <script src="click.js"></script>
-    <script src="init.js"></script>
-    <script src="screensaver.js"></script>
-    <link rel="stylesheet" href="index.css">
+    <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdn.senos.xyz/animate.css/dist/animate.min.css">
-  </head>
-  <body>
-    <div id="screenSaver" style="position:absolute; top: 0%; left: 0%; z-index: 10000">
-      <img src="logo_v3.png" style="position: absolute" width="25%" height="25vh" id="screenSaverSenOSLogo">
+    <!-- SenOS -->
+    <script src="desktop.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="top-nav-controls" class="position-absolute start-0 bottom-0 w-100 h-25 text-center h-25" style="font-size: 20vh; z-index: 42000">
+        <span class="bi bi-house-fill text-success clickable" onclick="showDesktop()"></span>
     </div>
-    <div id="background-img">
-      <img src="img/initial/background.jpg" width="100%" height="100%" id="deskIMG">
-    </div>
-    <div id="appicons" style="display: none">
-      <script>initDesktop();</script>
-    </div>
-    <div id="windows" style="z-index: 1000">
-      <!-- {initial.window.current.file.content} -->
-      <script>initApps();</script>
-    </div>
-    <div id="start-menu-button">
-      <a href="javascript:click_start();"><img src="img/initial/start-new-lukas.png" width="8%" height="15%" class="animation animation-slow animation-fadeIn-top"></a>
-    </div>
-    <div id="shutdown-menu-button">
-      <a href="javascript:oldWindowClose();"><img src="img/initial/stop-new-lukas.png" width="8%" height="15%" class="animation animation-slow animation-fadeIn-top"></a>
-    </div>
-    <!-- Dialogs -->
-    <div id="dialogs">
-      <div id="shutdown-dialog">
-        <center>
-          <p class="dialog-title">
-            <!-- {dialog.shutdown.title} -->
-          </p>
-          <p class="dialog-title">
-            <!-- {dialog.shutdown.content} -->
-          </p>
-          <a href="javascript:shutdown(true);"><button class="dialog-button"><!-- {dialog.shutdown.buttons.yes} --></button></a>
-          <a href="javascript:hideDialogs();"><button class="dialog-button"><!-- {dialog.shutdown.buttons.no} --></button></a>
-        </center>
-      </div>
-    </div>
-    <div id="dialog_nonsys">
+    <div id="app_pages">
 
     </div>
-  <div id="notification">
-      <center>
-        <p id="noti-title">
-          Title
-        </p>
-        <p id="noti-text">
-          Null
-        </p>
-      </center>
+    <div id="page_controls">
+        <div id="page_controls_left" class="top-50 start-0 position-absolute align-middle justify-content-center" style="margin-left: 1%;">
+            <span class="bi bi-arrow-left-circle-fill text-light clickable" style="font-size: 4vh" onclick="switchPage(-1)"></span>
+        </div>
+        <div id="page_controls_right" class="top-50 end-0 position-absolute align-middle justify-content-center" style="margin-right: 1%;">
+            <span class="bi bi-arrow-right-circle-fill text-light clickable" style="font-size: 4vh" onclick="switchPage(1)"></span>
+        </div>
     </div>
-    <!-- REMOVE - TIME -->
-    <!-- <div id="time">
-      <p>
-        Starting service...
-      </p>
+    <div id="windows">
+
     </div>
-    <script>
-      startService('time');
-    </script>-->
-    <div id="time"></div>
-    <script>
-      initStyle();
-      <!-- startService('time') -->
-    </script>
-  </body>
+</body>
 </html>
