@@ -161,11 +161,11 @@
       "desktop": true
     },
     {
-      "name": "https://mctzock.de",
-      "display": "Taschenrechner",
+      "name": "https://google.com",
+      "display": "YouTube",
       "version": 1,
       "author": "SenOS Development Team",
-      "icon": "https://mctzock.de/favicon.ico",
+      "icon": "https://spotify.com/favicon.ico",
       "description": "Rechne!",
       "uninstall": true,
       "desktop": true

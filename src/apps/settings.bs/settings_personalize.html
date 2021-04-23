@@ -17,7 +17,28 @@
         Zurück
     </button>
 
-    <div class="cards">
+    <h1 class="text-light text-center">Animationen</h1>
+    <div class="text-center">
+        <input type="range" class="w-25 form-range" min="0" max="2" value="1" step="1" id="animationStrengthRange" oninput="
+            let a=['Keine','Normal','Viele'];
+            document.querySelector('#animationStrengthRangeOutput').value = a[value];
+            config.appearance.animationStrength = value;
+            fs.writeFileSync(path.join(__dirname, '../../config.json'), JSON.stringify(config))
+        "
+        >
+        <script>
+            window.onload = function() {
+                let a=['Keine','Normal','Viele'];
+                document.getElementById('animationStrengthRange').value = parseInt(config.appearance.animationStrength);
+                document.querySelector('#animationStrengthRangeOutput').value = a[parseInt(config.appearance.animationStrength)];
+            }
+        </script>
+        <br>
+        <output class="text-light text-center" for="animationStrengthRange" id="animationStrengthRangeOutput" style="font-size: 2vh">Normal</output>
+    </div>
+
+    <h1 class="text-light text-center">Farben</h1>
+    <div class="cards text-center">
         <div class="card c-grid" style="width: 18rem">
             <div class="card-body">
                 <div class="card-img-top">

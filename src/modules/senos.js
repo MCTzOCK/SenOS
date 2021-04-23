@@ -8,3 +8,5 @@ exports.system_color = {
     g: config.appearance.color.g,
     a: config.appearance.color.a,
 };
+
+exports.animationLevel = parseInt(config.appearance.animationStrength);

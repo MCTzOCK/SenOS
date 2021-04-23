@@ -11,6 +11,17 @@ let currentAppPage = 0;
 let currentApp = '';
 
 window.onload = function() {
+    if(senos.animationLevel === 0){
+        let list = document.getElementsByClassName('animationDisable-1');
+        for(let i = 0; i < list.length; i++){
+            list.item(i).classList.forEach(classListEntry => {
+                if(classListEntry.startsWith('animation')){
+                    list.item(i).classList.remove(classListEntry)
+                }
+            })
+        }
+    }
+
     let needed_app_pages = parseInt(apps.getApps().length / APPS_PER_PAGE);
     maxAppPage = needed_app_pages;
     for(let i = 0; i < needed_app_pages + 1; i++){
@@ -48,10 +59,17 @@ window.onload = function() {
             let cardBody        = document.createElement('div');
             let cardTitle       = document.createElement('h2');
 
-            card.style.width    = "18rem"
+            card.style.width            = "18rem"
+            card.style.borderRadius     = "24px"
             card.classList.add('card', 'c-grid', 'clickable')
+            if(senos.animationLevel === 2){
+                card.classList.add('animation', 'animation-medium', 'animation-rotate')
+            }
             card.setAttribute('onclick', 'openApp("' + app.name + '")')
             cardImg.classList.add('card-img-top')
+            cardImg.style.borderRadius = "24px"
+            cardImg.style.borderBottomRightRadius = "0px"
+            cardImg.style.borderBottomLeftRadius = "0px"
             cardBody.classList.add('card-body')
             cardTitle.classList.add('card-title')
 
@@ -66,10 +84,9 @@ window.onload = function() {
 
             cardImg.src         = icon_path;
             cardTitle.innerText = app.display;
-
             cardBody.appendChild(cardTitle)
             card.appendChild(cardImg);
-            card.appendChild(cardBody)
+            card.appendChild(cardBody);
             document.getElementById('apps_' + currentPage).appendChild(card);
             currentPageCounterI++;
         }
@@ -105,21 +122,25 @@ function switchPage(index){
         }
         if(lastAppPageElement !== null){
             lastAppPageElement.className = '';
-            lastAppPageElement.classList.add('animation', 'animation-fast');
-            if(index === -1){
-                lastAppPageElement.classList.add('animation-fadeOut-right')
-            }else {
-                lastAppPageElement.classList.add('animation-fadeOut-left')
+            if(senos.animationLevel >= 1){
+                lastAppPageElement.classList.add('animation', 'animation-fast');
+                if(index === -1){
+                    lastAppPageElement.classList.add('animation-fadeOut-right')
+                }else {
+                    lastAppPageElement.classList.add('animation-fadeOut-left')
+                }
             }
             await setTimeout(()=>{
                 lastAppPageElement.className = '';
                 lastAppPageElement.classList.add('d-none')
                 nextAppPageElement.className = '';
-                nextAppPageElement.classList.add('animation', 'animation-fast');
-                if(index === -1){
-                    nextAppPageElement.classList.add('animation-fadeIn-left')
-                }else {
-                    nextAppPageElement.classList.add('animation-fadeIn-right')
+                if(senos.animationLevel >= 1) {
+                    nextAppPageElement.classList.add('animation', 'animation-fast');
+                    if(index === -1){
+                        nextAppPageElement.classList.add('animation-fadeIn-left')
+                    }else {
+                        nextAppPageElement.classList.add('animation-fadeIn-right')
+                    }
                 }
             },1000)
         }
@@ -133,9 +154,11 @@ async function openApp(name){
                 let lastApp = document.getElementById('window_' + currentApp);
                 let nextApp = document.getElementById('window_' + name);
                 lastApp.className = '';
-                lastApp.classList.add('animation', 'animation-fast', 'animation-fadeOut-bottom');
                 nextApp.className = '';
-                nextApp.classList.add('animation', 'animation-fast', 'animation-fadeIn-top');
+                if(senos.animationLevel === 2){
+                    lastApp.classList.add('animation', 'animation-fast', 'animation-fadeOut-bottom');
+                    nextApp.classList.add('animation', 'animation-fast', 'animation-fadeIn-top');
+                }
                 setTimeout(() => {
                     lastApp.className = '';
                     lastApp.classList.add('d-none');
@@ -143,7 +166,9 @@ async function openApp(name){
             }else {
                 let nextApp = document.getElementById('window_' + name);
                 nextApp.className = '';
-                nextApp.classList.add('animation', 'animation-fast', 'animation-fadeIn-top');
+                if(senos.animationLevel === 2) {
+                    nextApp.classList.add('animation', 'animation-fast', 'animation-fadeIn-top');
+                }
             }
             currentApp = name;
         }else {
@@ -153,7 +178,9 @@ async function openApp(name){
         if(currentApp !== ''){
             let lastApp = document.getElementById('window_' + currentApp);
             lastApp.className = '';
-            lastApp.classList.add('animation', 'animation-fast', 'animation-fadeOut-bottom');
+            if(senos.animationLevel === 2){
+                lastApp.classList.add('animation', 'animation-fast', 'animation-fadeOut-bottom');
+            }
             setTimeout(() => {
                 lastApp.className = '';
                 lastApp.classList.add('d-none');
