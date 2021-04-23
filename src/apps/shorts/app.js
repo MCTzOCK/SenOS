@@ -5,6 +5,21 @@ const words         = JSON.parse(fs.readFileSync(path.join(__dirname, "words.jso
 
 let cI              = 1;
 
+let sheepyOptions = {
+    open: ['FIRST_START'],
+    steps: [
+        {
+            title: "Einleitung",
+            content: "Diese Anwendung soll dir dabei helfen die Abkürzungen von Kindern und Jugendlichen zu verstehen."
+        },
+        {
+            title: "Suchen",
+            content: "Du kannst nach einer Abkürzung oder einer Bedeutung suchen, indem du in das Textfeld oben klickst, deinen Suchebgriff eintippst und anschließend auf Suchen klickst oder mit der Entertaste bestätigst."
+        }
+    ]
+}
+sheepyInit(sheepyOptions)
+
 words.words.forEach(entry => {
     let tr = document.createElement('tr');
     let th = document.createElement('th');

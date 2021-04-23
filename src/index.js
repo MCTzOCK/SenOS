@@ -1,4 +1,4 @@
-const { app, BrowserWindow, globalShortcut, ipcMain, crashReporter } = require('electron');
+const { app, BrowserWindow, globalShortcut, ipcMain, crashReporter, powerMonitor } = require('electron');
 const path = require('path');
 const http = require('http');
 const fs = require('fs');
@@ -30,7 +30,8 @@ const createWindow = () => {
       nodeIntegrationInSubFrames: true,
       webSecurity: false,
       webviewTag: true,
-      allowRunningInsecureContent: true
+      allowRunningInsecureContent: true,
+      contextIsolation: false
     }
   });
 
@@ -119,6 +120,7 @@ const createWindow = () => {
     alert("Die Datei wurde herruntergeladen!")
   })
 };
+
 
 app.commandLine.appendSwitch('disable-site-isolation-trials');
 

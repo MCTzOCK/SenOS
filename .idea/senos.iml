@@ -13,5 +13,7 @@
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="pdfjs-dist" level="application" />
+    <orderEntry type="library" name="sheepy" level="application" />
+    <orderEntry type="library" name="animate" level="application" />
   </component>
 </module>

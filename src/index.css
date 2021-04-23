@@ -290,3 +290,8 @@ webview {
     opacity: 0%;
   }
 }
+
+.c-grid {
+  margin: 1%;
+  display: inline-block;
+}

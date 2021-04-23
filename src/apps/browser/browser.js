@@ -17,6 +17,50 @@ let currentIndex = 1;
 let save = true;
 
 window.onload = function (){
+    // sheepy
+    let sheepyOptions = {
+        open: ['FIRST_START'],
+        steps: [
+            {
+                title: "Einleitung",
+                content: "Mit dieser Anwenung kannst du Webseiten besuchen!"
+            },
+            {
+                title: "Im Internet suchen",
+                content: "Klicke oben in das Textfeld und tippe auf deiner Tastatur einen Suchbegriff ein."
+            },
+            {
+                title: "Navigation (1)",
+                content: "Um eine Webseite zurück zu navigieren genügt es, wenn du einmal auf den Pfeil nach links in der oberen linken Ecke klickst."
+            },
+            {
+                title: "Navigation (2)",
+                content: "Um eine Webseite vor zu navigieren genügt es, wenn du einmal auf den Pfeil nach rechts in der oberen linken Ecke klickst."
+            },
+            {
+                title: "Webseite merken",
+                content: "Um eine Webseite zu merken musst du auf den Stern links neben deinem Suchbegriff. Anschließen wird ein Dialog angezeigt, der dir sagt, dass du die Webseite erfolgreich gespeichert hast."
+            },
+            {
+                title: "Gemerkte Webseite aufrufen (1)",
+                content: "Klicke zunächst auf den Knopf in der oberen Mitte deines Bildschirms, welcher Sterne beinhaltet."
+            },
+            {
+                title: "Gemerkte Webseite aufrufen (2)",
+                content: "Anschließend öffnet sich ein Dialog der dir alle Webseiten anzeigt, die du dir gemerkt hast. Um eine gemerkte Webseite nun aufzurufen genügt es wenn du einmal auf die Webseite klickst."
+            },
+            {
+                title: "Suchmaschine ändern (1)",
+                content: "Klicke zunächst auf den Knopf in der oberen Mitte deines Bildschirms mit dem Zahrad."
+            },
+            {
+                title: "Suchmaschine ändern (2)",
+                content: "Anschließend öffnet sich ein Dialog der dir alle Suchmaschinen anzeigt, die du auswählen kannst. Klicke nun, um eine Suchmaschine zu wählen, einfach mit der linken Maustaste auf die Suchmaschine drauf."
+            }
+        ]
+    }
+    sheepyInit(sheepyOptions);
+
     document.getElementById('content').contentWindow.window.location.assign(engines.engines[engines.current].home);
     document.getElementById('searchForm').addEventListener('keydown', (ev) => {
         if(ev.keyCode === 13){

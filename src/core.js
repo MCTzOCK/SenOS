@@ -53,7 +53,6 @@ function openApp(name)
     // hide old window
     console.log('Trying to hide old app ' + currentWindowName + '...')
     try {
-        document.getElementById('window_' + currentWindowName).classList.remove('wind_an_open');
         document.getElementById('window_' + currentWindowName).style.display = 'none';
         console.log('Succcess')
     }catch {
@@ -62,7 +61,7 @@ function openApp(name)
 
     //document.getElementById("window_" + name).style.opacity = '100%'
     currentWindowName = name;
-    document.getElementById('window_' + name).classList.add("wind_an_open")
+    // document.getElementById('window_' + name).classList.add("wind_an_open")
     document.getElementById('window_' + name).style.display   = 'block';
     // document.getElementById('icon').className                       = 'hidden';
     // document.getElementById('icon').className                       = 'shown';

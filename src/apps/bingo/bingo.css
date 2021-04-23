@@ -1,0 +1,14 @@
+.playerpad-number {
+    cursor: pointer;
+    margin-top: 2vh;
+    margin-bottom: -1vh;
+    background-color: var(--bs-light);
+    border-radius: 1vh;
+    height: 100%;
+    border-style: solid;
+}
+
+.playerpad-number-checked {
+    background-color: var(--bs-danger);
+    cursor: default;
+}

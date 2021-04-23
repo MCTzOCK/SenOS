@@ -9,6 +9,31 @@ var kontakte = {
 var b = false;
 var b2 = false;
 
+window.onload = function(){
+    let sheepyOptions = {
+        open: ['FIRST_START'],
+        steps: [
+            {
+                title: "Kontakt erstellen (1)",
+                content: "Um einen Kontakt zu erstellen genügt es auf den Knopf unten Links mit der Beschriftung 'Kontakt hinzufügen' mit der linken Maustaste zu klicken."
+            },
+            {
+                title: "Kontakt erstellen (2)",
+                content: "Danach erscheint eine weiße Fläche, in der du die Daten des Kontaktes eingeben kannst."
+            },
+            {
+                title: "Kontakt erstellen (3)",
+                content: "Abschließen musst du noch einmal auf den blauen Knopf 'Hinzufügen' klicken. Nun siehst du deinen Kontakt als Karte angezeigt!"
+            },
+            {
+                title: "Kontakt bearbeiten (1)",
+                content: ""
+            }
+        ]
+    }
+    sheepyInit(sheepyOptions)
+}
+
 function add() {
     b = false;
     kontakte.kontakte.forEach(element => {

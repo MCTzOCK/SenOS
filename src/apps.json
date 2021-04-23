@@ -91,16 +91,6 @@
       "desktop": true
     },
     {
-      "name": "Hilfe",
-      "display": "Hilfe",
-      "version": 1,
-      "author": "_Mister_Mystic_",
-      "icon": "apps/Hilfe/icon.png",
-      "description": "Bekomme Hilfe!",
-      "uninstall": false,
-      "desktop": true
-    },
-    {
       "name": "chat",
       "display": "Chat",
       "version": 1,
@@ -169,16 +159,6 @@
       "description": "Rechne!",
       "uninstall": true,
       "desktop": true
-    },
-    {
-      "name": "flappysnake",
-      "display": "Flappy Snake",
-      "version": 1,
-      "author": "SenOS Development Team",
-      "icon": "apps/lol/icon.png",
-      "description": "Rechne!",
-      "uninstall": true,
-      "desktop": true
     }
   ],
   "name": [
@@ -191,14 +171,12 @@
     "radio",
     "clock",
     "browser",
-    "Hilfe",
     "chat",
     "notizen",
     "passwort-manager",
     "shorts",
     "pictures",
     "pdfviewer",
-    "calc",
-    "flappysnake"
+    "calc"
   ]
 }

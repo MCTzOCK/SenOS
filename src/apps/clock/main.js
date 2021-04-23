@@ -1,3 +1,60 @@
+window.onload = function(){
+    let sheepyOptions = {
+        open: ['FIRST_START'],
+        steps: [
+            {
+                title: "Einleitung",
+                content: "Mit dieser Anwendung kannst du die Uhrzeit sehen, einen Timer stellen und eine Stoppuhr starten"
+            },
+            {
+                title: "Uhrzeit",
+                content: "Um die Uhrzeit zu sehen, musst du nur oben auf den blauen Text 'Uhrzeit' klicken"
+            },
+            {
+                title: "Timer aufrufen",
+                content: "Den Timer rufst du durch einen simplen Klick auf den obigen blauen Text 'Timer' auf"
+            },
+            {
+                title: "Timer einstellen (1)",
+                content: "Um den Timer einzustellen, musst du ihn zunächst aufrufen und dann auf den Stift in der Mitte deines Bildschirms klicken."
+            },
+            {
+                title: "Timer einstellen (2)",
+                content: "Nachdem sich ein Dialog Fenster geöffnet hat, kannst du hier n un die Zeit eingeben. Dieser Vorgang ist für Stunden, Minuten und Sekunden gleich. Klicke in das Textfeld unter dem Wert den du verändern willst ('Stunden', 'Minuten' oder 'Sekunden') und gebe anschließend die gewünschte Zahl ein."
+            },
+            {
+                title: "Timer einstellen (3)",
+                content: "Abschließen musst du nur noch auf den Knopf 'Speichern klicken'"
+            },
+            {
+                title: "Timer starten",
+                content: "Nachdem du den Timer eingestellt hast, musst du nur noch auf den Knopf 'Starten' links neben dem Stiff klicken und dein Timer läuft ab!"
+            },
+            {
+                title: "Timer stoppen",
+                content: "Wenn du den Timer vorzeitig beenden willst, kannst du einfach auf den roten Knopf 'Stoppen' rechts neben dem Stifft klicken."
+            },
+            {
+                title: 'Stoppuhr aufrufen',
+                content: "Die Stoppuhr rufst du über einen Klick auf den blauen Text 'Stoppuhr' am oberen Bildschirmrand auf."
+            },
+            {
+                title: "Stoppuhr starten",
+                content: "Um die Stoppuhr zu starten genügt es, wenn du auf den Knopf 'Starten' in der Mitte deines Bildschirms klickst"
+            },
+            {
+                title: "Stoppuhr stoppen",
+                content: "Um die Stoppuhr zu stoppen genügt es, wenn du auf den Knopf 'Stoppen' in der Mitte deines Bildschirms klickst"
+            },
+            {
+                title: "Stoppuhr zurücksetzen",
+                content: "Wenn du die Stoppuhr zurück auf 0 setzen willst, musst du lediglich den mittleren grauen Knopf einmal anklicken."
+            }
+        ]
+    }
+    sheepyInit(sheepyOptions);
+}
+
 // clock time
 
 setInterval(updateClock, 100)

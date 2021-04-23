@@ -70,14 +70,7 @@ renderWindow = function() {
                 document.getElementById('window_' + window_c).style.display = 'block';
                 document.getElementById('windows').style.visibility  = 'visible';
                 document.getElementById('windows').style.display     = 'block';
-                // document.getElementById('current-window').innerHTML = '<webview style="font-size:50px; width:100%; height:100%; position: absoulute; display: inline-flex; border:none;" nodeintegration src="' + window_c +'/index.html"></webview>';
-                // document.getElementById('current-window').innerHTML = "<iframe src='apps/" + window + "/index.html' width='100%' height='100%' frameborder='0'></iframe>"; // removed : old
             }
-            // else
-            // {
-            //     // document.getElementById('current-window').innerHTML = "<iframe src='" + window + "' width='100%' height='100%' frameborder='0'></iframe>"; // removed : old
-            //     document.getElementById('current-window').innerHTML = '<webview src="' + window_c +'"></webview>';
-            // }
         }
     }
 }
