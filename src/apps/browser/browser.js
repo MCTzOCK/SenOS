@@ -1,5 +1,6 @@
 let plScript = document.createElement('script');
 plScript.src = 'https://cdn.senos.xyz/preload.js'
+const { initAppearance } = require('../../modules/senos')
 
 let engines = {};
 let bookmarks = {
@@ -17,6 +18,7 @@ let currentIndex = 1;
 let save = true;
 
 window.onload = function (){
+    initAppearance();
     // sheepy
     let sheepyOptions = {
         open: ['FIRST_START'],

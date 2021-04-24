@@ -31,6 +31,16 @@
       "desktop": true
     },
     {
+      "name": "games",
+      "display": "Spiele",
+      "version": 1,
+      "author": "MCTzOCK",
+      "icon": "apps/explorer/icon.png",
+      "description": "Spiele Spiele!",
+      "uninstall": false,
+      "desktop": true
+    },
+    {
       "name": "kalender",
       "display": "Kalender",
       "version": 1,
@@ -159,16 +169,6 @@
       "description": "Rechne!",
       "uninstall": true,
       "desktop": true
-    },
-    {
-      "name": "https://google.com",
-      "display": "YouTube",
-      "version": 1,
-      "author": "SenOS Development Team",
-      "icon": "https://spotify.com/favicon.ico",
-      "description": "Rechne!",
-      "uninstall": true,
-      "desktop": true
     }
   ],
   "name": [
@@ -187,7 +187,6 @@
     "shorts",
     "pictures",
     "pdfviewer",
-    "calc",
-    "https://mctzock.de"
+    "calc"
   ]
 }

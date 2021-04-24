@@ -5,6 +5,9 @@ const root = path.join(__dirname, "./../../files/")
 let bypassDeletedFilePolicy = false;
 let bypassHiddenFilePolicy = false;
 let mode = 'VIEW';
+const { initAppearance } = require('../../modules/senos')
+initAppearance()
+
 
 let cfg = JSON.parse(fs.readFileSync(path.join(__dirname, "explorer.json")));
 bypassDeletedFilePolicy = cfg.view.deletedFiles;

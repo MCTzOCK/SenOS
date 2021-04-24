@@ -1,0 +1,14 @@
+* {
+    font-size: 2vh;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.c-grid {
+    margin: 1%;
+    display: inline-block;
+    width: 18rem;
+}

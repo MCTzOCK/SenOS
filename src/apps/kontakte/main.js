@@ -1,5 +1,9 @@
 const modal = new bootstrap.Modal(document.getElementById('new_knt'), {});
 
+const { initAppearance } = require('../../modules/senos')
+
+initAppearance();
+
 var kontakte = {
     kontakte: [
 
@@ -8,30 +12,52 @@ var kontakte = {
 
 var b = false;
 var b2 = false;
+var deleting_card;
 
-window.onload = function(){
-    let sheepyOptions = {
-        open: ['FIRST_START'],
-        steps: [
-            {
-                title: "Kontakt erstellen (1)",
-                content: "Um einen Kontakt zu erstellen genügt es auf den Knopf unten Links mit der Beschriftung 'Kontakt hinzufügen' mit der linken Maustaste zu klicken."
-            },
-            {
-                title: "Kontakt erstellen (2)",
-                content: "Danach erscheint eine weiße Fläche, in der du die Daten des Kontaktes eingeben kannst."
-            },
-            {
-                title: "Kontakt erstellen (3)",
-                content: "Abschließen musst du noch einmal auf den blauen Knopf 'Hinzufügen' klicken. Nun siehst du deinen Kontakt als Karte angezeigt!"
-            },
-            {
-                title: "Kontakt bearbeiten (1)",
-                content: ""
-            }
-        ]
+function search(){
+    let term = document.getElementById('search_input').value;
+    term = term.toLowerCase();
+    let matching_words = [];
+    kontakte.kontakte.forEach(entry => {
+        if(entry.name.toLowerCase().includes(term) || entry.number.toLowerCase().includes(term) || entry.email.toLowerCase().includes(term) || entry.adress.toLowerCase().includes(term)){
+            matching_words.push(kontakte.kontakte.indexOf(entry));
+        }
+    });
+    document.getElementById('searchResultList').innerHTML = '';
+    if(document.getElementById('SearchResult').innerHTML !== '') {
+        document.getElementById('SearchResult').innerHTML = '';
     }
-    sheepyInit(sheepyOptions)
+    
+    if(matching_words.length === 0){
+        let p = document.createElement('p');
+        p.id = 'noSearchResults';
+        p.innerText = 'Kein Ergebnis gefunden!';
+        p.style.textAlign = 'center';
+        p.style.fontWeight = 'bold';
+        p.style.fontSize = '3vh';
+        document.getElementById('SearchResult').appendChild(p);
+    }else {
+        for(let i = 0; i < matching_words.length; i++){
+            let tr = document.createElement('tr');
+            let th = document.createElement('th');
+            let td0 = document.createElement('td');
+            let td1 = document.createElement('td');
+            let td2 = document.createElement('td');
+            th.innerText = kontakte.kontakte[matching_words[i]].name;
+            td0.innerText = kontakte.kontakte[matching_words[i]].number;
+            td1.innerText = kontakte.kontakte[matching_words[i]].email;
+            td2.innerText = kontakte.kontakte[matching_words[i]].adress;
+            tr.appendChild(th);
+            tr.appendChild(td0);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            document.getElementById('searchResultList').appendChild(tr);
+        }
+    }
+    let m = new bootstrap.Modal(document.getElementById('searchResults'), {});
+    m.show();
+
+    document.getElementById('search_input').value = '';
 }
 
 function add() {
@@ -70,12 +96,17 @@ function add() {
 
         document.getElementById('cards').innerHTML = '';
 
-        kontakte.kontakte.forEach(element => {
-            add_card((kontakte.kontakte.indexOf(element)) + 1);
-        });
+        repaint_cards();
+        
         document.getElementById('already_knt').classList.add('hidden');
         document.getElementById('no_name').classList.add('hidden');
     }
+}
+
+function repaint_cards() {
+    kontakte.kontakte.forEach(element => {
+        add_card((kontakte.kontakte.indexOf(element)) + 1);
+    });
 }
 
 function add_card(card_number) {
@@ -164,7 +195,7 @@ function add_card(card_number) {
 
     var btn_delete = document.createElement('a');
     btn_delete.id = kontakte.kontakte[card_number - 1].name + '_' + kontakte.kontakte[card_number - 1].number + '_' + kontakte.kontakte[card_number - 1].email + '_' + kontakte.kontakte[card_number - 1].adress + '_btn_delete';
-    btn_delete.href = 'javascript:delete_card("' + card_number + '")';
+    btn_delete.setAttribute('onclick', 'new bootstrap.Modal(document.getElementById("deleteCardPopup"), {}).show(); deleting_card = ' + card_number);
     btn_delete.classList.add('btn');
     btn_delete.classList.add('btn-primary');
     btn_delete.style.position = 'absolute';
@@ -256,13 +287,13 @@ function finish(card) {
     }
 }
 
-function delete_card(card) {
-    document.getElementById('cards').removeChild(document.getElementById(kontakte.kontakte[card - 1].name + '_' + kontakte.kontakte[card - 1].number + '_' + kontakte.kontakte[card - 1].email + '_' + kontakte.kontakte[card - 1].adress));
-    kontakte.kontakte.splice(card - 1, 1);
+function delete_card() {
+    document.getElementById('cards').removeChild(document.getElementById(kontakte.kontakte[deleting_card - 1].name + '_' + kontakte.kontakte[deleting_card - 1].number + '_' + kontakte.kontakte[deleting_card - 1].email + '_' + kontakte.kontakte[deleting_card - 1].adress));
+    kontakte.kontakte.splice(deleting_card - 1, 1);
     kontakte.kontakte.forEach(element => {
         document.getElementById(element.name + '_' + element.number + '_' + element.email + '_' + element.adress + '_btn_edit').href = 'javascript:edit("' + (kontakte.kontakte.indexOf(element) + 1) + '")';
         document.getElementById(element.name + '_' + element.number + '_' + element.email + '_' + element.adress + '_btn_finish').href = 'javascript:finish("' + (kontakte.kontakte.indexOf(element) + 1) + '")';
-        document.getElementById(element.name + '_' + element.number + '_' + element.email + '_' + element.adress + '_btn_delete').href = 'javascript:delete_card("' + (kontakte.kontakte.indexOf(element) + 1) + '")';
+        document.getElementById(element.name + '_' + element.number + '_' + element.email + '_' + element.adress + '_btn_delete').setAttribute('onclick', 'new bootstrap.Modal(document.getElementById("deleteCardPopup"), {}).show(); deleting_card = ' + card_number);
     });
     
     if(kontakte.kontakte.length == 0) {

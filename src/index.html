@@ -19,9 +19,53 @@
     <!--<div id="top-nav-controls" class="position-absolute start-0 bottom-0 w-100 h-25 text-center h-25" style="font-size: 20vh; z-index: 42000">
         <span class="bi bi-house-fill text-success clickable" onclick="showDesktop()"></span>
     </div>-->
+
+    <div id="modals">
+        <div class="modal fade" id="modalShutdown" tabindex="-1">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title bigText">Ausschalten</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="bigText">
+                            Was willst du tun?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary bigText" data-bs-dismiss="modal">Abbrechen</button>
+                        <button type="button" class="btn btn-primary bigText" id="btn-logout" data-bs-dismiss="modal" onclick="logout()">Abmelden</button>
+                        <button type="button" class="btn btn-warning bigText" data-bs-dismiss="modal" onclick="reboot()">Neustarten</button>
+                        <button type="button" class="btn btn-danger bigText" data-bs-dismiss="modal" onclick="shutdown()">Ausschalten</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalExitConfirm" tabindex="-1">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title bigText">Willst du wirklich fortfahren?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="exitConfirmInfo" class="bigText">
+                            Wenn du deinen PC neustartest bwz. ausschaltest, gehen alle <strong>nicht gespeicherten Daten verloren!</strong>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary bigText" data-bs-dismiss="modal">Abbrechen</button>
+                        <button type="button" class="btn btn-primary bigText" onclick="window.location.href = 'login/login.html'" id="exitConfirmButton">Trotzdem beenden</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="top-nav-controls">
         <a href="javascript:showDesktop();" style="bottom: 0%; left: 42%; position: absolute; width: 8%; height: 15%; z-index: 42000"><img src="img/initial/start-new-lukas.png" width="100%" height="100%" class="animation animation-medium animation-fadeIn-left animationDisable-1"></a>
-        <a href="javascript:showDesktop();" style="bottom: 0%; left: 50%; position: absolute; width: 8%; height: 15%; z-index: 42000"><img src="img/initial/stop-new-lukas.png" width="100%" height="100%" class="animation animation-medium animation-fadeIn-right animationDisable-1"></a>
+        <a href="javascript:new bootstrap.Modal(document.getElementById('modalShutdown'), {}).show();" style="bottom: 0%; left: 50%; position: absolute; width: 8%; height: 15%; z-index: 42000"><img src="img/initial/stop-new-lukas.png" width="100%" height="100%" class="animation animation-medium animation-fadeIn-right animationDisable-1"></a>
     </div>
     <div id="app_pages" class="animation animation-medium animation-fadeIn-bottom animationDisable-1">
 

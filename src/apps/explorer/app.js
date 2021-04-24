@@ -8,6 +8,7 @@ const folderRoot = document.getElementById('folder-root');
 const fileRoot = document.getElementById('file-root');
 const root = './../../../../../files/';
 let currentFolder = path.join(__dirname, root);
+
 if(!fs.existsSync(currentFolder)){
     fs.mkdirSync(currentFolder);
 }

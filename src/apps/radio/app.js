@@ -1,5 +1,7 @@
 let currentSender = '';
 
+const { initAppearance } = require('../../modules/senos')
+
 function start(sender){
     if(currentSender !== ''){
         stop(currentSender);
@@ -22,6 +24,7 @@ function stop(sender){
 }
 
 window.onload = function(){
+    initAppearance();
     let sheepyOptions = {
         open: ['FIRST_START'],
         steps: [

@@ -1,40 +1,229 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Einstellungen</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <!-- jQuery -->
+    <script type="application/javascript" src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdn.senos.xyz/animate.css/dist/animate.min.css">
+    <!-- SenOS -->
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <script>if (window.module) module = window.module;</script>
 </head>
-<body class="bg-dark">
-    <div class="cards">
-        <div class="card c-grid" style="width: 16rem">
-            <div class="card-body">
-                <h2 class="card-title">Sicherheit</h2>
-                <p class="card-text">Verändere Sicherheitsrelevante Dinge.</p>
-                <button class="btn btn-primary" onclick="showSettingsPage('security')">Sicherheit verwalten</button>
-            </div>
-        </div>
-        <div class="card c-grid" style="width: 16rem">
-            <div class="card-body">
-                <h2 class="card-title">Personalisieren</h2>
-                <p class="card-text">Verändere das Aussehen von SenOS.</p>
-                <button class="btn btn-primary" onclick="showSettingsPage('personalize')">SenOS personalisieren</button>
-            </div>
-        </div>
-        <div class="card c-grid" style="width: 16rem">
-            <div class="card-body">
-                <h2 class="card-title">Benutzerkonto</h2>
-                <p class="card-text">Ändere personenbezogene Details.</p>
-                <button class="btn btn-primary" onclick="showSettingsPage('account')">Details personalisieren</button>
+<body>
+    <div class="start-0 top-0 position-absolute" id="returnToMain">
+        <span class="clickable bi bi-house-fill text-light" style="font-size: 4vh" onclick="returnToMain();"></span>
+    </div>
+    <div class="text-center">
+        <h1 class="text-light" style="font-size: 3vh">Einstellungen</h1>
+    </div>
+    <div id="modals">
+        <div class="modal fade" id="modalRestart" tabindex="-1" data-bs-backdrop="static">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Neustart erforderlich</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Damit deine Änderungen sichtbar werden, musst du SenOS neustarten!
+                            <strong>Achtung! Nicht gespeicherte Änderungen in anderen Apps gehen unwiederruflich verloren!</strong>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Später manuell neustarten</button>
+                        <button type="button" class="btn btn-primary" onclick="window.parent.location.reload();">Jetzt neustarten</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <div id="main_menu" class="container">
+        <div class="row row-cols-3">
+            <div class="card clickable" style="width: 18rem; margin: 1%; display: inline-block" onclick="switchMenu('personalize')">
+                <div class="card-header">
+                    <div class="text-center">
+                        <h1 class="bi bi-pencil-fill"></h1>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        Personalisieren
+                    </h2>
+                    <p>
+                        Personalisiere SenOS ganz nach deinem Geschmack!
+                    </p>
+                </div>
+            </div>
+            <div class="card clickable" style="width: 18rem; margin: 1%; display: inline-block" onclick="switchMenu('security')">
+                <div class="card-header">
+                    <div class="text-center">
+                        <h1 class="bi bi-shield-lock-fill"></h1>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        Sicherheit
+                    </h2>
+                    <p>
+                        Verwalte die Sicherheit von SenOS mit wenigen Klicks!
+                    </p>
+                </div>
+            </div>
+            <div class="card clickable" style="width: 18rem; margin: 1%; display: inline-block" onclick="switchMenu('user')">
+                <div class="card-header">
+                    <div class="text-center">
+                        <h1 class="bi bi-person-badge-fill"></h1>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        Persönliches
+                    </h2>
+                    <p>
+                        Verändere personenbezogene Details, wie deinen Nutzernamen.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="menu_personalize" class="container d-none">
+        <div class="row row-cols-3">
+            <div class="card" style="width: 18rem; margin: 1%; display: inline-block">
+                <div class="card-header">
+                    <div class="text-center">
+                        <h1 class="bi bi-palette-fill"></h1>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        App Farbe
+                    </h2>
+                    <p>
+                        Welche Farbe soll jede App haben?
+                    </p>
+                </div>
+                <div class="card-footer text-center">
+                    <span class="bg-success dot clickable" data-bs-toggle="tooltip" data-bs-placement="top" title="Grün" onclick="setSystemColor('success')"></span>
+                    <span class="bg-dark dot clickable" data-bs-toggle="tooltip" data-bs-placement="top" title="Grau" onclick="setSystemColor('dark')"></span>
+                    <span class="bg-warning dot clickable" data-bs-toggle="tooltip" data-bs-placement="top" title="Gelb" onclick="setSystemColor('warning')"></span>
+                    <span class="bg-primary dot clickable" data-bs-toggle="tooltip" data-bs-placement="top" title="Blau" onclick="setSystemColor('primary')"></span>
+                    <span class="bg-danger dot clickable" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot" onclick="setSystemColor('danger')"></span>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; margin: 1%; display: inline-block">
+                <div class="card-header">
+                    <div class="text-center">
+                        <h1 class="bi bi-palette-fill"></h1>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        Symbol Farbe
+                    </h2>
+                    <p>
+                        Welche Farbe soll jedes App-Symbol haben?
+                    </p>
+                </div>
+                <div class="card-footer text-center">
+                    <span class="bg-success dot clickable" data-bs-toggle="tooltip" data-bs-placement="top" title="Grün" onclick="setAppColor('success')"></span>
+                    <span class="bg-dark dot clickable" data-bs-toggle="tooltip" data-bs-placement="top" title="Grau" onclick="setAppColor('dark')"></span>
+                    <span class="bg-warning dot clickable" data-bs-toggle="tooltip" data-bs-placement="top" title="Gelb" onclick="setAppColor('warning')"></span>
+                    <span class="bg-primary dot clickable" data-bs-toggle="tooltip" data-bs-placement="top" title="Blau" onclick="setAppColor('primary')"></span>
+                    <span class="bg-danger dot clickable" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot" onclick="setAppColor('danger')"></span>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; margin: 1%; display: inline-block">
+                <div class="card-header">
+                    <div class="text-center">
+                        <h1 class="bi bi-palette-fill"></h1>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        Animationen
+                    </h2>
+                    <div class="text-center">
+                        <input type="range" class="w-50 form-range" min="0" max="2" value="1" step="1" id="animationStrengthRange" oninput="
+                            let a=['Keine','Normal','Viele'];
+                            document.querySelector('#animationStrengthRangeOutput').innerText = a[value];
+                            senos.raw.appearance.animationStrength = value;
+                            senos.saveConfig();" onchange="new bootstrap.Modal(document.getElementById('modalRestart'), {}).show()
+                        ">
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <output class="text-dark text-center" for="animationStrengthRange" id="animationStrengthRangeOutput" style="font-size: 2vh">Normal</output>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="menu_security" class="container d-none">
+        <div class="row row-cols-2">
+            <div class="card" style="width: 18rem; margin: 1%; display: inline-block">
+                <div class="card-header">
+                    <div class="text-center">
+                        <h1 class="bi bi-lock-fill"></h1>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        Passwortschutz
+                    </h2>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="pwd-prot-enabled" onchange="changePasswordProperty(this.checked)">
+                        <label class="form-check-label" for="pwd-prot-enabled">SenOS mit einem Passwort schützen</label>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <p>
+                        Passwort vergessen? <a href="../../reset/pwd-reset/pwd-reset.html" target="_parent">Setze es jetzt zurück!</a> <strong>ACHTUNG!</strong> wenn du auf 'Setze es jetzt zurück' klickst, gehen alle nicht gespeicherten Daten verloren.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="menu_user" class="container d-none">
+        <div class="row row-cols-2">
+            <div class="card" style="width: 18rem; margin: 1%; display: inline-block">
+                <div class="card-header">
+                    <div class="text-center">
+                        <h1 class="bi bi-lock-fill"></h1>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        Nutzername
+                    </h2>
+                    <div class="input-group m-1">
+                        <span class="input-group-text col-4">Aktuell</span>
+                        <input disabled value="SenOS" class="form-control" id="currentUserName">
+                    </div>
+                    <div class="input-group m-1">
+                        <span class="input-group-text col-4">Neu</span>
+                        <input value="" class="form-control" id="newUserName">
+                    </div>
+                    <button class="btn btn-outline-primary m-1" onclick="saveUserName();">Speichern</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p id="senos-credits" class="text-light" style="bottom:0%; left:1%; width: 10%; float:left; position: absolute">
+        <span id="senos-version">
+        SenOS-1.0-DEV-SNAPSHOT
+        </span>
+        <br>
+        <span id="senos-copyright">Copyright (c) 2020-2021 SenOS.xyz.</span>
+    </p>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
-<script src="main.js"></script>
 </html>

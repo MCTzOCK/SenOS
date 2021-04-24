@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <title>Snake</title>
+</head>
+<body style="background-color: rgb(68, 141, 68);">
+    <p id="score" style="text-align: right; height: 97%; width: 97%; font-size: 3vw; position: absolute;" class="bi bi-cash-stack"></p>
+    
+    <div id="board" style="display: none; visibility: hidden;" class="translate-middle top-50 start-50">
+        <img src="head.png" id="head" style="position: absolute;">
+        <img src="end.png" id="end" style="position: absolute;">
+        <img src="apply.png" id="apple" style="position: absolute; top: 0px; left: 0px;">
+    </div>
+
+    <div id="start_screen" class="position-absolute top-50 start-50 translate-middle w-50 h-50">
+        <button style="width: 30%; height: 14%; font-size: 2.5vh;" class="btn btn-outline-light position-absolute top-50 start-0 translate-middle-y" onclick="start_game()">Start Game</button>
+        <button style="width: 30%; height: 14%; font-size: 2.5vh;" class="btn btn-outline-light position-absolute top-50 end-0 translate-middle-y" onclick="open_shop()">Shop</button>
+    </div>
+
+    <div id="shop_menu" class="position-fixed w-100" style="z-index: 100; visibility: hidden; display: none;">
+        <div class="row">
+            <button class="col btn-secondary  bi bi-x btn-secondary" style="text-align: start; font-size: 4vh;" onclick="close_shop()">     Schließen</button>
+            <div id="shop_coins" class="col bg-secondary bi bi-cash-stack" style="text-align: end; font-size: 4vh; color: white;"></div>
+        </div>
+    </div>
+
+    <div id="shop" class="cards" style="display: none; visibility: hidden; overflow: auto;">
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/apple.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Apfel</h5>
+              <p class="card-text">Soll die Schlange einen Apfel essen?</p>
+              <a id="select_apple" onclick="select_food('apple')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/aubergine.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Aubergine</h5>
+              <p class="card-text">Soll die Schlange eine Aubergine essen?</p>
+              <a id="select_aubergine" onclick="select_food('aubergine')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/avocado.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Avocado</h5>
+              <p class="card-text">Soll die Schlange eine Avocado essen?</p>
+              <a id="select_avocado" onclick="select_food('avocado')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/birne.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Birne</h5>
+              <p class="card-text">Soll die Schlange einen Birne essen?</p>
+              <a id="select_birne" onclick="select_food('birne')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/brokkoli.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Brokkoli</h5>
+              <p class="card-text">Soll die Schlange eine Brokkoli essen?</p>
+              <a id="select_brokkoli" onclick="select_food('brokkoli')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/ei.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Ei</h5>
+              <p class="card-text">Soll die Schlange eine Ei essen?</p>
+              <a id="select_ei" onclick="select_food('ei')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/karotte.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Karotte</h5>
+              <p class="card-text">Soll die Schlange einen Karotte essen?</p>
+              <a id="select_karotte" onclick="select_food('karotte')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/keks.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Keks</h5>
+              <p class="card-text">Soll die Schlange eine Keks essen?</p>
+              <a id="select_keks" onclick="select_food('keks')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/kirsche.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Kirsche</h5>
+              <p class="card-text">Soll die Schlange eine Kirsche essen?</p>
+              <a id="select_kirsche" onclick="select_food('kirsche')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/kiwi.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Kiwi</h5>
+              <p class="card-text">Soll die Schlange eine Kiwi essen?</p>
+              <a id="select_kiwi" onclick="select_food('kiwi')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/kokosnuss.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Kokosnuss</h5>
+              <p class="card-text">Soll die Schlange einen Kokosnuss essen?</p>
+              <a id="select_kokosnuss" onclick="select_food('kokosnuss')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/orange.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Orange</h5>
+              <p class="card-text">Soll die Schlange eine Orange essen?</p>
+              <a id="select_orange" onclick="select_food('orange')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/peperoni.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Peperoni</h5>
+              <p class="card-text">Soll die Schlange eine Peperoni essen?</p>
+              <a id="select_peperoni" onclick="select_food('peperoni')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/tomate.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Tomate</h5>
+              <p class="card-text">Soll die Schlange einen Tomate essen?</p>
+              <a id="select_tomate" onclick="select_food('tomate')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/trauben.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Trauben</h5>
+              <p class="card-text">Soll die Schlange eine Trauben essen?</p>
+              <a id="select_trauben" onclick="select_food('trauben')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/wassermelone.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Wassermelone</h5>
+              <p class="card-text">Soll die Schlange eine Wassermelone essen?</p>
+              <a id="select_wassermelone" onclick="select_food('wassermelone')" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem; margin: 1%;">
+            <img src="./food/zitrone.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Zitrone</h5>
+              <p class="card-text">Soll die Schlange eine Zitrone essen?</p>
+              <a id="select_zitrone" onclick="select_food('zitrone')" class="btn btn-primary"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="missingMoney" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="missingMoneyLabel">Zu wenig Geld</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Du hast zu wenig Geld um das Essen zu kaufen!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        * {
+            user-select: none;
+        }
+
+        .c-grid {
+            margin: 1%;
+            display: inline-block;
+        }
+    </style>
+
+    <script>
+        var foods = {
+            apple: true,
+            aubergine: false,
+            brokkoli: false,
+            karotte: false,
+            peperoni: false,
+            kirsche: false,
+            zitrone: false,
+            keks: false,
+            trauben: false,
+            avocado: false,
+            kiwi: false,
+            ei: false,
+            kokosnuss: false,
+            orange: false,
+            birne: false,
+            tomate: false,
+            wassermelone: false
+        };
+
+        var food = 'apple';
+        var coins = 0;
+        
+        document.getElementById('score').innerHTML = '     ' + coins;
+
+        function start_game() {
+            var move_lenght = 100;
+            var move_speed = 500;
+            var move_direction = 'down';
+            var fields_per_row = 8;
+            var eated_apple = 0;
+            var steps = 0;
+
+            document.getElementById('start_screen').style.display = 'none';
+            document.getElementById('start_screen').style.visibility = 'hidden';
+
+            document.getElementById('board').style.display = 'block';
+            document.getElementById('board').style.visibility = 'visible';
+            document.getElementById('board').style.position = 'absolute';
+            document.getElementById('board').style.width = (fields_per_row * move_lenght) + 'px';
+            document.getElementById('board').style.height = (fields_per_row * move_lenght) + 'px';
+
+            document.getElementById('head').style.width = move_lenght + 'px';
+            document.getElementById('head').style.height = move_lenght + 'px';
+            document.getElementById('head').style.top = move_lenght + 'px';
+            document.getElementById('head').style.left = '0px';
+
+            document.getElementById('end').style.width = move_lenght + 'px';
+            document.getElementById('end').style.height = move_lenght + 'px';
+            document.getElementById('end').style.top = '0px';
+            document.getElementById('end').style.left = '0px';
+
+            document.getElementById('apple').style.width = move_lenght + 'px';
+            document.getElementById('apple').style.height = move_lenght + 'px';
+
+            document.getElementById('apple').src = './food/' + food + '.png';
+            document.getElementById('score').innerHTML = '     ' + coins;
+
+            var i2 = setInterval(() => {
+                move();
+                repaint_snake();
+                eat_apple();
+                collide_side();
+                collide_body();
+            }, move_speed);
+
+            repaint_board();
+            repaint_snake();
+            new_apple();
+
+            function repaint_board() {
+                for(var x = 0; x < fields_per_row; x++) {
+                    for(var y = 0; y < fields_per_row; y++) {
+                        var a = document.createElement('a');
+                        a.style.position = 'absolute';
+                        a.style.top = (y * move_lenght) + 'px';
+                        a.style.left = (x * move_lenght) + 'px';
+                        a.style.width = move_lenght + 'px';
+                        a.style.height = move_lenght + 'px';
+                        a.style.border = '0.1vw solid black';
+                        document.getElementById('board').appendChild(a);
+                    }
+                }
+            }
+
+            document.addEventListener("keyup", (ev) => {
+                if(ev.keyCode == 83 || ev.keyCode == 40) {
+                    move_direction = 'down';
+                }
+                if(ev.keyCode == 87 || ev.keyCode == 38) {
+                    move_direction = 'up';
+                }
+                if(ev.keyCode == 65 || ev.keyCode == 37) {
+                    move_direction = 'left';
+                }
+                if(ev.keyCode == 68 || ev.keyCode == 39) {
+                    move_direction = 'right';
+                }
+            });
+
+            function move() {
+                if(eated_apple == 0) {
+                    document.getElementById('end').style.top = document.getElementById('head').style.top;
+                    document.getElementById('end').style.left = document.getElementById('head').style.left;
+
+                    if(move_direction == 'down') {
+                        document.getElementById('head').style.top = parseInt(document.getElementById('head').style.top) + move_lenght + 'px';
+                    } else if(move_direction == 'up') {
+                        document.getElementById('head').style.top = parseInt(document.getElementById('head').style.top) - move_lenght + 'px';
+                    } else if(move_direction == 'left') {
+                        document.getElementById('head').style.left = parseInt(document.getElementById('head').style.left) - move_lenght + 'px';
+                    } else if(move_direction == 'right') {
+                        document.getElementById('head').style.left = parseInt(document.getElementById('head').style.left) + move_lenght + 'px';
+                    }
+                } else if(eated_apple > 0) {
+                    for(var i = 1; i <= eated_apple; i++) {
+                        document.getElementById('body' + i).style.visibility = 'visible';
+                        document.getElementById('body' + i).style.display = 'block';
+                    }
+
+                    document.getElementById('end').style.top = parseInt(document.getElementById('body' + eated_apple).style.top) + 'px';
+                    document.getElementById('end').style.left = parseInt(document.getElementById('body' + eated_apple).style.left) + 'px';
+
+                    for(var i = eated_apple; i > 1; i--) {
+                        document.getElementById('body' + i).style.top = parseInt(document.getElementById('body' + (i - 1)).style.top) + 'px';
+                        document.getElementById('body' + i).style.left = parseInt(document.getElementById('body' + (i - 1)).style.left) + 'px';
+                    }
+
+                    document.getElementById('body1').style.top = parseInt(document.getElementById('head').style.top) + 'px';
+                    document.getElementById('body1').style.left = parseInt(document.getElementById('head').style.left) + 'px';
+
+                    if(move_direction == 'down') {
+                        document.getElementById('head').style.top = parseInt(document.getElementById('head').style.top) + move_lenght + 'px';
+                    } else if(move_direction == 'up') {
+                        document.getElementById('head').style.top = parseInt(document.getElementById('head').style.top) - move_lenght + 'px';
+                    } else if(move_direction == 'left') {
+                        document.getElementById('head').style.left = parseInt(document.getElementById('head').style.left) - move_lenght + 'px';
+                    } else if(move_direction == 'right') {
+                        document.getElementById('head').style.left = parseInt(document.getElementById('head').style.left) + move_lenght + 'px';
+                    }
+                }
+
+                steps++;
+                if(steps >= 25) {
+                    steps = 0;
+                    coins++;
+                    document.getElementById('score').innerHTML = '     ' + coins;
+                }
+
+                repaint_snake();
+            }
+
+            function repaint_snake() {
+                start_direction = '';
+                end_direction = '';
+
+                if(eated_apple == 0) {
+                    if(parseInt(document.getElementById('end').style.top) < parseInt(document.getElementById('head').style.top) && parseInt(document.getElementById('end').style.left) == parseInt(document.getElementById('head').style.left)) {
+                        //oben
+                        document.getElementById('end').style.rotate = '0deg';
+                    } else if(parseInt(document.getElementById('end').style.top) > parseInt(document.getElementById('head').style.top) && parseInt(document.getElementById('end').style.left) == parseInt(document.getElementById('head').style.left)) {
+                        //unten
+                        document.getElementById('end').style.rotate = '180deg';
+                    } else if(parseInt(document.getElementById('end').style.top) == parseInt(document.getElementById('head').style.top) && parseInt(document.getElementById('end').style.left) < parseInt(document.getElementById('head').style.left)) {
+                        //links
+                        document.getElementById('end').style.rotate = '270deg';
+                    } else if(parseInt(document.getElementById('end').style.top) == parseInt(document.getElementById('head').style.top) && parseInt(document.getElementById('end').style.left) > parseInt(document.getElementById('head').style.left)) {
+                        //rechts
+                        document.getElementById('end').style.rotate = '90deg';
+                    }
+
+                    if(parseInt(document.getElementById('head').style.top) < parseInt(document.getElementById('end').style.top) && parseInt(document.getElementById('head').style.left) == parseInt(document.getElementById('end').style.left)) {
+                        //oben
+                        document.getElementById('head').style.rotate = '180deg';
+                    } else if(parseInt(document.getElementById('head').style.top) > parseInt(document.getElementById('end').style.top) && parseInt(document.getElementById('head').style.left) == parseInt(document.getElementById('end').style.left)) {
+                        //unten
+                        document.getElementById('head').style.rotate = '0deg';
+                    } else if(parseInt(document.getElementById('head').style.top) == parseInt(document.getElementById('end').style.top) && parseInt(document.getElementById('head').style.left) < parseInt(document.getElementById('end').style.left)) {
+                        //links
+                        document.getElementById('head').style.rotate = '90deg';
+                    } else if(parseInt(document.getElementById('head').style.top) == parseInt(document.getElementById('end').style.top) && parseInt(document.getElementById('head').style.left) > parseInt(document.getElementById('end').style.left)) {
+                        //rechts
+                        document.getElementById('head').style.rotate = '270deg';
+                    }
+                } else if(eated_apple > 0) {
+                    if(parseInt(document.getElementById('end').style.top) < parseInt(document.getElementById('body' + eated_apple).style.top) && parseInt(document.getElementById('end').style.left) == parseInt(document.getElementById('body' + eated_apple).style.left)) {
+                        //oben
+                        document.getElementById('end').style.rotate = '0deg';
+                    } else if(parseInt(document.getElementById('end').style.top) > parseInt(document.getElementById('body' + eated_apple).style.top) && parseInt(document.getElementById('end').style.left) == parseInt(document.getElementById('body' + eated_apple).style.left)) {
+                        //unten
+                        document.getElementById('end').style.rotate = '180deg';
+                    } else if(parseInt(document.getElementById('end').style.top) == parseInt(document.getElementById('body' + eated_apple).style.top) && parseInt(document.getElementById('end').style.left) < parseInt(document.getElementById('body' + eated_apple).style.left)) {
+                        //links
+                        document.getElementById('end').style.rotate = '270deg';
+                    } else if(parseInt(document.getElementById('end').style.top) == parseInt(document.getElementById('body' + eated_apple).style.top) && parseInt(document.getElementById('end').style.left) > parseInt(document.getElementById('body' + eated_apple).style.left)) {
+                        //rechts
+                        document.getElementById('end').style.rotate = '90deg';
+                    }
+
+                    if(parseInt(document.getElementById('body' + eated_apple).style.top) < parseInt(document.getElementById('end').style.top) && parseInt(document.getElementById('body' + eated_apple).style.left) == parseInt(document.getElementById('end').style.left)) {
+                        //oben
+                        start_direction = 'up';
+                    } else if(parseInt(document.getElementById('body' + eated_apple).style.top) > parseInt(document.getElementById('end').style.top) && parseInt(document.getElementById('body' + eated_apple).style.left) == parseInt(document.getElementById('end').style.left)) {
+                        //unten
+                        start_direction = 'down';
+                    } else if(parseInt(document.getElementById('body' + eated_apple).style.top) == parseInt(document.getElementById('end').style.top) && parseInt(document.getElementById('body' + eated_apple).style.left) < parseInt(document.getElementById('end').style.left)) {
+                        //links
+                        start_direction = 'left';
+                    } else if(parseInt(document.getElementById('body' + eated_apple).style.top) == parseInt(document.getElementById('end').style.top) && parseInt(document.getElementById('body' + eated_apple).style.left) > parseInt(document.getElementById('end').style.left)) {
+                        //rechts
+                        start_direction = 'right';
+                    }
+                    
+                    if(eated_apple > 1) {
+                        if(parseInt(document.getElementById('body' + eated_apple).style.top) < parseInt(document.getElementById('body' + (eated_apple - 1)).style.top) && parseInt(document.getElementById('body' + eated_apple).style.left) == parseInt(document.getElementById('body' + (eated_apple - 1)).style.left)) {
+                            //oben
+                            end_direction = 'up';
+                        } else if(parseInt(document.getElementById('body' + eated_apple).style.top) > parseInt(document.getElementById('body' + (eated_apple - 1)).style.top) && parseInt(document.getElementById('body' + eated_apple).style.left) == parseInt(document.getElementById('body' + (eated_apple - 1)).style.left)) {
+                            //unten
+                            end_direction = 'down';
+                        } else if(parseInt(document.getElementById('body' + eated_apple).style.top) == parseInt(document.getElementById('body' + (eated_apple - 1)).style.top) && parseInt(document.getElementById('body' + eated_apple).style.left) < parseInt(document.getElementById('body' + (eated_apple - 1)).style.left)) {
+                            //links
+                            end_direction = 'left';
+                        } else if(parseInt(document.getElementById('body' + eated_apple).style.top) == parseInt(document.getElementById('body' + (eated_apple - 1)).style.top) && parseInt(document.getElementById('body' + eated_apple).style.left) > parseInt(document.getElementById('body' + (eated_apple - 1)).style.left)) {
+                            //rechts
+                            end_direction = 'right';
+                        }
+                    } else if(eated_apple == 1) {
+                        if(parseInt(document.getElementById('body' + eated_apple).style.top) < parseInt(document.getElementById('head').style.top) && parseInt(document.getElementById('body' + eated_apple).style.left) == parseInt(document.getElementById('head').style.left)) {
+                            //oben
+                            end_direction = 'up';
+                        } else if(parseInt(document.getElementById('body' + eated_apple).style.top) > parseInt(document.getElementById('head').style.top) && parseInt(document.getElementById('body' + eated_apple).style.left) == parseInt(document.getElementById('head').style.left)) {
+                            //unten
+                            end_direction = 'down';
+                        } else if(parseInt(document.getElementById('body' + eated_apple).style.top) == parseInt(document.getElementById('head').style.top) && parseInt(document.getElementById('body' + eated_apple).style.left) < parseInt(document.getElementById('head').style.left)) {
+                            //links
+                            end_direction = 'left';
+                        } else if(parseInt(document.getElementById('body' + eated_apple).style.top) == parseInt(document.getElementById('head').style.top) && parseInt(document.getElementById('body' + eated_apple).style.left) > parseInt(document.getElementById('head').style.left)) {
+                            //rechts
+                            end_direction = 'right';
+                        }
+                    }
+
+                    if((start_direction == 'up' && end_direction == 'down') || (start_direction == 'down' && end_direction == 'up') || (start_direction == 'left' && end_direction == 'right') || (start_direction == 'right' && end_direction == 'left')) {
+                        document.getElementById('body' + eated_apple).src = 'body_straight.png';
+                        if(start_direction == 'up' && end_direction == 'down' || start_direction == 'down' && end_direction == 'up') {
+                            document.getElementById('body' + eated_apple).style.rotate = '0deg';
+                        } else if(start_direction == 'left' && end_direction == 'right' || start_direction == 'right' && end_direction == 'left'){
+                            document.getElementById('body' + eated_apple).style.rotate = '90deg';
+                        }
+                    } else {
+                        document.getElementById('body' + eated_apple).src = 'body_edge.png';
+                        if(start_direction == 'up') {
+                            if(end_direction == 'left') {
+                                document.getElementById('body' + eated_apple).style.rotate = '90deg';
+                            } else if(end_direction == 'right') {
+                                document.getElementById('body' + eated_apple).style.rotate = '180deg';
+                            }
+                        } else if(start_direction == 'down') {
+                            if(end_direction == 'left') {
+                                document.getElementById('body' + eated_apple).style.rotate = '0deg';
+                            } else if(end_direction == 'right') {
+                                document.getElementById('body' + eated_apple).style.rotate = '270deg';
+                            }
+                        } else if(start_direction == 'left') {
+                            if(end_direction == 'up') {
+                                document.getElementById('body' + eated_apple).style.rotate = '90deg';
+                            } else if(end_direction == 'down') {
+                                document.getElementById('body' + eated_apple).style.rotate = '0deg';
+                            }
+                        } else if(start_direction == 'right') {
+                            if(end_direction == 'up') {
+                                document.getElementById('body' + eated_apple).style.rotate = '180deg';
+                            } else if(end_direction == 'down') {
+                                document.getElementById('body' + eated_apple).style.rotate = '270deg';
+                            }
+                        }
+                    }
+
+                    for(var i = eated_apple - 1; i > 1; i--) {
+                        if(parseInt(document.getElementById('body' + i).style.top) < parseInt(document.getElementById('body' + (i + 1)).style.top) && parseInt(document.getElementById('body' + i).style.left) == parseInt(document.getElementById('body' + (i + 1)).style.left)) {
+                            //oben
+                            start_direction = 'up';
+                        } else if(parseInt(document.getElementById('body' + i).style.top) > parseInt(document.getElementById('body' + (i + 1)).style.top) && parseInt(document.getElementById('body' + i).style.left) == parseInt(document.getElementById('body' + (i + 1)).style.left)) {
+                            //unten
+                            start_direction = 'down';
+                        } else if(parseInt(document.getElementById('body' + i).style.top) == parseInt(document.getElementById('body' + (i + 1)).style.top) && parseInt(document.getElementById('body' + i).style.left) < parseInt(document.getElementById('body' + (i + 1)).style.left)) {
+                            //links
+                            start_direction = 'left';
+                        } else if(parseInt(document.getElementById('body' + i).style.top) == parseInt(document.getElementById('body' + (i + 1)).style.top) && parseInt(document.getElementById('body' + i).style.left) > parseInt(document.getElementById('body' + (i + 1)).style.left)) {
+                            //rechts
+                            start_direction = 'right';
+                        }
+
+                        if(parseInt(document.getElementById('body' + i).style.top) < parseInt(document.getElementById('body' + (i - 1)).style.top) && parseInt(document.getElementById('body' + i).style.left) == parseInt(document.getElementById('body' + (i - 1)).style.left)) {
+                            //oben
+                            end_direction = 'up';
+                        } else if(parseInt(document.getElementById('body' + i).style.top) > parseInt(document.getElementById('body' + (i - 1)).style.top) && parseInt(document.getElementById('body' + i).style.left) == parseInt(document.getElementById('body' + (i - 1)).style.left)) {
+                            //unten
+                            end_direction = 'down';
+                        } else if(parseInt(document.getElementById('body' + i).style.top) == parseInt(document.getElementById('body' + (i - 1)).style.top) && parseInt(document.getElementById('body' + i).style.left) < parseInt(document.getElementById('body' + (i - 1)).style.left)) {
+                            //links
+                            end_direction = 'left';
+                        } else if(parseInt(document.getElementById('body' + i).style.top) == parseInt(document.getElementById('body' + (i - 1)).style.top) && parseInt(document.getElementById('body' + i).style.left) > parseInt(document.getElementById('body' + (i - 1)).style.left)) {
+                            //rechts
+                            end_direction = 'right';
+                        }
+
+                        if((start_direction == 'up' && end_direction == 'down') || (start_direction == 'down' && end_direction == 'up') || (start_direction == 'left' && end_direction == 'right') || (start_direction == 'right' && end_direction == 'left')) {
+                            document.getElementById('body' + i).src = 'body_straight.png';
+                            if(start_direction == 'up' && end_direction == 'down' || start_direction == 'down' && end_direction == 'up') {
+                                document.getElementById('body' + i).style.rotate = '0deg';
+                            } else if(start_direction == 'left' && end_direction == 'right' || start_direction == 'right' && end_direction == 'left'){
+                                document.getElementById('body' + i).style.rotate = '90deg';
+                            }
+                        } else {
+                            document.getElementById('body' + i).src = 'body_edge.png';
+                            if(start_direction == 'up') {
+                                if(end_direction == 'left') {
+                                    document.getElementById('body' + i).style.rotate = '90deg';
+                                } else if(end_direction == 'right') {
+                                    document.getElementById('body' + i).style.rotate = '180deg';
+                                }
+                            } else if(start_direction == 'down') {
+                                if(end_direction == 'left') {
+                                    document.getElementById('body' + i).style.rotate = '0deg';
+                                } else if(end_direction == 'right') {
+                                    document.getElementById('body' + i).style.rotate = '270deg';
+                                }
+                            } else if(start_direction == 'left') {
+                                if(end_direction == 'up') {
+                                    document.getElementById('body' + i).style.rotate = '90deg';
+                                } else if(end_direction == 'down') {
+                                    document.getElementById('body' + i).style.rotate = '0deg';
+                                }
+                            } else if(start_direction == 'right') {
+                                if(end_direction == 'up') {
+                                    document.getElementById('body' + i).style.rotate = '180deg';
+                                } else if(end_direction == 'down') {
+                                    document.getElementById('body' + i).style.rotate = '270deg';
+                                }
+                            }
+                        }
+                    }
+
+                    if(eated_apple > 1) {
+                        if(parseInt(document.getElementById('body1').style.top) < parseInt(document.getElementById('body2').style.top) && parseInt(document.getElementById('body1').style.left) == parseInt(document.getElementById('body2').style.left)) {
+                            //oben
+                            start_direction = 'up';
+                        } else if(parseInt(document.getElementById('body1').style.top) > parseInt(document.getElementById('body2').style.top) && parseInt(document.getElementById('body1').style.left) == parseInt(document.getElementById('body2').style.left)) {
+                            //unten
+                            start_direction = 'down';
+                        } else if(parseInt(document.getElementById('body1').style.top) == parseInt(document.getElementById('body2').style.top) && parseInt(document.getElementById('body1').style.left) < parseInt(document.getElementById('body2').style.left)) {
+                            //links
+                            start_direction = 'left';
+                        } else if(parseInt(document.getElementById('body1').style.top) == parseInt(document.getElementById('body2').style.top) && parseInt(document.getElementById('body1').style.left) > parseInt(document.getElementById('body2').style.left)) {
+                            //rechts
+                            start_direction = 'right';
+                        }
+                    
+                        if(parseInt(document.getElementById('body1').style.top) < parseInt(document.getElementById('head').style.top) && parseInt(document.getElementById('body1').style.left) == parseInt(document.getElementById('head').style.left)) {
+                            //oben
+                            end_direction = 'up';
+                        } else if(parseInt(document.getElementById('body1').style.top) > parseInt(document.getElementById('head').style.top) && parseInt(document.getElementById('body1').style.left) == parseInt(document.getElementById('head').style.left)) {
+                            //unten
+                            end_direction = 'down';
+                        } else if(parseInt(document.getElementById('body1').style.top) == parseInt(document.getElementById('head').style.top) && parseInt(document.getElementById('body1').style.left) < parseInt(document.getElementById('head').style.left)) {
+                            //links
+                            end_direction = 'left';
+                        } else if(parseInt(document.getElementById('body1').style.top) == parseInt(document.getElementById('head').style.top) && parseInt(document.getElementById('body1').style.left) > parseInt(document.getElementById('head').style.left)) {
+                            //rechts
+                            end_direction = 'right';
+                        }
+
+                        if((start_direction == 'up' && end_direction == 'down') || (start_direction == 'down' && end_direction == 'up') || (start_direction == 'left' && end_direction == 'right') || (start_direction == 'right' && end_direction == 'left')) {
+                            document.getElementById('body1').src = 'body_straight.png';
+                            if(start_direction == 'up' && end_direction == 'down' || start_direction == 'down' && end_direction == 'up') {
+                                document.getElementById('body1').style.rotate = '0deg';
+                            } else if(start_direction == 'left' && end_direction == 'right' || start_direction == 'right' && end_direction == 'left'){
+                                document.getElementById('body1').style.rotate = '90deg';
+                            }
+                        } else {
+                            document.getElementById('body1').src = 'body_edge.png';
+                            if(start_direction == 'up') {
+                                if(end_direction == 'left') {
+                                    document.getElementById('body1').style.rotate = '90deg';
+                                } else if(end_direction == 'right') {
+                                    document.getElementById('body1').style.rotate = '180deg';
+                                }
+                            } else if(start_direction == 'down') {
+                                if(end_direction == 'left') {
+                                    document.getElementById('body1').style.rotate = '0deg';
+                                } else if(end_direction == 'right') {
+                                    document.getElementById('body1').style.rotate = '270deg';
+                                }
+                            } else if(start_direction == 'left') {
+                                if(end_direction == 'up') {
+                                    document.getElementById('body1').style.rotate = '90deg';
+                                } else if(end_direction == 'down') {
+                                    document.getElementById('body1').style.rotate = '0deg';
+                                }
+                            } else if(start_direction == 'right') {
+                                if(end_direction == 'up') {
+                                    document.getElementById('body1').style.rotate = '180deg';
+                                } else if(end_direction == 'down') {
+                                    document.getElementById('body1').style.rotate = '270deg';
+                                }
+                            }
+                        }
+                    }
+
+                    if(parseInt(document.getElementById('head').style.top) < parseInt(document.getElementById('body1').style.top) && parseInt(document.getElementById('head').style.left) == parseInt(document.getElementById('body1').style.left)) {
+                        //oben
+                        document.getElementById('head').style.rotate = '180deg';
+                    } else if(parseInt(document.getElementById('head').style.top) > parseInt(document.getElementById('body1').style.top) && parseInt(document.getElementById('head').style.left) == parseInt(document.getElementById('body1').style.left)) {
+                        //unten
+                        document.getElementById('head').style.rotate = '0deg';
+                    } else if(parseInt(document.getElementById('head').style.top) == parseInt(document.getElementById('body1').style.top) && parseInt(document.getElementById('head').style.left) < parseInt(document.getElementById('body1').style.left)) {
+                        //links
+                        document.getElementById('head').style.rotate = '90deg';
+                    } else if(parseInt(document.getElementById('head').style.top) == parseInt(document.getElementById('body1').style.top) && parseInt(document.getElementById('head').style.left) > parseInt(document.getElementById('body1').style.left)) {
+                        //rechts
+                        document.getElementById('head').style.rotate = '270deg';
+                    }
+                }
+            }
+
+            function new_apple() {
+                var top = Math.floor(Math.random() * fields_per_row);
+                var left = Math.floor(Math.random() * fields_per_row);
+
+                document.getElementById('apple').style.top = (top * move_lenght) + 'px';
+                document.getElementById('apple').style.left = (left * move_lenght) + 'px';
+
+                for(var i = 1; i <= eated_apple; i++) {
+                    if(document.getElementById('apple').style.top == document.getElementById('body' + i).style.top && document.getElementById('apple').style.left == document.getElementById('body' + i).style.left) {
+                        new_apple();
+                    }
+                }
+
+                if(document.getElementById('apple').style.top == document.getElementById('end').style.top && document.getElementById('apple').style.left == document.getElementById('end').style.left) {
+                    new_apple();
+                }
+
+                if(document.getElementById('apple').style.top == document.getElementById('head').style.top && document.getElementById('apple').style.left == document.getElementById('head').style.left) {
+                    new_apple();
+                }
+            }
+
+            function eat_apple() {
+                if(document.getElementById('head').style.top == document.getElementById('apple').style.top && document.getElementById('head').style.left == document.getElementById('apple').style.left) {
+                    eated_apple++;
+                    coins = coins + 5;
+                    document.getElementById('score').innerHTML = '     ' + coins;
+
+                    var body = document.createElement('img');
+                    body.src = 'body_straight.png';
+                    body.id = 'body' + eated_apple;
+                    body.style.visibility = 'hidden';
+                    body.style.display = 'none';
+                    body.style.position = 'absolute';
+                    body.style.width = move_lenght + 'px';
+                    body.style.height = move_lenght + 'px';
+                    body.style.top = parseInt(document.getElementById('end').style.top) + 'px';
+                    body.style.left = parseInt(document.getElementById('end').style.left) + 'px';
+                    document.getElementById('board').appendChild(body);
+
+                    new_apple();
+                }
+            }
+
+            function collide_side() {
+                if(document.getElementById('head').style.top < 0 + 'px') {
+                    die();
+                } else if(document.getElementById('head').style.top > (fields_per_row * move_lenght) + 'px') {
+                    die();
+                } else if(document.getElementById('head').style.left < 0 + 'px') {
+                    die();
+                } else if(document.getElementById('head').style.left > (fields_per_row * move_lenght) + 'px') {
+                    die();
+                }
+            }
+
+            function collide_body() {
+                for(var i = 1; i <= eated_apple; i++) {
+                    if(document.getElementById('head').style.top == document.getElementById('body' + i).style.top && document.getElementById('head').style.left == document.getElementById('body' + i).style.left) {
+                        die();
+                    }
+                }
+
+                if(document.getElementById('head').style.top == document.getElementById('end').style.top && document.getElementById('head').style.left == document.getElementById('end').style.left) {
+                    die();
+                }
+            }
+
+            function die() {
+                move_direction = '';
+
+                document.getElementById('start_screen').style.display = 'block';
+                document.getElementById('start_screen').style.visibility = 'visible';
+
+                document.getElementById('board').style.display = 'none';
+                document.getElementById('board').style.visibility = 'hidden';
+
+                clearInterval(i2);
+
+                for(var i = 1; i <= eated_apple; i++) {
+                    document.getElementById('board').removeChild(document.getElementById('body' + i));
+                }
+                
+                eated_apple = 0;
+            }
+        }
+
+        function open_shop() {
+            document.getElementById('shop').style.visibility = 'visible';
+            document.getElementById('shop').style.display = 'block';
+            document.getElementById('start_screen').style.visibility = 'hidden';
+            document.getElementById('start_screen').style.display = 'none';
+            document.getElementById('score').style.visibility = 'hidden';
+            document.getElementById('score').style.display = 'none';
+            document.getElementById('shop_menu').style.visibility = 'visible';
+            document.getElementById('shop_menu').style.display = 'block';
+            repaint_store();
+        }
+
+        function close_shop() {
+            document.getElementById('shop').style.visibility = 'hidden';
+            document.getElementById('shop').style.display = 'none';
+            document.getElementById('start_screen').style.visibility = 'visible';
+            document.getElementById('start_screen').style.display = 'block';
+            document.getElementById('score').style.visibility = 'visible';
+            document.getElementById('score').style.display = 'block';
+            document.getElementById('shop_menu').style.visibility = 'hidden';
+            document.getElementById('shop_menu').style.display = 'none';
+            document.getElementById('score').innerText = coins;
+        }
+
+        function select_food(selecting_food) {
+            if(selecting_food == 'apple') {
+                if(foods.apple == true) {
+                    food = 'apple';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'apple';
+                    foods.apple = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'aubergine') {
+                if(foods.aubergine == true) {
+                    food = 'aubergine';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'aubergine';
+                    foods.aubergine = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'avocado') {
+                if(foods.avocado == true) {
+                    food = 'avocado';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'avocado';
+                    foods.avocado = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'birne') {
+                if(foods.birne == true) {
+                    food = 'birne';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'birne';
+                    foods.birne = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'brokkoli') {
+                if(foods.brokkoli == true) {
+                    food = 'brokkoli';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'brokkoli';
+                    foods.brokkoli = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'ei') {
+                if(foods.ei == true) {
+                    food = 'ei';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'ei';
+                    foods.ei = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'karotte') {
+                if(foods.karotte == true) {
+                    food = 'karotte';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'karotte';
+                    foods.karotte = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'keks') {
+                if(foods.keks == true) {
+                    food = 'keks';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'keks';
+                    foods.keks = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'kirsche') {
+                if(foods.kirsche == true) {
+                    food = 'kirsche';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'kirsche';
+                    foods.kirsche = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'kiwi') {
+                if(foods.kiwi == true) {
+                    food = 'kiwi';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'kiwi';
+                    foods.kiwi = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'kokosnuss') {
+                if(foods.kokosnuss == true) {
+                    food = 'kokosnuss';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'kokosnuss';
+                    foods.kokosnuss = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'orange') {
+                if(foods.orange == true) {
+                    food = 'orange';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'orange';
+                    foods.orange = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'peperoni') {
+                if(foods.peperoni == true) {
+                    food = 'peperoni';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'peperoni';
+                    foods.peperoni = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'tomate') {
+                if(foods.tomate == true) {
+                    food = 'tomate';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'tomate';
+                    foods.tomate = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'trauben') {
+                if(foods.trauben == true) {
+                    food = 'trauben';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'trauben';
+                    foods.trauben = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'wassermelone') {
+                if(foods.wassermelone == true) {
+                    food = 'wassermelone';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'wassermelone';
+                    foods.wassermelone = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            } else if(selecting_food == 'zitrone') {
+                if(foods.zitrone == true) {
+                    food = 'zitrone';
+                } else if(coins >= 200) {
+                    coins = coins - 200;
+                    food = 'zitrone';
+                    foods.zitrone = true;
+                } else if(coins < 200) {
+                    new bootstrap.Modal(document.getElementById('missingMoney'), {}).show();
+                }
+                repaint_store();
+            }
+        }
+
+        function repaint_store() {
+            if(foods.apple) {
+                document.getElementById('select_apple').innerText = 'Ja';
+            } else {
+                document.getElementById('select_apple').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.aubergine) {
+                document.getElementById('select_aubergine').innerText = 'Ja';
+            } else {
+                document.getElementById('select_aubergine').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.avocado) {
+                document.getElementById('select_avocado').innerText = 'Ja';
+            } else {
+                document.getElementById('select_avocado').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.birne) {
+                document.getElementById('select_birne').innerText = 'Ja';
+            } else {
+                document.getElementById('select_birne').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.brokkoli) {
+                document.getElementById('select_brokkoli').innerText = 'Ja';
+            } else {
+                document.getElementById('select_brokkoli').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.ei) {
+                document.getElementById('select_ei').innerText = 'Ja';
+            } else {
+                document.getElementById('select_ei').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.karotte) {
+                document.getElementById('select_karotte').innerText = 'Ja';
+            } else {
+                document.getElementById('select_karotte').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.keks) {
+                document.getElementById('select_keks').innerText = 'Ja';
+            } else {
+                document.getElementById('select_keks').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.kirsche) {
+                document.getElementById('select_kirsche').innerText = 'Ja';
+            } else {
+                document.getElementById('select_kirsche').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.kiwi) {
+                document.getElementById('select_kiwi').innerText = 'Ja';
+            } else {
+                document.getElementById('select_kiwi').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.kokosnuss) {
+                document.getElementById('select_kokosnuss').innerText = 'Ja';
+            } else {
+                document.getElementById('select_kokosnuss').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.orange) {
+                document.getElementById('select_orange').innerText = 'Ja';
+            } else {
+                document.getElementById('select_orange').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.peperoni) {
+                document.getElementById('select_peperoni').innerText = 'Ja';
+            } else {
+                document.getElementById('select_peperoni').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.tomate) {
+                document.getElementById('select_tomate').innerText = 'Ja';
+            } else {
+                document.getElementById('select_tomate').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.trauben) {
+                document.getElementById('select_trauben').innerText = 'Ja';
+            } else {
+                document.getElementById('select_trauben').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.wassermelone) {
+                document.getElementById('select_wassermelone').innerText = 'Ja';
+            } else {
+                document.getElementById('select_wassermelone').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+            if(foods.zitrone) {
+                document.getElementById('select_zitrone').innerText = 'Ja';
+            } else {
+                document.getElementById('select_zitrone').innerHTML = 'Mit 1000 <span class="bi bi-cash-stack"></span> kaufen';
+            }
+
+            if(document.getElementById('select_apple').classList.contains('btn-secondary')) {
+                document.getElementById('select_apple').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_aubergine').classList.contains('btn-secondary')) {
+                document.getElementById('select_aubergine').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_avocado').classList.contains('btn-secondary')) {
+                document.getElementById('select_avocado').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_birne').classList.contains('btn-secondary')) {
+                document.getElementById('select_birne').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_brokkoli').classList.contains('btn-secondary')) {
+                document.getElementById('select_brokkoli').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_ei').classList.contains('btn-secondary')) {
+                document.getElementById('select_ei').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_karotte').classList.contains('btn-secondary')) {
+                document.getElementById('select_karotte').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_keks').classList.contains('btn-secondary')) {
+                document.getElementById('select_keks').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_kirsche').classList.contains('btn-secondary')) {
+                document.getElementById('select_kirsche').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_kiwi').classList.contains('btn-secondary')) {
+                document.getElementById('select_kiwi').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_kokosnuss').classList.contains('btn-secondary')) {
+                document.getElementById('select_kokosnuss').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_orange').classList.contains('btn-btn-secondary')) {
+                document.getElementById('select_orange').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_peperoni').classList.contains('btn-secondary')) {
+                document.getElementById('select_peperoni').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_tomate').classList.contains('btn-secondary')) {
+                document.getElementById('select_tomate').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_trauben').classList.contains('btn-secondary')) {
+                document.getElementById('select_trauben').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_wassermelone').classList.contains('btn-secondary')) {
+                document.getElementById('select_wassermelone').classList.replace('btn-secondary', 'btn-primary');
+            }
+            if(document.getElementById('select_zitrone').classList.contains('btn-secondary')) {
+                document.getElementById('select_zitrone').classList.replace('btn-secondary', 'btn-primary');
+            }
+
+            document.getElementById('select_' + food).classList.replace('btn-primary', 'btn-secondary');
+            document.getElementById('select_' + food).innerText = 'Ausgewählt';
+
+            document.getElementById('shop_coins').innerText = '     ' + coins;
+        }
+    </script>
+</body>
+</html>

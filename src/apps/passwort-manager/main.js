@@ -1,32 +1,18 @@
+const modal = new bootstrap.Modal(document.getElementById('new_password'), {});
+
+const { initAppearance } = require('../../modules/senos')
+
+initAppearance();
+
 var password = {
     password: [
 
     ]
 }
 
-// MCTzOCK - Start
-const fs = require('fs');
-const path = require('path');
-__load();
-function __load(){
-    password = JSON.parse(fs.readFileSync(path.join(__dirname, "passwords.json")))
-    document.getElementById('cards').innerHTML = '';
-    password.password.forEach(element => {
-        add_card((password.password.indexOf(element)) + 1);
-        document.getElementById('no_cards').classList.add('hidden')
-    });
-}
-
-function __save(){
-    fs.writeFileSync(path.join(__dirname, "passwords.json"), JSON.stringify(password));
-}
-
-// MCTzOCK - End
-
-const modal = new bootstrap.Modal(document.getElementById('new_password'), {});
-
 var b = false;
 var b2 = false;
+var deleting_card;
 
 function add() {
     b = false;
@@ -68,9 +54,6 @@ function add() {
         document.getElementById('already_password').classList.add('hidden');
         document.getElementById('no_app_url').classList.add('hidden');
     }
-    // MCTzOCK - Start
-    __save();
-    // MCTzOCK - End
 }
 
 function add_card(card_number) {
@@ -197,7 +180,7 @@ function add_card(card_number) {
 
     var btn_delete = document.createElement('a');
     btn_delete.id = password.password[card_number - 1].app_url + '_' + password.password[card_number - 1].username + '_' + password.password[card_number - 1].password + '_btn_delete';
-    btn_delete.href = 'javascript:delete_card("' + card_number + '")';
+    btn_delete.setAttribute('onclick', 'new bootstrap.Modal(document.getElementById("deleteCardPopup"), {}).show(); deleting_card = ' + card_number);
     btn_delete.classList.add('btn');
     btn_delete.classList.add('btn-primary');
     btn_delete.style.position = 'absolute';
@@ -282,27 +265,20 @@ function finish(card) {
         document.getElementById(s2 + '_existing').classList.add('hidden');
         document.getElementById(s2 + '_missing_app_url').classList.add('hidden');
     }
-
-    // MCTzOCK - Start
-    __save();
-    // MCTzOCK - End
 }
 
-function delete_card(card) {
-    document.getElementById('cards').removeChild(document.getElementById(password.password[card - 1].app_url + '_' + password.password[card - 1].username + '_' + password.password[card - 1].password));
-    password.password.splice(card - 1, 1);
+function delete_card() {
+    document.getElementById('cards').removeChild(document.getElementById(password.password[deleting_card - 1].app_url + '_' + password.password[deleting_card - 1].username + '_' + password.password[deleting_card - 1].password));
+    password.password.splice(deleting_card - 1, 1);
     password.password.forEach(element => {
         document.getElementById(element.app_url + '_' + element.username + '_' + element.password + '_btn_edit').href = 'javascript:edit("' + (password.password.indexOf(element) + 1) + '")';
         document.getElementById(element.app_url + '_' + element.username + '_' + element.password + '_btn_finish').href = 'javascript:finish("' + (password.password.indexOf(element) + 1) + '")';
-        document.getElementById(element.app_url + '_' + element.username + '_' + element.password + '_btn_delete').href = 'javascript:delete_card("' + (password.password.indexOf(element) + 1) + '")';
+        document.getElementById(element.app_url + '_' + element.username + '_' + element.password + '_btn_delete').href = 'new bootstrap.Modal(document.getElementById("deleteCardPopup"), {}).show(); deleting_card = ' + (password.password.indexOf(element) + 1);
     });
     
     if(password.password.length == 0) {
         document.getElementById('no_cards').classList.remove('hidden');
     }
-    // MCTzOCK - Start
-    __save();
-    // MCTzOCK - End
 }
 
 function show_add_popup() {

@@ -1,4 +1,7 @@
+const { initAppearance } = require('../../modules/senos')
+
 window.onload = function(){
+    initAppearance();
     let sheepyOptions = {
         open: ['FIRST_START'],
         steps: [

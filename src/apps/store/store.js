@@ -5,6 +5,10 @@ const fetch = require('node-fetch')
 const rimraf = require('rimraf');
 const AdmZip = require('adm-zip');
 
+const { initAppearance, raw } = require('../../modules/senos')
+
+initAppearance();
+
 let data = {};
 
 // read app data
@@ -44,7 +48,8 @@ function renderUpdate(){
         card.style.width = "18rem"
         img.src = data.apps[i].logo
         img.classList.add("card-img-top")
-        img.style.background = "#292b2c"
+        // img.style.background = "#292b2c"
+        img.classList.add(raw.appearance.backgroundClass)
         cardbody.classList.add("card-body")
         title.classList.add("card-title")
         title.innerText = data.apps[i].name

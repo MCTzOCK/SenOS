@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personalisieren</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+    <!-- Back Button -->
+    <button class="btn btn-primary" onclick="window.location.assign('index.html');">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
+        </svg>
+        Zurück
+    </button>
+
+    <h1 class="text-light text-center">Animationen</h1>
+    <div class="text-center">
+        <input type="range" class="w-25 form-range" min="0" max="2" value="1" step="1" id="animationStrengthRange" oninput="
+            let a=['Keine','Normal','Viele'];
+            document.querySelector('#animationStrengthRangeOutput').value = a[value];
+            config.appearance.animationStrength = value;
+            fs.writeFileSync(path.join(__dirname, '../../config.json'), JSON.stringify(config))">
+        <script>
+            window.onload = function() {
+                let a=['Keine','Normal','Viele'];
+                document.getElementById('animationStrengthRange').value = parseInt(config.appearance.animationStrength);
+                document.querySelector('#animationStrengthRangeOutput').value = a[parseInt(config.appearance.animationStrength)];
+            }
+        </script>
+        <br>
+        <output class="text-light text-center" for="animationStrengthRange" id="animationStrengthRangeOutput" style="font-size: 2vh">Normal</output>
+    </div>
+
+    <h1 class="text-light text-center">Farben</h1>
+    <div class="cards text-center">
+        <div class="card c-grid" style="width: 18rem">
+            <div class="card-body">
+                <div class="card-img-top">
+                    <img src="../../img/color/blood-red.png" alt="Blut Rot" width="100%" height="128">
+                </div>
+                <h2 class="card-title">
+                    Blutrot
+                </h2>
+                <p class="card-text">
+                    Farbe zu Blutrot ändern
+                </p>
+                <button class="btn btn-primary" onclick="setColor('red')">Farbe einstellen</button>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem">
+            <div class="card-body">
+                <div class="card-img-top">
+                    <img src="../../img/color/grass-green.png" alt="Graß Grün" width="100%" height="128">
+                </div>
+                <h2 class="card-title">
+                    Graßgrün
+                </h2>
+                <p class="card-text">
+                    Farbe zu Graßgrün ändern
+                </p>
+                <button class="btn btn-primary" onclick="setColor('green')">Farbe einstellen</button>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem">
+            <div class="card-body">
+                <div class="card-img-top">
+                    <img src="../../img/color/ocean-blue.png" alt="Ozean Blau" width="100%" height="128">
+                </div>
+                <h2 class="card-title">
+                    Ozeanblau
+                </h2>
+                <p class="card-text">
+                    Farbe zu Ozeanblau ändern
+                </p>
+                <button class="btn btn-primary" onclick="setColor('blue')">Farbe einstellen</button>
+            </div>
+        </div>
+        <div class="card c-grid" style="width: 18rem">
+            <div class="card-body">
+                <div class="card-img-top">
+                    <img src="../../img/color/sun-yellow.png" alt="Sonnen Gelb" width="100%" height="128">
+                </div>
+                <h2 class="card-title">
+                    Sonnengelb
+                </h2>
+                <p class="card-text">
+                    Farbe zu Sonnengelb ändern
+                </p>
+                <button class="btn btn-primary" onclick="setColor('yellow')">Farbe einstellen</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-2" id="successDialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Erfolgreich!</h5>
+                    <button type="button" class="btn-close" onclick="window.location.reload()" aria-label="Schließen"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Die Farbe wurde erfolgreich geändert! <b>ACHTUNG! Die Änderungen werden erst nach einem Neustart von SenOS sichtbar sein!</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="window.location.reload()">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+<script src="color.js"></script>
+<script>
+    const { initAppearance } = require('../../modules/senos')
+
+    initAppearance();
+</script>
+</body>
+</html>

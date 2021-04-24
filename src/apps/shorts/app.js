@@ -5,6 +5,10 @@ const words         = JSON.parse(fs.readFileSync(path.join(__dirname, "words.jso
 
 let cI              = 1;
 
+const { initAppearance } = require('../../modules/senos')
+
+initAppearance();
+
 let sheepyOptions = {
     open: ['FIRST_START'],
     steps: [

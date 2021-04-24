@@ -10,6 +10,11 @@ let currentAppPage = 0;
 
 let currentApp = '';
 
+let animationWaitingTime = 0;
+if(senos.animationLevel >= 1){
+    animationWaitingTime = 1000;
+}
+
 window.onload = function() {
     if(senos.animationLevel === 0){
         let list = document.getElementsByClassName('animationDisable-1');
@@ -20,6 +25,10 @@ window.onload = function() {
                 }
             })
         }
+    }
+
+    if(!senos.rawUser.enabled){
+        document.getElementById('btn-logout').classList.add('d-none')
     }
 
     let needed_app_pages = parseInt(apps.getApps().length / APPS_PER_PAGE);
@@ -73,7 +82,8 @@ window.onload = function() {
             cardBody.classList.add('card-body')
             cardTitle.classList.add('card-title')
 
-            cardImg.style.background = 'rgba(' + senos.system_color.r + ',' + senos.system_color.g + ',' + senos.system_color.b + ',' + senos.system_color.a + ')';
+            // cardImg.style.background = 'rgba(' + senos.system_color.r + ',' + senos.system_color.g + ',' + senos.system_color.b + ',' + senos.system_color.a + ')';
+            cardImg.classList.add(senos.raw.appearance.iconBackgroundClass);
 
             let icon_path = '';
             if(fs.existsSync(path.join(__dirname, app.icon))){
@@ -142,7 +152,7 @@ function switchPage(index){
                         nextAppPageElement.classList.add('animation-fadeIn-right')
                     }
                 }
-            },1000)
+            },animationWaitingTime)
         }
     })();
 }
@@ -162,7 +172,7 @@ async function openApp(name){
                 setTimeout(() => {
                     lastApp.className = '';
                     lastApp.classList.add('d-none');
-                }, 1000)
+                }, animationWaitingTime)
             }else {
                 let nextApp = document.getElementById('window_' + name);
                 nextApp.className = '';
@@ -184,7 +194,7 @@ async function openApp(name){
             setTimeout(() => {
                 lastApp.className = '';
                 lastApp.classList.add('d-none');
-            }, 1000)
+            }, animationWaitingTime)
         }
         currentApp = '';
     }
@@ -192,4 +202,25 @@ async function openApp(name){
 
 function showDesktop(){
     openApp('');
+}
+
+function shutdown(){
+    document.getElementById('exitConfirmInfo').innerHTML = 'Wenn du deinen PC ausschaltest gehen möglicherweise nicht gespeicherte <strong>Daten verloren!</strong>'
+    document.getElementById('exitConfirmButton').setAttribute('onclick', 'window.close()')
+    document.getElementById('exitConfirmButton').innerText = 'Trotzdem ausschalten'
+    new bootstrap.Modal(document.getElementById('modalExitConfirm'), {}).show()
+}
+
+function reboot(){
+    document.getElementById('exitConfirmInfo').innerHTML = 'Wenn du deinen PC neustartest gehen möglicherweise nicht gespeicherte <strong>Daten verloren!</strong>'
+    document.getElementById('exitConfirmButton').setAttribute('onclick', 'window.location.reload()')
+    document.getElementById('exitConfirmButton').innerText = 'Trotzdem neustarten'
+    new bootstrap.Modal(document.getElementById('modalExitConfirm'), {}).show()
+}
+
+function logout(){
+    document.getElementById('exitConfirmInfo').innerHTML = 'Wenn du dich abmeldest gehen möglicherweise nicht gespeicherte <strong>Daten verloren!</strong>'
+    document.getElementById('exitConfirmButton').setAttribute('onclick', 'window.location.assign("login/login.html")')
+    document.getElementById('exitConfirmButton').innerText = 'Trotzdem abmelden'
+    new bootstrap.Modal(document.getElementById('modalExitConfirm'), {}).show()
 }

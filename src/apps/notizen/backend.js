@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const rootDir = path.join(__dirname, '../../files/notizen/');
+const { initAppearance } = require('../../modules/senos')
+
+initAppearance();
 
 if(!fs.existsSync(rootDir)){
     fs.mkdirSync(rootDir);

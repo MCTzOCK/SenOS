@@ -1,4 +1,7 @@
+const { initAppearance } = require('../../modules/senos')
+
 window.onload = function (){
+    initAppearance();
     document.getElementById('challange').value = ''
     let sheepyOptions = {
         open: ['FIRST_START'],

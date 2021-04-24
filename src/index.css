@@ -25,3 +25,7 @@ iframe[id^="window_"] {
     width: 100vw;
     height: 100vh;
 }
+
+.bigText {
+    font-size: 2vh;
+}

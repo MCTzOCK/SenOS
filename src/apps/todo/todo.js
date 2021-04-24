@@ -15,6 +15,7 @@ let lists = {
 
 const fs = require('fs');
 const path = require('path')
+const { initAppearance } = require('../../modules/senos')
 
 function save(){
     fs.writeFileSync(path.join(__dirname, 'lists.json'), JSON.stringify(lists))
@@ -29,6 +30,7 @@ let tmp__currentList = '';
 let tmp__currentTask = '';
 
 window.onload = function(){
+    initAppearance();
     let sheepyOptions = {
         open: ['FIRST_START'],
         step: [

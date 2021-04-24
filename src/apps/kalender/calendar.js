@@ -1,5 +1,7 @@
 let selectMonthDropDown;
 
+const { initAppearance } = require('../../modules/senos')
+
 let events = {
 
 }
@@ -19,6 +21,7 @@ function save(){
 
 
 window.onload = function () {
+    initAppearance();
     load();
     document.getElementById('yearInput').value = new Date().getFullYear();
     selectMonthDropDown = document.getElementById('selectMonthDropDrown')
